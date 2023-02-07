@@ -5,13 +5,13 @@ import Footer from "@/components/FooterComponent.vue";
 </script>
 
 <template>
-  <header>
+  <header class="fixed top-0 left-0 right-0">
     <Header />
   </header>
   <main>
     <router-view></router-view>
   </main>
-  <footer>
+  <footer class="fixed bottom-0 left-0 right-0">
     <Footer />
   </footer>
 </template>
