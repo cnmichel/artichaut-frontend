@@ -15,9 +15,12 @@ import router from "@/router";
 onBeforeMount(() => {
   if(localStorage.getItem('token')){
     const token = localStorage.getItem('token');
-    if (checkAdmin(token)){
+    // Vérification du role de l'utilisateur
+    checkAdmin(token).then(({}) => {
       router.push('/admin')
-    }
+    }).catch(({response}) => {
+      router.push('/')
+    })
   }
 })
 
@@ -31,15 +34,20 @@ const processing = ref(false);
 
 async function submit() {
   processing.value = true;
+
+  // Appel de la fonction  login
   login(user.value)
-      .then(({ data }) => {
-        localStorage.setItem("token", data.token);
-        if (checkAdmin(data.token)){
-          console.log('oui')
+      .then(async ({data}) => {
+        // Vérification du role de l'utilisateur
+        if (await checkAdmin(data.token)) {
+          localStorage.setItem("token", data.token);
           router.push('/admin')
+        } else {
+          alert("Mauvais ID")
         }
       })
       .catch(({ response }) => {
+        // Gestion des erreurs
         if (response.status === 401) {
           validationError.value = response.data.message;
           console.log(validationError.value);
