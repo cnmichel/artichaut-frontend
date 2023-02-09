@@ -8,9 +8,7 @@ import axios from 'axios';
 import './assets/main.css'
 import 'element-plus/dist/index.css'
 
-axios.defaults.baseURL="http://localhost/api";
-
 createApp(App)
-.use(router)
-.use(ElementPlus)
-.mount('#app')
+    .use(router)
+    .use(ElementPlus)
+    .mount('#app')
