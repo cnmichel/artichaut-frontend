@@ -19,7 +19,7 @@ onBeforeMount(() => {
     checkAdmin(token).then(({}) => {
       router.push('/admin/home')
     }).catch(({response}) => {
-      router.push('/')
+      router.push('/admin')
     })
   }
 })

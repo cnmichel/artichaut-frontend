@@ -31,10 +31,10 @@ const routes = [
                         if (isAdmin) {
                             next();
                         } else {
-                            next('/');
+                            next('/admin');
                         }
                     })
-                    .catch(() => next('/admin/login'));
+                    .catch(() => next('/admin'));
             }
         },
         component: AdminHome,
