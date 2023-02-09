@@ -1,11 +1,11 @@
 import { createWebHistory, createRouter } from "vue-router";
-import Home from "@/views/admin/HomeView.vue";
-import Article from "@/views/admin/ArticleView.vue";
-import Feature from "@/views/admin/FeatureView.vue";
-import Product from "@/views/admin/ProductView.vue";
-import Promo from "@/views/admin/PromoView.vue";
-import Video from "@/views/admin/VideoView.vue";
-import Hero from "@/views/admin/HeroView.vue";
+import Home from "@/views/admin/AdminHomeView.vue";
+import Article from "@/views/admin/AdminArticleView.vue";
+import Feature from "@/views/admin/AdminFeatureView.vue";
+import Product from "@/views/admin/AdminProductView.vue";
+import Promo from "@/views/admin/AdminPromoView.vue";
+import Video from "@/views/admin/AdminVideoView.vue";
+import Hero from "@/views/admin/AdminHeroView.vue";
 
 const routes = [
     {
