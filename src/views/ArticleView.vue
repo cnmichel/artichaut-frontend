@@ -46,9 +46,9 @@ const getPagination = (articles: Articles[], page: number) => {
 <el-card class="box-card">
     <div class="">
         <div ref="articles" v-for="article in paginateArticles" class="shadow-lg rounder-lg p-8 grid grid-cols-3 grid-flow-col gap-4">
+            <div class="row-span-3">{{ article.image }}</div>
             <div class="col-span-2 underline">{{ article.title}}</div>
             <div class="row-span-2 col-span-2">{{ article.content }}</div>
-            <div class="row-span-3">{{ article.image }}</div>
         </div>
    <el-pagination 
    :page-size="pageSize" 
