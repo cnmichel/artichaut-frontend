@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import ElementPlus from 'element-plus'
-import axios from "axios/index";
+import axios from "axios";
 
 // @ts-ignore
 import router from './router'

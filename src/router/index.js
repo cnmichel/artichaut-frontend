@@ -1,37 +1,30 @@
 import { createWebHistory, createRouter } from "vue-router";
-import Home from "@/views/admin/AdminHomeView.vue";
-import Article from "@/views/admin/AdminArticleView.vue";
-import Feature from "@/views/admin/AdminFeatureView.vue";
-import Product from "@/views/admin/AdminProductView.vue";
-import Promo from "@/views/admin/AdminPromoView.vue";
-import Video from "@/views/admin/AdminVideoView.vue";
-import Hero from "@/views/admin/AdminHeroView.vue";
+import AdminHome from "@/views/admin/AdminHomeView.vue";
+import AdminArticle from "@/views/admin/AdminArticleView.vue";
+import AdminFeature from "@/views/admin/AdminFeatureView.vue";
+import AdminProduct from "@/views/admin/AdminProductView.vue";
+import AdminPromo from "@/views/admin/AdminPromoView.vue";
+import AdminVideo from "@/views/admin/AdminVideoView.vue";
+import AdminHero from "@/views/admin/AdminHeroView.vue";
 
 // Import Admin
-import AdminHome from "../views/admin/AdminHomeView.vue";
 import AdminLogin from "../views/admin/AdminLoginView.vue";
-import AdminProfile from "../views/admin/AdminProfileView.vue";
 import {checkAdmin} from "../services/auth";
 
 
 const routes = [
     {
-        path: "/admin/home",
-        name: "Accueil",
-        component: Home,
-    },
-    {
-        path: "/admin/login",
+        path: "/admin",
         name: "AdminLogin",
         component: AdminLogin
     },
     {
-        path: "/admin",
+        path: "/admin/home",
         name: "Admin",
         beforeEnter: (to, from, next) => {
             const token = localStorage.getItem('token');
             if (!token) {
-                next('/admin/login');
+                next('/admin');
             } else {
                 checkAdmin(token)
                     .then(isAdmin => {
@@ -47,43 +40,38 @@ const routes = [
         component: AdminHome,
         children: [
             {
-                path: "profile",
-                name: "AdminProfile",
-                component: AdminProfile
+                path: "/admin/article",
+                name: "Articles",
+                component: AdminArticle
+            },
+            {
+                path: "/admin/features",
+                name: "Avantages",
+                component: AdminFeature,
+            },
+            {
+                path: "/admin/products",
+                name: "Produits",
+                component: AdminProduct,
+            },
+            {
+                path: "/admin/promos",
+                name: "Promotions",
+                component: AdminPromo,
+            },
+            {
+                path: "/admin/videos",
+                name: "Vidéos",
+                component: AdminVideo,
+            },
+            {
+                path: "/admin/heroes",
+                name: "Hero",
+                component: AdminHero,
             },
         ]
+    },
 
-    },
-    {
-        path: "/admin/articles",
-        name: "Actualités",
-        component: Article,
-    },
-    {
-        path: "/admin/features",
-        name: "Avantages",
-        component: Feature,
-    },
-    {
-        path: "/admin/products",
-        name: "Produits",
-        component: Product,
-    },
-    {
-        path: "/admin/promos",
-        name: "Promotions",
-        component: Promo,
-    },
-    {
-        path: "/admin/videos",
-        name: "Vidéos",
-        component: Video,
-    },
-    {
-        path: "/admin/heroes",
-        name: "Hero",
-        component: Hero,
-    },
 ];
 
 const router = createRouter({

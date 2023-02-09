@@ -40,8 +40,9 @@ async function submit() {
       .then(async ({data}) => {
         // Vérification du role de l'utilisateur
         if (await checkAdmin(data.token)) {
+          console.log('1')
           localStorage.setItem("token", data.token);
-          router.push('/admin')
+          router.push('/admin/home')
         } else {
           alert("Mauvais ID")
         }
