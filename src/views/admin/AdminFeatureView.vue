@@ -1,3 +1,3 @@
 <template>
-  <h1>HEADER</h1>
+  <h1>FEATURE</h1>
 </template>
