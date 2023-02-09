@@ -1,48 +1,48 @@
 import { createWebHistory, createRouter } from "vue-router";
-import Home from "@/views/admin/AdminHomeView.vue";
-import Article from "@/views/admin/AdminArticleView.vue";
-import Feature from "@/views/admin/AdminFeatureView.vue";
-import Product from "@/views/admin/AdminProductView.vue";
-import Promo from "@/views/admin/AdminPromoView.vue";
-import Video from "@/views/admin/AdminVideoView.vue";
-import Hero from "@/views/admin/AdminHeroView.vue";
+import AdminHome from "@/views/admin/AdminHomeView.vue";
+import AdminArticle from "@/views/admin/AdminArticleView.vue";
+import AdminFeature from "@/views/admin/AdminFeatureView.vue";
+import AdminProduct from "@/views/admin/AdminProductView.vue";
+import AdminPromo from "@/views/admin/AdminPromoView.vue";
+import AdminVideo from "@/views/admin/AdminVideoView.vue";
+import AdminHero from "@/views/admin/AdminHeroView.vue";
 
 const routes = [
     {
         path: "/admin/home",
         name: "Accueil",
-        component: Home,
+        component: AdminHome,
         
     },
     {
         path: "/admin/articles",
         name: "Actualités",
-        component: Article,
+        component: AdminArticle,
     },
     {
         path: "/admin/features",
         name: "Avantages",
-        component: Feature,
+        component: AdminFeature,
     },
     {
         path: "/admin/products",
         name: "Produits",
-        component: Product,
+        component: AdminProduct,
     },
     {
         path: "/admin/promos",
         name: "Promotions",
-        component: Promo,
+        component: AdminPromo,
     },
     {
         path: "/admin/videos",
         name: "Vidéos",
-        component: Video,
+        component: AdminVideo,
     },
     {
         path: "/admin/heroes",
         name: "Hero",
-        component: Hero,
+        component: AdminHero,
     },
 ];
 

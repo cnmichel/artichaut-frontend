@@ -36,8 +36,8 @@ const page = computed(() => router.currentRoute.value.name)
 }
 .container-layout .el-main {
   width: 100%;
-  height: 100%;
-  padding: 0;
+  height: 100vh;
+  padding: 2rem;
   background-color: #d8d8d8;
 }
 </style>
