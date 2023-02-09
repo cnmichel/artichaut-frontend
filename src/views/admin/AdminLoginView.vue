@@ -17,7 +17,7 @@ onBeforeMount(() => {
     const token = localStorage.getItem('token');
     // Vérification du role de l'utilisateur
     checkAdmin(token).then(({}) => {
-      router.push('/admin')
+      router.push('/admin/home')
     }).catch(({response}) => {
       router.push('/')
     })
