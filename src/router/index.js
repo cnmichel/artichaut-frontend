@@ -1,7 +1,11 @@
 import { createWebHistory, createRouter } from "vue-router";
 import Home from "@/views/HomeView.vue";
-import AdminAuth from "../views/admin/AdminAuthView.vue";
+
+// Import Admin
 import AdminHome from "../views/admin/AdminHomeView.vue";
+import AdminLogin from "../views/admin/AdminLoginView.vue";
+import AdminProfile from "../views/admin/AdminProfileView.vue";
+import {checkAdmin} from "../services/auth";
 
 
 const routes = [
@@ -12,13 +16,37 @@ const routes = [
     },
     {
         path: "/admin/login",
-        name: "Login",
-        component: AdminAuth
+        name: "AdminLogin",
+        component: AdminLogin
     },
     {
         path: "/admin",
         name: "Admin",
-        component: AdminHome
+        beforeEnter: (to, from, next) => {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                next('/admin/login');
+            } else {
+                checkAdmin(token)
+                    .then(isAdmin => {
+                        if (isAdmin) {
+                            next();
+                        } else {
+                            next('/');
+                        }
+                    })
+                    .catch(() => next('/admin/login'));
+            }
+        },
+        component: AdminHome,
+        children: [
+            {
+                path: "profile",
+                name: "AdminProfile",
+                component: AdminProfile
+            },
+        ]
+
     },
 ];
 
