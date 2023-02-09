@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { useRouter } from 'vue-router';
-import Header from "@/components/HeaderComponent.vue";
-import SideMenu from "@/components/SideMenuComponent.vue";
+import Header from "@/components/admin/HeaderComponent.vue";
+import SideMenu from "@/components/admin/SideMenuComponent.vue";
 
 const router = useRouter()
 const page = computed(() => router.currentRoute.value.name)
