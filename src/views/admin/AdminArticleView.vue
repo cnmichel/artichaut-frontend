@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { ref, reactive, computed, onMounted } from 'vue';
 import { slice } from 'lodash';
-import { getArticles } from '@/services/api.js'
+import { getArticles,deleteArticle } from '@/services/api.js'
+import { ElMessageBox } from 'element-plus';
 
 interface Articles {
     title: string,
@@ -9,6 +10,7 @@ interface Articles {
     image: string
 }
 
+const selectedArticle = ref();
 const articles = reactive({ items: <Articles[]>[] })
 const totalArticle = computed(() => articles.items.length);
 const paginateArticles = computed(() => {
@@ -18,6 +20,33 @@ const paginateArticles = computed(() => {
 });
 const pageSize = ref(5);
 let current = reactive({ page: 1 });
+
+const handleDelete = () => {
+    //message are you sure
+    ElMessageBox({
+        title: 'Alerte' ,
+        message: 'êtes-vous sür de vouloir supprimer cet élément?',
+        showCancelButton: true,
+        cancelButtonText: 'annuler',
+        confirmButtonText:'valider',
+        beforeClose: (action, instance, done) => {
+            if(action === 'confirm'){
+                deleteArticle(selectedArticle.value.id);
+                instance.confirmButtonText =''
+                done();
+            }
+            else {
+                done();
+            }
+        }
+        
+    })
+    
+}
+
+const handleSelect = (article) => {
+    selectedArticle.value = article;
+}
 
 onMounted(async() => {
         getArticles()
@@ -43,11 +72,24 @@ const getPagination = (articles: Articles[], page: number) => {
 <template>
 <el-card class="box-card">
     <div class="">
-        <div id="divprincipale" ref="articles" v-for="article in paginateArticles" class="shadow-lg rounder-lg p-8 grid grid-cols-3 grid-flow-col gap-4">
-            <div class="row-span-3" id="img"><img class="object-cover" v-bind:src="article.image" alt="image"/></div>
+        <div id="divprincipale"  class="grid grid-cols-12 flex items-center" v-for="article in paginateArticles">
+            <button @click="handleSelect(article)" ref="articles"  class="col-span-11 shadow-lg rounder-lg p-8 grid grid-cols-3 grid-flow-col gap-4
+            hover:border-2 border-green-600 focus:outline-none focus:ring focus:ring-green-700">
+            <div class="row-span-3" ><img class="object-cover" id="imagesContent" v-bind:src="article.image" alt="image"/></div>
             <div class="col-span-2 underline">{{ article.title}}</div>
             <div class="row-span-2 col-span-2">{{ article.content }}</div>
+            </button>
+
+            <div class="col-span-1 flex flex-col buttons-container" style="display: flex;">
+                <button class="transition ease-in-out delay-50 hover:-translate-y-2 hover:scale-150 duration-300 choice">
+                    <img class="fill" src="/src/assets/edit.png"/>
+                </button>
+                <button @click="handleDelete" class="transition ease-in-out delay-50 hover:translate-y-2 hover:scale-150 duration-300 choice">
+                    <img class="fill" src="/src/assets/delete.png"/>
+                </button>
+            </div>
         </div>
+        
    <el-pagination 
    :page-size="pageSize" 
    background layout="prev, pager, next" 
@@ -64,11 +106,6 @@ const getPagination = (articles: Articles[], page: number) => {
   height: 100%;
 }
 
-img{
-  width: 250px;
-  height: 150px;
-}
-
 #pagination{
   justify-content: center;
   margin-top: 10px;
@@ -80,4 +117,17 @@ img{
 
 }
 
+.fill{
+    object-fit: scale-down;
+}
+.choice{
+    height: 50px;
+    width: 50px;
+    margin: auto;
+}
+
+#imagesContent{
+  width: 250px;
+  height: 150px;
+}
 </style>

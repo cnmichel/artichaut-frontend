@@ -44,7 +44,7 @@ const getPagination = (features: Features[], page: number) => {
 <el-card class="box-card">
     <div class="">
         <div id="divprincipale" ref="features" v-for="feature in paginateFeatures" class="shadow-lg rounder-lg p-8 grid grid-cols-3 grid-flow-col gap-4">
-            <div class="row-span-3" id="img"><img class="object-cover" v-bind:src="feature.icon" alt="image"/></div>
+            <div class="row-span-3" id="img"><img class="object-cover" id="imagesContent" v-bind:src="feature.icon" alt="image"/></div>
             <div class="col-span-2 underline">{{ feature.name}}</div>
             <div class="row-span-2 col-span-2">{{ feature.content }}</div>
         </div>
@@ -64,11 +64,6 @@ const getPagination = (features: Features[], page: number) => {
   height: 100%;
 }
 
-img{
-  width: 250px;
-  height: 150px;
-}
-
 #pagination{
   justify-content: center;
   margin-top: 10px;
@@ -78,6 +73,11 @@ img{
    margin-left: 150px;
    margin-right: 150px;
 
+}
+
+#imagesContent{
+  width: 250px;
+  height: 150px;
 }
 
 </style>

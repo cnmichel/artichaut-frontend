@@ -44,7 +44,7 @@ const getPagination = (videos: Videos[], page: number) => {
 <el-card class="box-card">
     <div class="">
         <div id="divprincipale" ref="videos" v-for="video in paginateVideos" class="shadow-lg rounder-lg p-8 grid grid-cols-3 grid-flow-col gap-4">
-            <div class="row-span-3" id="img">
+            <div class="row-span-3" id="imagesContent">
               <iframe width="250" height="150" v-bind:src="video.url" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
             <div class="col-span-2 underline">{{ video.title}}</div>
@@ -66,11 +66,6 @@ const getPagination = (videos: Videos[], page: number) => {
   height: 100%;
 }
 
-img{
-  width: 250px;
-  height: 150px;
-}
-
 #pagination{
   justify-content: center;
   margin-top: 10px;
@@ -82,4 +77,9 @@ img{
 
 }
 
+
+#imagesContent{
+  width: 250px;
+  height: 150px;
+}
 </style>
