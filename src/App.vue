@@ -11,7 +11,7 @@ const page = computed(() => router.currentRoute.value.name)
 <template class="light">
     <el-container class="container-layout">
 
-      <el-aside width="200px">
+      <el-aside width="250px">
         <SideMenu/>
       </el-aside>
 

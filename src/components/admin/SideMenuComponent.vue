@@ -27,6 +27,9 @@ const handleClick = ({ index }: any) => {
 
 <template>
   <el-menu active-text-color="#00B561" style="height: 100vh; position: fixed; width: inherit">
+    <div class="artichaut-logo">
+      <el-image :src="'/src/assets/artichaut-logo.png'" :fit="fit" />
+    </div>
     <el-menu-item v-for="({ name, icon }, index) in pages"
                   :key="index"
                   :index="name"
@@ -38,6 +41,18 @@ const handleClick = ({ index }: any) => {
 </template>
 
 <style scoped>
+.artichaut-logo {
+  width: fit-content;
+  height: 100px;
+  display: flex;
+  place-items: center;
+  margin-bottom: 20px;
+}
+.el-image {
+  width: 80%;
+  display: flex;
+  margin: auto;
+}
 .el-menu-item span {
   font-weight: bold;
 }
