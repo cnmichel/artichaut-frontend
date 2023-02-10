@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, reactive, computed, onMounted } from 'vue';
-import axios from 'axios';
 import { slice } from 'lodash';
+import { getArticles } from '@/services/api.js'
 
 interface Articles {
     title: string,
@@ -20,9 +20,9 @@ const pageSize = ref(5);
 let current = reactive({ page: 1 });
 
 onMounted(async() => {
-    await axios.get('/articles')
-        .then((response) => { 
-        articles.items = response.data;
+        getArticles()
+        .then((data) => { 
+        articles.items = data;
     });
 });
 

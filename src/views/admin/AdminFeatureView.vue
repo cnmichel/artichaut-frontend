@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, reactive, computed, onMounted } from 'vue';
-import axios from 'axios';
 import { slice } from 'lodash';
+import { getFeatures } from '@/services/api.js'
 
 interface Features {
     name: string,
@@ -20,9 +20,9 @@ const pageSize = ref(5);
 let current = reactive({ page: 1 });
 
 onMounted(async() => {
-    await axios.get('/features')
-        .then((response) => { 
-        features.items = response.data;
+    getFeatures()
+        .then((data) => { 
+        features.items = data;
     });
 });
 

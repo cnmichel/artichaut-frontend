@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, reactive, computed, onMounted } from 'vue';
-import axios from 'axios';
+import { getVideos } from '@/services/api.js'
 import { slice } from 'lodash';
 
 interface Videos {
@@ -20,9 +20,9 @@ const pageSize = ref(5);
 let current = reactive({ page: 1 });
 
 onMounted(async() => {
-    await axios.get('/videos')
-        .then((response) => { 
-        videos.items = response.data;
+        getVideos()
+        .then((data) => { 
+        videos.items = data;
     });
 });
 

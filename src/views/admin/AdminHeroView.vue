@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, reactive, computed, onMounted } from 'vue';
-import axios from 'axios';
+import { getHeroes } from '@/services/api.js'
 import { slice } from 'lodash';
 
 interface Heroes {
@@ -20,9 +20,9 @@ const pageSize = ref(5);
 let current = reactive({ page: 1 });
 
 onMounted(async() => {
-    await axios.get('/heroes')
-        .then((response) => { 
-        heroes.items = response.data;
+    getHeroes()
+        .then((data) => { 
+        heroes.items = data;
     });
 });
 
