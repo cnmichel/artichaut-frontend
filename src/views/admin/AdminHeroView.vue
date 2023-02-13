@@ -113,7 +113,7 @@ const getPagination = (heroes: Heroes[], page: number) => {
 
 <el-card class="box-card">
     <div class="">
-        <button @click="addHero = true" class="transition ease-in-out delay-50 hover:translate-y-2 hover:scale-125 duration-300 choice" >
+        <button title="Ajout d'un hero" @click="addHero = true" class="transition ease-in-out delay-50 hover:translate-y-2 hover:scale-125 duration-300 choice" >
             <img class="" src="/src/assets/add.png"/>
         </button>
         <div id="divprincipale"   class="grid grid-cols-12 flex items-center" v-for="hero in paginateHeroes">
@@ -125,10 +125,10 @@ const getPagination = (heroes: Heroes[], page: number) => {
             </button>
             <div v-if="selectedHero">
                 <div v-if="hero === selectedHero.item" class="col-span-1 flex flex-col buttons-container" style="display: flex;">
-                    <button @click="dialogueVisible=true" class="transition ease-in-out delay-50 hover:-translate-y-2 hover:scale-150 duration-300 choice">
+                    <button title="Modifier le hero" @click="dialogueVisible=true" class="transition ease-in-out delay-50 hover:-translate-y-2 hover:scale-150 duration-300 choice">
                         <img class="fill" src="/src/assets/edit.png"/>
                     </button>
-                    <button @click="handleDelete" class="transition ease-in-out delay-50 hover:translate-y-2 hover:scale-150 duration-300 choice">
+                    <button title="Supprimer le hero" @click="handleDelete" class="transition ease-in-out delay-50 hover:translate-y-2 hover:scale-150 duration-300 choice">
                         <img class="fill" src="/src/assets/delete.png"/>
                     </button>
                 </div>

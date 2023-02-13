@@ -114,7 +114,7 @@ const getPagination = (features: Features[], page: number) => {
 
 <el-card class="box-card">
     <div class="">
-        <button @click="addFeature = true" class="transition ease-in-out delay-50 hover:translate-y-2 hover:scale-125 duration-300 choice" >
+        <button title="Ajout d'un avantage" @click="addFeature = true" class="transition ease-in-out delay-50 hover:translate-y-2 hover:scale-125 duration-300 choice" >
             <img class="" src="/src/assets/add.png"/>
         </button>
         <div class="grid grid-cols-12 flex items-center" id="divprincipale" ref="features" v-for="feature in paginateFeatures">
@@ -128,10 +128,10 @@ const getPagination = (features: Features[], page: number) => {
 
         <div v-if="selectedFeature">
               <div v-if="feature === selectedFeature.item" class="col-span-1 flex flex-col buttons-container" style="display: flex;">
-                <button @click="dialogueVisible=true" class="transition ease-in-out delay-50 hover:-translate-y-2 hover:scale-150 duration-300 choice">
+                <button title="Modifier l'avantage" @click="dialogueVisible=true" class="transition ease-in-out delay-50 hover:-translate-y-2 hover:scale-150 duration-300 choice">
                     <img class="fill" src="/src/assets/edit.png"/>
                 </button>
-                <button @click="handleDelete" class="transition ease-in-out delay-50 hover:translate-y-2 hover:scale-150 duration-300 choice">
+                <button title="Supprimer l'avantage" @click="handleDelete" class="transition ease-in-out delay-50 hover:translate-y-2 hover:scale-150 duration-300 choice">
                     <img class="fill" src="/src/assets/delete.png"/>
                 </button>
              </div>

@@ -111,7 +111,7 @@ const getPagination = (articles: Articles[], page: number) => {
 
 <el-card class="box-card">
     <div class="">
-        <button @click="addArticle = true" class="transition ease-in-out delay-50 hover:translate-y-2 hover:scale-125 duration-300 choice" >
+        <button title="Ajouter un article" @click="addArticle = true" class="transition ease-in-out delay-50 hover:translate-y-2 hover:scale-125 duration-300 choice" >
             <img class="" src="/src/assets/add.png"/>
         </button>
             <div id="divprincipale"  class="grid grid-cols-12 flex items-center" v-for="article in paginateArticles">
@@ -124,10 +124,10 @@ const getPagination = (articles: Articles[], page: number) => {
             
             <div v-if="selectedArticle">
                 <div v-if="article === selectedArticle.item" class="col-span-1 flex flex-col buttons-container" style="display: flex;">
-                    <button @click="dialogueVisible=true" class="transition ease-in-out delay-50 hover:-translate-y-2 hover:scale-125 duration-300 choice">
+                    <button title="Modifier l'article" @click="dialogueVisible=true" class="transition ease-in-out delay-50 hover:-translate-y-2 hover:scale-125 duration-300 choice">
                         <img class="fill" src="/src/assets/edit.png"/>
                     </button>
-                    <button @click="handleDelete" class="transition ease-in-out delay-50 hover:translate-y-2 hover:scale-125 duration-300 choice">
+                    <button title="Supprimer l'article" @click="handleDelete" class="transition ease-in-out delay-50 hover:translate-y-2 hover:scale-125 duration-300 choice">
                         <img class="fill" src="/src/assets/delete.png"/>
                     </button>
                 </div>
