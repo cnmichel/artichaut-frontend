@@ -10,6 +10,16 @@ interface Articles {
     image: string
 }
 
+const dialogueVisible = ref(false);
+const handleClose = (done: () =>void) =>{
+    ElMessageBox.confirm('êtes-vous sûr de vouloir fermer cette fenêtre?')
+    .then(()=>{
+        done();
+    })
+    .catch(() =>{
+
+    })
+}
 const selectedArticle = reactive({item: {}});
 const articles = reactive({ items: <Articles[]>[] })
 const totalArticle = computed(() => articles.items.length);
@@ -38,10 +48,8 @@ const handleDelete = () => {
             else {
                 done();
             }
-        }
-        
-    })
-    
+        }  
+    })  
 }
 
 const handleSelect = (article) => {
@@ -70,6 +78,21 @@ const getPagination = (articles: Articles[], page: number) => {
 </script>
 
 <template>
+<el-dialog 
+    v-model="dialogueVisible"
+    title="Titre de la fenêtre"
+    width="30%"
+    :before-close ="handleClose"
+>
+    <span>insert form ici</span>
+    <template #update>
+        <span class="dialog-update">
+            <el-button @click = "dialogueVisible = false">Annuler</el-button>
+            <el-button type="primary" @click="dialogueVisible = false">Valider</el-button> 
+        </span>
+    </template>
+</el-dialog>
+
 <el-card class="box-card">
     <div class="">
         <div id="divprincipale"  class="grid grid-cols-12 flex items-center" v-for="article in paginateArticles">
@@ -82,10 +105,10 @@ const getPagination = (articles: Articles[], page: number) => {
 
             <div v-if="selectedArticle">
                 <div v-if="article === selectedArticle.item" class="col-span-1 flex flex-col buttons-container" style="display: flex;">
-                    <button class="transition ease-in-out delay-50 hover:-translate-y-2 hover:scale-150 duration-300 choice">
+                    <button @click="dialogueVisible=true" class="transition ease-in-out delay-50 hover:-translate-y-2 hover:scale-125 duration-300 choice">
                         <img class="fill" src="/src/assets/edit.png"/>
                     </button>
-                    <button @click="handleDelete" class="transition ease-in-out delay-50 hover:translate-y-2 hover:scale-150 duration-300 choice">
+                    <button @click="handleDelete" class="transition ease-in-out delay-50 hover:translate-y-2 hover:scale-125 duration-300 choice">
                         <img class="fill" src="/src/assets/delete.png"/>
                     </button>
                 </div>
@@ -123,6 +146,11 @@ const getPagination = (articles: Articles[], page: number) => {
 .fill{
     object-fit: scale-down;
 }
+
+.dialog-update button:first-child {
+  margin-right: 10px;
+}
+
 .choice{
     height: 50px;
     width: 50px;

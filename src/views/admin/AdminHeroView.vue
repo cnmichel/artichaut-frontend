@@ -10,6 +10,17 @@ interface Heroes {
     image: string
 }
 
+const dialogueVisible = ref(false);
+const handleClose = (done: () =>void) =>{
+    ElMessageBox.confirm('êtes-vous sûr de vouloir fermer cette fenêtre?')
+    .then(()=>{
+        done();
+    })
+    .catch(() =>{
+
+    })
+}
+
 const selectedHero = reactive({item: {}});
 const heroes = reactive({ items: <Heroes[]>[] })
 const totalHero = computed(() => heroes.items.length);
@@ -69,6 +80,21 @@ const getPagination = (heroes: Heroes[], page: number) => {
 </script>
 
 <template>
+<el-dialog 
+    v-model="dialogueVisible"
+    title="Titre de la fenêtre"
+    width="30%"
+    :before-close ="handleClose"
+>
+    <span>insert form ici</span>
+    <template #update>
+        <span class="dialog-update">
+            <el-button @click = "dialogueVisible = false">Annuler</el-button>
+            <el-button type="primary" @click="dialogueVisible = false">Valider</el-button> 
+        </span>
+    </template>
+</el-dialog>
+
 <el-card class="box-card">
     <div class="">
         <div id="divprincipale"   class="grid grid-cols-12 flex items-center" v-for="hero in paginateHeroes">
@@ -80,7 +106,7 @@ const getPagination = (heroes: Heroes[], page: number) => {
             </button>
             <div v-if="selectedHero">
                 <div v-if="hero === selectedHero.item" class="col-span-1 flex flex-col buttons-container" style="display: flex;">
-                    <button class="transition ease-in-out delay-50 hover:-translate-y-2 hover:scale-150 duration-300 choice">
+                    <button @click="dialogueVisible=true" class="transition ease-in-out delay-50 hover:-translate-y-2 hover:scale-150 duration-300 choice">
                         <img class="fill" src="/src/assets/edit.png"/>
                     </button>
                     <button @click="handleDelete" class="transition ease-in-out delay-50 hover:translate-y-2 hover:scale-150 duration-300 choice">
@@ -103,6 +129,10 @@ const getPagination = (heroes: Heroes[], page: number) => {
 <style scoped>
 .box-card {
   height: 100%;
+}
+
+.dialog-update button:first-child {
+  margin-right: 10px;
 }
 
 #pagination{
