@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { ref, reactive, computed, onMounted } from 'vue';
-import { getHeroes } from '@/services/api.js'
+import { getHeroes, deleteHero } from '@/services/api.js'
 import { slice } from 'lodash';
+import { ElMessageBox } from 'element-plus';
 
 interface Heroes {
     title: string,
@@ -9,6 +10,7 @@ interface Heroes {
     image: string
 }
 
+const selectedHero = reactive({item: {}});
 const heroes = reactive({ items: <Heroes[]>[] })
 const totalHero = computed(() => heroes.items.length);
 const paginateHeroes = computed(() => {
@@ -18,6 +20,32 @@ const paginateHeroes = computed(() => {
 });
 const pageSize = ref(5);
 let current = reactive({ page: 1 });
+
+const handleDelete = () => {
+    //message are you sure
+    ElMessageBox({
+        title: 'Alerte' ,
+        message: 'êtes-vous sür de vouloir supprimer cet élément?',
+        showCancelButton: true,
+        cancelButtonText: 'annuler',
+        confirmButtonText:'valider',
+        beforeClose: (action, instance, done) => {
+            if(action === 'confirm'){
+                deleteHero(selectedHero.item);
+                done();
+            }
+            else {
+                done();
+            }
+        }
+        
+    })
+    
+}
+
+const handleSelect = (hero) => {
+    selectedHero.item = hero;
+}
 
 onMounted(async() => {
     getHeroes()
@@ -43,10 +71,23 @@ const getPagination = (heroes: Heroes[], page: number) => {
 <template>
 <el-card class="box-card">
     <div class="">
-        <div id="divprincipale" ref="heroes" v-for="hero in paginateHeroes" class="shadow-lg rounder-lg p-8 grid grid-cols-3 grid-flow-col gap-4">
+        <div id="divprincipale"   class="grid grid-cols-12 flex items-center" v-for="hero in paginateHeroes">
+            <button @click="handleSelect(hero)" ref="heroes" class="col-span-11 shadow-lg rounder-lg p-8 grid grid-cols-3 grid-flow-col gap-4
+            hover:border-2 border-green-600 focus:outline-none focus:ring focus:ring-green-700">
             <div class="row-span-3" id="img"><img class="object-cover" id="imagesContent" v-bind:src="hero.image" alt="image"/></div>
             <div class="col-span-2 underline">{{ hero.title}}</div>
             <div class="row-span-2 col-span-2">{{ hero.subtitle }}</div>
+            </button>
+            <div v-if="selectedHero">
+                <div v-if="hero === selectedHero.item" class="col-span-1 flex flex-col buttons-container" style="display: flex;">
+                    <button class="transition ease-in-out delay-50 hover:-translate-y-2 hover:scale-150 duration-300 choice">
+                        <img class="fill" src="/src/assets/edit.png"/>
+                    </button>
+                    <button @click="handleDelete" class="transition ease-in-out delay-50 hover:translate-y-2 hover:scale-150 duration-300 choice">
+                        <img class="fill" src="/src/assets/delete.png"/>
+                    </button>
+                </div>
+            </div>
         </div>
    <el-pagination 
    :page-size="pageSize" 
@@ -73,6 +114,12 @@ const getPagination = (heroes: Heroes[], page: number) => {
    margin-left: 150px;
    margin-right: 150px;
 
+}
+
+.choice{
+    height: 50px;
+    width: 50px;
+    margin: auto;
 }
 
 #imagesContent{

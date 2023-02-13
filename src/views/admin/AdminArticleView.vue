@@ -10,7 +10,7 @@ interface Articles {
     image: string
 }
 
-const selectedArticle = ref();
+const selectedArticle = reactive({item: {}});
 const articles = reactive({ items: <Articles[]>[] })
 const totalArticle = computed(() => articles.items.length);
 const paginateArticles = computed(() => {
@@ -18,6 +18,7 @@ const paginateArticles = computed(() => {
     const end = start + pageSize.value;
     return slice(articles.items, start, end);
 });
+
 const pageSize = ref(5);
 let current = reactive({ page: 1 });
 
@@ -31,8 +32,7 @@ const handleDelete = () => {
         confirmButtonText:'valider',
         beforeClose: (action, instance, done) => {
             if(action === 'confirm'){
-                deleteArticle(selectedArticle.value.id);
-                instance.confirmButtonText =''
+                deleteArticle(selectedArticle.item);
                 done();
             }
             else {
@@ -45,7 +45,7 @@ const handleDelete = () => {
 }
 
 const handleSelect = (article) => {
-    selectedArticle.value = article;
+    selectedArticle.item = article;
 }
 
 onMounted(async() => {
@@ -73,21 +73,24 @@ const getPagination = (articles: Articles[], page: number) => {
 <el-card class="box-card">
     <div class="">
         <div id="divprincipale"  class="grid grid-cols-12 flex items-center" v-for="article in paginateArticles">
-            <button @click="handleSelect(article)" ref="articles"  class="col-span-11 shadow-lg rounder-lg p-8 grid grid-cols-3 grid-flow-col gap-4
+            <button @click="handleSelect(article)" ref="articles" class="col-span-11 shadow-lg rounder-lg p-8 grid grid-cols-3 grid-flow-col gap-4
             hover:border-2 border-green-600 focus:outline-none focus:ring focus:ring-green-700">
             <div class="row-span-3" ><img class="object-cover" id="imagesContent" v-bind:src="article.image" alt="image"/></div>
             <div class="col-span-2 underline">{{ article.title}}</div>
             <div class="row-span-2 col-span-2">{{ article.content }}</div>
             </button>
 
-            <div class="col-span-1 flex flex-col buttons-container" style="display: flex;">
-                <button class="transition ease-in-out delay-50 hover:-translate-y-2 hover:scale-150 duration-300 choice">
-                    <img class="fill" src="/src/assets/edit.png"/>
-                </button>
-                <button @click="handleDelete" class="transition ease-in-out delay-50 hover:translate-y-2 hover:scale-150 duration-300 choice">
-                    <img class="fill" src="/src/assets/delete.png"/>
-                </button>
+            <div v-if="selectedArticle">
+                <div v-if="article === selectedArticle.item" class="col-span-1 flex flex-col buttons-container" style="display: flex;">
+                    <button class="transition ease-in-out delay-50 hover:-translate-y-2 hover:scale-150 duration-300 choice">
+                        <img class="fill" src="/src/assets/edit.png"/>
+                    </button>
+                    <button @click="handleDelete" class="transition ease-in-out delay-50 hover:translate-y-2 hover:scale-150 duration-300 choice">
+                        <img class="fill" src="/src/assets/delete.png"/>
+                    </button>
+                </div>
             </div>
+            
         </div>
         
    <el-pagination 

@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { ref, reactive, computed, onMounted } from 'vue';
-import { getVideos } from '@/services/api.js'
+import { getVideos , deleteVideo} from '@/services/api.js'
 import { slice } from 'lodash';
+import { ElMessageBox } from 'element-plus';
 
 interface Videos {
     title: string,
@@ -9,6 +10,7 @@ interface Videos {
     url: string
 }
 
+const selectedVideo = reactive({item: {}});
 const videos = reactive({ items: <Videos[]>[] })
 const totalVideo = computed(() => videos.items.length);
 const paginateVideos = computed(() => {
@@ -18,6 +20,32 @@ const paginateVideos = computed(() => {
 });
 const pageSize = ref(5);
 let current = reactive({ page: 1 });
+
+const handleDelete = () => {
+    //message are you sure
+    ElMessageBox({
+        title: 'Alerte' ,
+        message: 'êtes-vous sür de vouloir supprimer cet élément?',
+        showCancelButton: true,
+        cancelButtonText: 'annuler',
+        confirmButtonText:'valider',
+        beforeClose: (action, instance, done) => {
+            if(action === 'confirm'){
+                deleteVideo(selectedVideo.item);
+                done();
+            }
+            else {
+                done();
+            }
+        }
+        
+    })
+    
+}
+
+const handleSelect = (video) => {
+    selectedVideo.item = video;
+}
 
 onMounted(async() => {
         getVideos()
@@ -43,12 +71,26 @@ const getPagination = (videos: Videos[], page: number) => {
 <template>
 <el-card class="box-card">
     <div class="">
-        <div id="divprincipale" ref="videos" v-for="video in paginateVideos" class="shadow-lg rounder-lg p-8 grid grid-cols-3 grid-flow-col gap-4">
+        <div id="divprincipale"  class="grid grid-cols-12 flex items-center" v-for="video in paginateVideos">
+            <button @click="handleSelect(video)" ref="videos" class="col-span-11 shadow-lg rounder-lg p-8 grid grid-cols-3 grid-flow-col gap-4
+            hover:border-2 border-green-600 focus:outline-none focus:ring focus:ring-green-700">
             <div class="row-span-3" id="imagesContent">
               <iframe width="250" height="150" v-bind:src="video.url" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
             <div class="col-span-2 underline">{{ video.title}}</div>
             <div class="row-span-2 col-span-2">{{ video.content }}</div>
+            </button>
+
+            <div v-if="selectedVideo">
+                <div v-if="video === selectedVideo.item" class="col-span-1 flex flex-col buttons-container" style="display: flex;">
+                    <button class="transition ease-in-out delay-50 hover:-translate-y-2 hover:scale-150 duration-300 choice">
+                        <img class="fill" src="/src/assets/edit.png"/>
+                    </button>
+                    <button @click="handleDelete" class="transition ease-in-out delay-50 hover:translate-y-2 hover:scale-150 duration-300 choice">
+                        <img class="fill" src="/src/assets/delete.png"/>
+                    </button>
+                </div>
+            </div>
         </div>
    <el-pagination 
    :page-size="pageSize" 
@@ -77,6 +119,11 @@ const getPagination = (videos: Videos[], page: number) => {
 
 }
 
+.choice{
+    height: 50px;
+    width: 50px;
+    margin: auto;
+}
 
 #imagesContent{
   width: 250px;
