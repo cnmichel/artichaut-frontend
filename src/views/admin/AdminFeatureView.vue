@@ -21,6 +21,7 @@ const handleClose = (done: () =>void) =>{
     })
 }
 
+const addFeature = ref(false);
 const selectedFeature = reactive({item: {}});
 const features = reactive({ items: <Features[]>[] })
 const totalFeature = computed(() => features.items.length);
@@ -52,7 +53,7 @@ const handleDelete = () => {
     
 }
 
-const handleSelect = (feature) => {
+const handleSelect = (feature:any) => {
     selectedFeature.item = feature;
 }
 
@@ -61,7 +62,7 @@ let current = reactive({ page: 1 });
 
 onMounted(async() => {
     getFeatures()
-        .then((data) => { 
+        .then((data:any) => { 
         features.items = data;
     });
 });
@@ -81,6 +82,21 @@ const getPagination = (features: Features[], page: number) => {
 </script>
 
 <template>
+<el-dialog
+    v-model="addFeature"
+    title="Création d'un avantage "
+    width="50%"
+    :before-close="handleClose"
+>
+    <span>Insert form here</span>
+    <template #update>
+        <span class="dialog-update">
+            <el-button @click = "addFeature = false">Annuler</el-button>
+            <el-button type="primary" @click="addFeature = false">Enregistrer</el-button> 
+        </span>
+    </template>
+</el-dialog>
+
 <el-dialog 
     v-model="dialogueVisible"
     title="Titre de la fenêtre"
@@ -98,6 +114,9 @@ const getPagination = (features: Features[], page: number) => {
 
 <el-card class="box-card">
     <div class="">
+        <button @click="addFeature = true" class="transition ease-in-out delay-50 hover:translate-y-2 hover:scale-125 duration-300 choice" >
+            <img class="" src="/src/assets/add.png"/>
+        </button>
         <div class="grid grid-cols-12 flex items-center" id="divprincipale" ref="features" v-for="feature in paginateFeatures">
             <button @click="handleSelect(feature)" 
             class="col-span-11 shadow-lg rounder-lg p-8 grid grid-cols-3 grid-flow-col gap-4

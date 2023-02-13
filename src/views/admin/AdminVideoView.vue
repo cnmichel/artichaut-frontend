@@ -21,6 +21,7 @@ const handleClose = (done: () =>void) =>{
     })
 }
 
+const addVideo = ref(false);
 const selectedVideo = reactive({item: {}});
 const videos = reactive({ items: <Videos[]>[] })
 const totalVideo = computed(() => videos.items.length);
@@ -54,13 +55,13 @@ const handleDelete = () => {
     
 }
 
-const handleSelect = (video) => {
+const handleSelect = (video:any) => {
     selectedVideo.item = video;
 }
 
 onMounted(async() => {
         getVideos()
-        .then((data) => { 
+        .then((data:any) => { 
         videos.items = data;
     });
 });
@@ -80,6 +81,21 @@ const getPagination = (videos: Videos[], page: number) => {
 </script>
 
 <template>
+<el-dialog
+    v-model="addVideo"
+    title="Création d'une vidéo"
+    width="50%"
+    :before-close="handleClose"
+>
+    <span>Insert form here</span>
+    <template #update>
+        <span class="dialog-update">
+            <el-button @click = "addVideo = false">Annuler</el-button>
+            <el-button type="primary" @click="addVideo = false">Enregistrer</el-button> 
+        </span>
+    </template>
+</el-dialog>
+
 <el-dialog 
     v-model="dialogueVisible"
     title="Titre de la fenêtre"
@@ -97,6 +113,9 @@ const getPagination = (videos: Videos[], page: number) => {
 
 <el-card class="box-card">
     <div class="">
+        <button @click="addVideo = true" class="transition ease-in-out delay-50 hover:translate-y-2 hover:scale-125 duration-300 choice" >
+            <img class="" src="/src/assets/add.png"/>
+        </button>
         <div id="divprincipale"  class="grid grid-cols-12 flex items-center" v-for="video in paginateVideos">
             <button @click="handleSelect(video)" ref="videos" class="col-span-11 shadow-lg rounder-lg p-8 grid grid-cols-3 grid-flow-col gap-4
             hover:border-2 border-green-600 focus:outline-none focus:ring focus:ring-green-700">

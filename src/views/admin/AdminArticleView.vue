@@ -10,6 +10,7 @@ interface Articles {
     image: string
 }
 
+const addArticle = ref(false);
 const dialogueVisible = ref(false);
 const handleClose = (done: () =>void) =>{
     ElMessageBox.confirm('êtes-vous sûr de vouloir fermer cette fenêtre?')
@@ -19,7 +20,8 @@ const handleClose = (done: () =>void) =>{
     .catch(() =>{
 
     })
-}
+};
+
 const selectedArticle = reactive({item: {}});
 const articles = reactive({ items: <Articles[]>[] })
 const totalArticle = computed(() => articles.items.length);
@@ -31,7 +33,6 @@ const paginateArticles = computed(() => {
 
 const pageSize = ref(5);
 let current = reactive({ page: 1 });
-
 const handleDelete = () => {
     //message are you sure
     ElMessageBox({
@@ -52,13 +53,13 @@ const handleDelete = () => {
     })  
 }
 
-const handleSelect = (article) => {
+const handleSelect = (article:any) => {
     selectedArticle.item = article;
 }
 
 onMounted(async() => {
         getArticles()
-        .then((data) => { 
+        .then((data:any) => { 
         articles.items = data;
     });
 });
@@ -78,13 +79,28 @@ const getPagination = (articles: Articles[], page: number) => {
 </script>
 
 <template>
+<el-dialog
+    v-model="addArticle"
+    title="Création d'un article"
+    width="50%"
+    :before-close="handleClose"
+>
+    <span>Insert form here</span>
+    <template #update>
+        <span class="dialog-update">
+            <el-button @click = "addArticle = false">Annuler</el-button>
+            <el-button type="primary" @click="addArticle = false">Enregistrer</el-button> 
+        </span>
+    </template>
+</el-dialog>
+
 <el-dialog 
     v-model="dialogueVisible"
     title="Titre de la fenêtre"
     width="30%"
     :before-close ="handleClose"
 >
-    <span>insert form ici</span>
+    <span>insert form here</span>
     <template #update>
         <span class="dialog-update">
             <el-button @click = "dialogueVisible = false">Annuler</el-button>
@@ -95,14 +111,17 @@ const getPagination = (articles: Articles[], page: number) => {
 
 <el-card class="box-card">
     <div class="">
-        <div id="divprincipale"  class="grid grid-cols-12 flex items-center" v-for="article in paginateArticles">
+        <button @click="addArticle = true" class="transition ease-in-out delay-50 hover:translate-y-2 hover:scale-125 duration-300 choice" >
+            <img class="" src="/src/assets/add.png"/>
+        </button>
+            <div id="divprincipale"  class="grid grid-cols-12 flex items-center" v-for="article in paginateArticles">
             <button @click="handleSelect(article)" ref="articles" class="col-span-11 shadow-lg rounder-lg p-8 grid grid-cols-3 grid-flow-col gap-4
             hover:border-2 border-green-600 focus:outline-none focus:ring focus:ring-green-700">
             <div class="row-span-3" ><img class="object-cover" id="imagesContent" v-bind:src="article.image" alt="image"/></div>
             <div class="col-span-2 underline">{{ article.title}}</div>
             <div class="row-span-2 col-span-2">{{ article.content }}</div>
             </button>
-
+            
             <div v-if="selectedArticle">
                 <div v-if="article === selectedArticle.item" class="col-span-1 flex flex-col buttons-container" style="display: flex;">
                     <button @click="dialogueVisible=true" class="transition ease-in-out delay-50 hover:-translate-y-2 hover:scale-125 duration-300 choice">

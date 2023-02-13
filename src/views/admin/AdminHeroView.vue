@@ -21,6 +21,7 @@ const handleClose = (done: () =>void) =>{
     })
 }
 
+const addHero = ref(false);
 const selectedHero = reactive({item: {}});
 const heroes = reactive({ items: <Heroes[]>[] })
 const totalHero = computed(() => heroes.items.length);
@@ -54,13 +55,13 @@ const handleDelete = () => {
     
 }
 
-const handleSelect = (hero) => {
+const handleSelect = (hero:any) => {
     selectedHero.item = hero;
 }
 
 onMounted(async() => {
     getHeroes()
-        .then((data) => { 
+        .then((data:any) => { 
         heroes.items = data;
     });
 });
@@ -80,6 +81,21 @@ const getPagination = (heroes: Heroes[], page: number) => {
 </script>
 
 <template>
+<el-dialog
+    v-model="addHero"
+    title="Création d'un hero"
+    width="50%"
+    :before-close="handleClose"
+>
+    <span>Insert form here</span>
+    <template #update>
+        <span class="dialog-update">
+            <el-button @click = "addHero = false">Annuler</el-button>
+            <el-button type="primary" @click="addHero = false">Enregistrer</el-button> 
+        </span>
+    </template>
+</el-dialog>
+
 <el-dialog 
     v-model="dialogueVisible"
     title="Titre de la fenêtre"
@@ -97,6 +113,9 @@ const getPagination = (heroes: Heroes[], page: number) => {
 
 <el-card class="box-card">
     <div class="">
+        <button @click="addHero = true" class="transition ease-in-out delay-50 hover:translate-y-2 hover:scale-125 duration-300 choice" >
+            <img class="" src="/src/assets/add.png"/>
+        </button>
         <div id="divprincipale"   class="grid grid-cols-12 flex items-center" v-for="hero in paginateHeroes">
             <button @click="handleSelect(hero)" ref="heroes" class="col-span-11 shadow-lg rounder-lg p-8 grid grid-cols-3 grid-flow-col gap-4
             hover:border-2 border-green-600 focus:outline-none focus:ring focus:ring-green-700">
