@@ -1,47 +1,43 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+import { computed } from "vue";
+import { useRouter } from 'vue-router';
+import Header from "@/components/admin/HeaderComponent.vue";
+import SideMenu from "@/components/admin/SideMenuComponent.vue";
+
+const router = useRouter()
+const page = computed(() => router.currentRoute.value.name)
 </script>
 
-<template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+<template class="light">
+    <el-container class="container-layout">
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
+      <el-aside width="250px">
+        <SideMenu/>
+      </el-aside>
 
-  <main>
-    <TheWelcome />
-  </main>
+      <el-container>
+        <el-header>
+          <Header :title="page"/>
+        </el-header>
+        <el-main>
+          <el-scrollbar>
+            <router-view/>
+          </el-scrollbar>
+        </el-main>
+      </el-container>
+
+    </el-container>
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
+.container-layout .el-header {
+  width: 100%;
+  position: relative;
 }
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
+.container-layout .el-main {
+  width: 100%;
+  height: 100vh;
+  padding: 2rem;
+  background-color: #d8d8d8;
 }
 </style>
