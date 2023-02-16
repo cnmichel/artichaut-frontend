@@ -16,6 +16,7 @@
     "element-plus": "^2.2.29",
     "lodash": "^4.17.21",
     "vue": "^3.2.45",
+    "vue-i18n": "^9.2.2",
     "vue-router": "^4.0.13"
   },
   "devDependencies": {
