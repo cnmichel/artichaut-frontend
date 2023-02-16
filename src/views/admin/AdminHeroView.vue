@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { ref, reactive, computed, onMounted } from 'vue';
-import { getHeroes } from '@/services/api.js'
+import { getHeroes, deleteHero } from '@/services/api.js'
 import { slice } from 'lodash';
+import { ElMessageBox } from 'element-plus';
 
 interface Heroes {
     title: string,
@@ -9,6 +10,19 @@ interface Heroes {
     image: string
 }
 
+const dialogueVisible = ref(false);
+const handleClose = (done: () =>void) =>{
+    ElMessageBox.confirm('êtes-vous sûr de vouloir fermer cette fenêtre?')
+    .then(()=>{
+        done();
+    })
+    .catch(() =>{
+
+    })
+}
+
+const addHero = ref(false);
+const selectedHero = reactive({item: {}});
 const heroes = reactive({ items: <Heroes[]>[] })
 const totalHero = computed(() => heroes.items.length);
 const paginateHeroes = computed(() => {
@@ -19,9 +33,35 @@ const paginateHeroes = computed(() => {
 const pageSize = ref(5);
 let current = reactive({ page: 1 });
 
+const handleDelete = () => {
+    //message are you sure
+    ElMessageBox({
+        title: 'Alerte' ,
+        message: 'êtes-vous sür de vouloir supprimer cet élément?',
+        showCancelButton: true,
+        cancelButtonText: 'annuler',
+        confirmButtonText:'valider',
+        beforeClose: (action, instance, done) => {
+            if(action === 'confirm'){
+                deleteHero(selectedHero.item);
+                done();
+            }
+            else {
+                done();
+            }
+        }
+        
+    })
+    
+}
+
+const handleSelect = (hero:any) => {
+    selectedHero.item = hero;
+}
+
 onMounted(async() => {
     getHeroes()
-        .then((data) => { 
+        .then((data:any) => { 
         heroes.items = data;
     });
 });
@@ -41,12 +81,58 @@ const getPagination = (heroes: Heroes[], page: number) => {
 </script>
 
 <template>
+<el-dialog
+    v-model="addHero"
+    title="Création d'un hero"
+    width="50%"
+    :before-close="handleClose"
+>
+    <span>Insert form here</span>
+    <template #update>
+        <span class="dialog-update">
+            <el-button @click = "addHero = false">Annuler</el-button>
+            <el-button type="primary" @click="addHero = false">Enregistrer</el-button> 
+        </span>
+    </template>
+</el-dialog>
+
+<el-dialog 
+    v-model="dialogueVisible"
+    title="Titre de la fenêtre"
+    width="30%"
+    :before-close ="handleClose"
+>
+    <span>insert form ici</span>
+    <template #update>
+        <span class="dialog-update">
+            <el-button @click = "dialogueVisible = false">Annuler</el-button>
+            <el-button type="primary" @click="dialogueVisible = false">Valider</el-button> 
+        </span>
+    </template>
+</el-dialog>
+
 <el-card class="box-card">
     <div class="">
-        <div id="divprincipale" ref="heroes" v-for="hero in paginateHeroes" class="shadow-lg rounder-lg p-8 grid grid-cols-3 grid-flow-col gap-4">
-            <div class="row-span-3" id="img"><img class="object-cover" v-bind:src="hero.image" alt="image"/></div>
+        <button title="Ajout d'un hero" @click="addHero = true" class="transition ease-in-out delay-50 hover:translate-y-2 hover:scale-125 duration-300 choice" >
+            <img class="" src="/src/assets/add.png"/>
+        </button>
+        <div id="divprincipale"   class="grid grid-cols-12 flex items-center" v-for="hero in paginateHeroes">
+            <button @click="handleSelect(hero)" ref="heroes" class="col-span-11 shadow-lg rounder-lg p-8 grid grid-cols-3 grid-flow-col gap-4
+            hover:border-2 border-green-600 focus:outline-none focus:ring focus:ring-green-700">
+            <div class="row-span-3" id="img"><img class="object-cover" id="imagesContent" v-bind:src="hero.image" alt="image"/></div>
             <div class="col-span-2 underline">{{ hero.title}}</div>
             <div class="row-span-2 col-span-2">{{ hero.subtitle }}</div>
+            </button>
+            <div v-if="selectedHero">
+                <div v-if="hero === selectedHero.item" class="col-span-1 flex flex-col buttons-container" style="display: flex;">
+                    <button title="Modifier le hero" @click="dialogueVisible=true" class="transition ease-in-out delay-50 hover:-translate-y-2 hover:scale-150 duration-300 choice">
+                        <img class="fill" src="/src/assets/edit.png"/>
+                    </button>
+                    <button title="Supprimer le hero" @click="handleDelete" class="transition ease-in-out delay-50 hover:translate-y-2 hover:scale-150 duration-300 choice">
+                        <img class="fill" src="/src/assets/delete.png"/>
+                    </button>
+                </div>
+            </div>
         </div>
    <el-pagination 
    :page-size="pageSize" 
@@ -64,9 +150,8 @@ const getPagination = (heroes: Heroes[], page: number) => {
   height: 100%;
 }
 
-img{
-  width: 250px;
-  height: 150px;
+.dialog-update button:first-child {
+  margin-right: 10px;
 }
 
 #pagination{
@@ -80,4 +165,14 @@ img{
 
 }
 
+.choice{
+    height: 50px;
+    width: 50px;
+    margin: auto;
+}
+
+#imagesContent{
+  width: 250px;
+  height: 150px;
+}
 </style>

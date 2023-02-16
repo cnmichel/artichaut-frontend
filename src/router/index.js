@@ -6,13 +6,19 @@ import AdminProduct from "@/views/admin/AdminProductView.vue";
 import AdminPromo from "@/views/admin/AdminPromoView.vue";
 import AdminVideo from "@/views/admin/AdminVideoView.vue";
 import AdminHero from "@/views/admin/AdminHeroView.vue";
+import Home from "@/views/HomeView.vue";
 
 const routes = [
+    {
+        path: "/",
+        name: "Home",
+        component: Home,
+    },
     {
         path: "/admin/home",
         name: "Accueil",
         component: AdminHome,
-        
+
     },
     {
         path: "/admin/articles",
