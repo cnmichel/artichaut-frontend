@@ -1,40 +1,47 @@
-import { nextTick } from 'vue'
-import { createI18n } from 'vue-i18n'
+import { createI18n } from "vue-i18n";
+import messages from "@intlify/unplugin-vue-i18n/messages";
 
-export const SUPPORT_LOCALES = ['en', 'fr']
+// List of all locales.
+export const allLocales = ["en", "fr"];
 
-export const DEFAULT_LOCALES = navigator.language
+// Create Vue I18n instance.
+export const i18n = createI18n({
+    legacy: false,
+    globalInjection: true,
+    locale: navigator.language.split('-')[0],
+    fallbackLocale: "en",
+    messages: messages,
+});
 
-export function setupI18n(options = { locale: DEFAULT_LOCALES }) {
-    const i18n = createI18n(options)
-    setI18nLanguage(i18n, options.locale)
-    return i18n
-}
+// Set new locale.
+export async function setLocale (locale) {
+    // Load locale if not available yet.
+    if (!i18n.global.availableLocales.includes(locale)) {
+        const messages = await loadLocale(locale);
 
-export function setI18nLanguage(i18n, locale) {
-    if (i18n.mode === 'legacy') {
-        i18n.global.locale = locale
-    } else {
-        i18n.global.locale.value = locale
+        // fetch() error occurred.
+        if (messages === undefined) {
+            return;
+        }
+
+        // Add locale.
+        i18n.global.setLocaleMessage(locale, messages);
     }
-    /**
-     * NOTE:
-     * If you need to specify the language setting for headers, such as the `fetch` API, set it here.
-     * The following is an example for axios.
-     *
-     * axios.defaults.headers.common['Accept-Language'] = locale
-     */
-    document.querySelector('html').setAttribute('lang', locale)
+
+    // Set locale.
+    i18n.global.locale.value = locale;
 }
 
-export async function loadLocaleMessages(i18n, locale) {
-    // load locale messages with dynamic import
-    const messages = await import(
-        /* webpackChunkName: "locale-[request]" */ `./locales/${locale}.json`
-        )
-
-    // set locale and locale message
-    i18n.global.setLocaleMessage(locale, messages.default)
-
-    return nextTick()
+// Fetch locale.
+function loadLocale(locale) {
+    return fetch(`./locales/${locale}.json`)
+        .then((response) => {
+            if (response.ok) {
+                return response.json();
+            }
+            throw new Error("Something went wrong!");
+        })
+        .catch((error) => {
+            console.error(error);
+        });
 }
