@@ -192,14 +192,10 @@ export async function createProduct(data) {
 
 export async function updateProduct(id, data) {
     return axios.put(`/products/${id}`, data, config)
-        .then((res) => res.data)
-        .catch((err) => errorHandler(err));
 }
 
 export async function deleteProduct(id) {
     return axios.delete(`/products/${id}`, config)
-        .then((res) => res.data)
-        .catch((err) => errorHandler(err));
 }
 
 
