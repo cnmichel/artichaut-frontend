@@ -15,3 +15,8 @@ app.use(i18n)
 app.mount('#app')
 
 </script>
+
+<template>
+
+  <h1>{{ $t("message.H1") }}</h1>
+</template>
