@@ -2,10 +2,18 @@
 import { computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { ArrowLeft, HomeFilled } from '@element-plus/icons-vue';
+import { revokeToken } from "@/services/auth";
 
 defineProps<{
   title?: any
 }>()
+
+const logout = (() =>{
+  const token = localStorage.getItem('token');
+  revokeToken(token)
+  localStorage.removeItem('token');
+  router.push('/')
+})
 
 const router = useRouter();
 const current = computed(() => router.currentRoute.value.path);
@@ -31,6 +39,11 @@ const goBack = () => {
     </template>
     <template #content>
       <span class="text-large font-bold mr-3">{{title}}</span>
+    </template>
+    <template #extra>
+      <div @click="logout" class="flex items-center">
+        <el-button>Se deconnecter</el-button>
+      </div>
     </template>
   </el-page-header>
 </template>

@@ -17,9 +17,9 @@ onBeforeMount(() => {
     const token = localStorage.getItem('token');
     // Vérification du role de l'utilisateur
     checkAdmin(token).then(({}) => {
-      router.push('/admin')
+      router.push('/admin/home')
     }).catch(({response}) => {
-      router.push('/')
+      router.push('/admin')
     })
   }
 })
@@ -40,8 +40,9 @@ async function submit() {
       .then(async ({data}) => {
         // Vérification du role de l'utilisateur
         if (await checkAdmin(data.token)) {
+          console.log('1')
           localStorage.setItem("token", data.token);
-          router.push('/admin')
+          router.push('/admin/home')
         } else {
           alert("Mauvais ID")
         }

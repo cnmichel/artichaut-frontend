@@ -42,3 +42,16 @@ export async function login(user) {
     return await axios.post('/login', user);
 
 }
+
+export async function revokeToken(token) {
+
+    return await axios.post('/revokeToken', {}, {
+        headers: {
+            Authorization: `Bearer ` + token
+        }
+    }).catch(({ response }) => {
+    if (response.status === 401) {
+        console.log('false');
+    }
+})
+}
