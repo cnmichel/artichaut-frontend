@@ -51,14 +51,14 @@
         </a>
         <!-- Left links -->
         <ul class="navbar-nav flex flex-col lg:flex-row space-x-2 justify-center items-center list-style-none">
-          <li class="nav-item p-2">
-            <a class="nav-link text-black hover:text-black focus:text-gray-700 p-0" href="#">Accueil</a>
+          <li class="nav-item p-2 transition duration-200 hover:scale-125">
+            <a class="nav-link text-black p-0" href="#">Accueil</a>
           </li>
-          <li class="nav-item p-2">
-            <a class="nav-link text-black hover:text-black focus:text-gray-700 p-0" href="#">Réservation</a>
+          <li class="nav-item p-2 transition duration-200 hover:scale-125">
+            <a class="nav-link text-black p-0" href="#">Réservation</a>
           </li>
-          <li class="nav-item p-2">
-            <a class="nav-link text-black hover:text-black focus:text-gray-700 p-0" href="#">Actualités</a>
+          <li class="nav-item p-2 transition duration-200 hover:scale-125">
+            <a class="nav-link text-black p-0" href="#">Actualités</a>
           </li>
         </ul>
         <!-- <div class="w-1/12 h-1/3"></div> -->
