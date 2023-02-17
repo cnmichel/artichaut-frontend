@@ -1,4 +1,10 @@
 import { createWebHistory, createRouter } from "vue-router";
+
+// Import Homepage
+import Home from "@/views/HomeView.vue";
+
+// Import Admin
+import AdminLogin from "@/views/admin/AdminLoginView.vue";
 import AdminHome from "@/views/admin/AdminHomeView.vue";
 import AdminArticle from "@/views/admin/AdminArticleView.vue";
 import AdminFeature from "@/views/admin/AdminFeatureView.vue";
@@ -6,11 +12,7 @@ import AdminProduct from "@/views/admin/AdminProductView.vue";
 import AdminPromo from "@/views/admin/AdminPromoView.vue";
 import AdminVideo from "@/views/admin/AdminVideoView.vue";
 import AdminHero from "@/views/admin/AdminHeroView.vue";
-import Home from "@/views/HomeView.vue";
-
-// Import Admin
-import AdminLogin from "../views/admin/AdminLoginView.vue";
-import {checkAdmin} from "../services/auth";
+import { checkAdmin } from "@/services/auth";
 
 
 const routes = [
@@ -33,21 +35,15 @@ const routes = [
                 next('/admin');
             } else {
                 checkAdmin(token)
-                    .then(isAdmin => {
-                        if (isAdmin) {
-                            next();
-                        } else {
-                            next('/admin');
-                        }
-                    })
+                    .then((isAdmin) => isAdmin ? next() : next('/admin'))
                     .catch(() => next('/admin'));
             }
         },
         component: AdminHome,
         children: [
             {
-                path: "/admin/article",
-                name: "Articles",
+                path: "/admin/articles",
+                name: "Actualités",
                 component: AdminArticle
             },
             {
