@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import {onBeforeMount, reactive, ref, shallowRef} from "vue";
-import { getHero } from "@/services/api";
+import { getHero } from '@/services/api.js'
 import { Search, UserFilled } from '@element-plus/icons-vue';
 
-const hero = reactive({ item: null })
+const hero = reactive({ item: {} })
 const selectDate = ref('')
 const selectOption = ref('')
 const options = shallowRef([
@@ -82,7 +82,7 @@ onBeforeMount(() => {
   </div>
 </template>
 
-<style>
+<style scoped>
 .bg-glass {
   background-color: hsla(0, 0%, 100%, 0.1) !important;
   backdrop-filter: saturate(200%) blur(25px);

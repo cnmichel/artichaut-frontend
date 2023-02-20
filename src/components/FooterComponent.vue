@@ -12,7 +12,6 @@ const siteMaps = reactive({ items: <SiteMaps[]>[] })
 onMounted(async() => {
         await getSitemaps()
         .then((data:any) => { 
-            console.log(data);
         siteMaps.items = data;
     });
 });
@@ -21,7 +20,6 @@ const selectedSiteMaps = reactive({item: {}});
 
 const handleSelect = (siteMaps:any) => {
     selectedSiteMaps.item = siteMaps;
-    console.log(selectedSiteMaps.item);
 }
 
 </script>
@@ -140,9 +138,8 @@ const handleSelect = (siteMaps:any) => {
 </template>
 <style scoped>
 
-.footer{
+.footer {
     background-color: #D8D8D8;
-    position:fixed;
     width: 100%;
 }
 
