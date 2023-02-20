@@ -76,7 +76,6 @@ const promo = ref("")
 
 onBeforeMount(() => {
   getActivePromo().then((data) => {
-    console.log(data[0].content)
     promo.value = data[0].content;
   })
 })

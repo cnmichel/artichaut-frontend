@@ -16,7 +16,6 @@
     "element-plus": "^2.2.29",
     "lodash": "^4.17.21",
     "tw-element": "^1.0.5",
-    "tw-elements": "^1.0.0-alpha13",
     "vue": "^3.2.45",
     "vue-i18n": "9",
     "vue-router": "^4.0.13"

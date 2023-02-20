@@ -3,12 +3,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@import "";
-
 #app {
   width: 100%;
 
@@ -18,4 +12,18 @@
 
 body {
   display: flex;
+}
+
+h1 {
+  font-family: 'Cinzel Decorative', cursive;
+}
+
+h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+}
+
+p, span {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
 }
