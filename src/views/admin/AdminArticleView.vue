@@ -1,8 +1,10 @@
 <script setup lang="ts">
-import { ref, reactive, computed, onMounted } from 'vue';
+import {ref, reactive, computed, onMounted, shallowRef} from 'vue';
 import { slice } from 'lodash';
-import { getArticles,deleteArticle } from '@/services/api.js'
+import {getArticles, createArticle, deleteArticle, updateArticle} from '@/services/api.js'
 import { ElMessageBox } from 'element-plus';
+import { useI18n } from 'vue-i18n'
+import FormComponent from "@/components/FormComponent.vue";
 
 interface Articles {
     title: string,
@@ -10,17 +12,16 @@ interface Articles {
     image: string
 }
 
-const addArticle = ref(false);
-const dialogueVisible = ref(false);
-const handleClose = (done: () =>void) =>{
-    ElMessageBox.confirm('êtes-vous sûr de vouloir fermer cette fenêtre?')
-    .then(()=>{
-        done();
-    })
-    .catch(() =>{
+const { t } = useI18n();
 
-    })
-};
+const fields = shallowRef([
+  { name: 'title', type: 'input', label: t('fields.title')},
+  { name: 'content', type: 'input', label: t('fields.content')},
+  { name: 'image', type: 'url', label: t('fields.image')},
+])
+
+const openForm = ref(false);
+const modeForm = ref('create')
 
 const selectedArticle = reactive({item: {}});
 const articles = reactive({ items: <Articles[]>[] })
@@ -33,6 +34,25 @@ const paginateArticles = computed(() => {
 
 const pageSize = ref(5);
 let current = reactive({ page: 1 });
+
+onMounted(async() => {
+  getArticles()
+      .then((data:any) => {
+        articles.items = data;
+      });
+});
+
+const handleCreate = () => {
+  modeForm.value = 'create';
+  selectedArticle.item = {};
+  openForm.value = true;
+}
+
+const handleEdit = () => {
+  modeForm.value = 'edit';
+  openForm.value = true;
+}
+
 const handleDelete = () => {
     //message are you sure
     ElMessageBox({
@@ -43,7 +63,12 @@ const handleDelete = () => {
         confirmButtonText:'valider',
         beforeClose: (action, instance, done) => {
             if(action === 'confirm'){
-                deleteArticle(selectedArticle.item);
+                deleteArticle(selectedArticle.item.id).then(() => {
+                  getArticles()
+                      .then((data:any) => {
+                        articles.items = data;
+                      });
+                });
                 done();
             }
             else {
@@ -57,19 +82,36 @@ const handleSelect = (article:any) => {
     selectedArticle.item = article;
 }
 
-onMounted(async() => {
-        getArticles()
-        .then((data:any) => { 
-        articles.items = data;
-    });
-});
-
 const handleCurrentChange = (val: number) => {
     if (val !== current.page) {
         current.page = val;
         getPagination(articles.items, current.page);
     }
 };
+
+const handleSubmit = async (data: any, lang: number) => {
+  openForm.value = false;
+  console.log(data, lang);
+  if (modeForm.value === "create") {
+    await createArticle({...data, user_id: 11, lang_id: lang}).then(() => {
+      getArticles()
+          .then((data:any) => {
+            articles.items = data;
+          });
+    })
+  } else {
+    await updateArticle(selectedArticle.item.id, data).then(() => {
+      getArticles()
+          .then((data:any) => {
+            articles.items = data;
+          });
+    })
+  }
+}
+
+const handleClose = () => {
+  openForm.value = false;
+}
 
 const getPagination = (articles: Articles[], page: number) => {
     const start = (page -1) * pageSize.value;
@@ -79,39 +121,18 @@ const getPagination = (articles: Articles[], page: number) => {
 </script>
 
 <template>
-<el-dialog
-    v-model="addArticle"
-    title="Création d'un article"
-    width="50%"
-    :before-close="handleClose"
->
-    <span>Insert form here</span>
-    <template #update>
-        <span class="dialog-update">
-            <el-button @click = "addArticle = false">Annuler</el-button>
-            <el-button type="primary" @click="addArticle = false">Enregistrer</el-button> 
-        </span>
-    </template>
-</el-dialog>
 
-<el-dialog 
-    v-model="dialogueVisible"
-    title="Titre de la fenêtre"
-    width="30%"
-    :before-close ="handleClose"
->
-    <span>insert form here</span>
-    <template #update>
-        <span class="dialog-update">
-            <el-button @click = "dialogueVisible = false">Annuler</el-button>
-            <el-button type="primary" @click="dialogueVisible = false">Valider</el-button> 
-        </span>
-    </template>
-</el-dialog>
+  <FormComponent :mode="modeForm"
+                 :on-submit="handleSubmit"
+                 :on-close="handleClose"
+                 :open-form="openForm"
+                 :fields="fields"
+                 :data="selectedArticle.item"
+                 :lang="selectedArticle.item.lang_id"/>
 
 <el-card class="box-card">
     <div class="">
-        <button title="Ajouter un article" @click="addArticle = true" class="transition ease-in-out delay-50 hover:translate-y-2 hover:scale-125 duration-300 choice" >
+        <button title="Ajouter un article" @click="handleCreate" class="transition ease-in-out delay-50 hover:translate-y-2 hover:scale-125 duration-300 choice" >
             <img class="" src="/src/assets/add.png"/>
         </button>
             <div id="divprincipale"  class="grid grid-cols-12 flex items-center" v-for="article in paginateArticles">
@@ -124,7 +145,7 @@ const getPagination = (articles: Articles[], page: number) => {
             
             <div v-if="selectedArticle">
                 <div v-if="article === selectedArticle.item" class="col-span-1 flex flex-col buttons-container" style="display: flex;">
-                    <button title="Modifier l'article" @click="dialogueVisible=true" class="transition ease-in-out delay-50 hover:-translate-y-2 hover:scale-125 duration-300 choice">
+                    <button title="Modifier l'article" @click="handleEdit" class="transition ease-in-out delay-50 hover:-translate-y-2 hover:scale-125 duration-300 choice">
                         <img class="fill" src="/src/assets/edit.png"/>
                     </button>
                     <button title="Supprimer l'article" @click="handleDelete" class="transition ease-in-out delay-50 hover:translate-y-2 hover:scale-125 duration-300 choice">
