@@ -1,7 +1,9 @@
 <script setup lang="ts">
-import { ElCarousel, ElCarouselItem } from 'element-plus';
+import { ElCarousel, ElCarouselItem} from 'element-plus';
 import { getReviews } from '@/services/api.js'
 import { ref, reactive, computed, onMounted } from 'vue';
+import { UserFilled } from '@element-plus/icons-vue'
+
 
 interface Review {
     title: string,
@@ -26,7 +28,6 @@ const handleSelect = (review:any) => {
 onMounted(async() => {
         getReviews()
         .then((data:any) => {
-            console.log(data);
         reviews.items = data;
     });
     
@@ -45,8 +46,11 @@ onMounted(async() => {
             v-model="review.rating"
             disabled
         /> 
-       <div class="">{{ review.content}}</div><br/>
-       <div class="">{{ review.customer.firstname}} {{ review.customer.lastname}}</div>
+      <div class="">{{ review.content}}</div><br/>
+      <div class="demo-type">
+          <el-avatar :icon="UserFilled" />
+      </div>
+      <div class="">{{ review.customer.firstname}} {{ review.customer.lastname}}</div>
     </el-carousel-item>
 
   </el-carousel>
@@ -79,5 +83,19 @@ h1{
 .el-carousel__item:nth-child(2n + 1) {
   background-color: grey;
 }
+
+
+.demo-type {
+  display: flex;
+}
+.demo-type > div {
+  flex: 1;
+  text-align: center;
+}
+
+.demo-type > div:not(:last-child) {
+  border-right: 1px solid var(--el-border-color);
+}
+
 
 </style>
