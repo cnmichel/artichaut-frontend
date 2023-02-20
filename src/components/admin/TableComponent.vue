@@ -1,20 +1,4 @@
 <template>
-  <el-dialog
-      v-model="dialogVisible"
-      title="Tips"
-      width="30%"
-      :before-close="handleClose"
-  >
-    <span>This is a message</span>
-    <template #footer>
-      <span class="dialog-footer">
-        <el-button @click="dialogVisible = false">Cancel</el-button>
-        <el-button type="primary" @click="handleUpdate">
-          Confirm
-        </el-button>
-      </span>
-    </template>
-  </el-dialog>
     <el-table :data="props.data" style="width: 100%">
       <el-table-column label="Id" prop="id" />
       <el-table-column label="Nom" prop="name" />
@@ -24,7 +8,7 @@
           <el-input v-model="search" size="small" placeholder="Type to search" />
         </template>
         <template #default="scope">
-          <el-button size="small" @click="openEdit(scope.$index, scope.row)"
+          <el-button size="small" @click="handleEdit(scope.$index, scope.row)"
           >Editer</el-button
           >
           <el-button
@@ -36,7 +20,7 @@
         </template>
       </el-table-column>
     </el-table>
-  <el-button class="mt-4" style="width: 100%" @click="onAddItem"
+  <el-button class="mt-4" style="width: 100%" @click="onCreate"
   >Add Item</el-button
   >
   </template>
@@ -60,19 +44,16 @@
 
   const props = defineProps<{
     data: []
+    onCreate: () => void
     onDelete: () => void
-    onUpdate: () => void
+    onUpdate: (data:any) => {}
   }>()
 
   const search = ref('')
 
-  const handleUpdate = (data) => {
-    props.onUpdate(data)
-  }
-
-  const openEdit = (index: number, row) => {
+  const handleEdit = (index: number, row) => {
     console.log(index, row)
-    dialogVisible.value = true
+    props.onUpdate(row)
   }
   const handleDelete = (index: number, row) => {
     console.log(index, row)

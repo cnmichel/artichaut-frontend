@@ -1,6 +1,17 @@
 {
-  "message": {
-    "H1": "Bonjour"
+  "fields": {
+    "name": "Nom",
+    "title": "Titre",
+    "subtitle": "Sous-titre",
+    "content": "Contenu",
+    "description": "Description",
+    "image": "Image",
+    "icon": "Icon",
+    "url": "Url",
+    "link": "Lien",
+    "order": "Ordre",
+    "price": "Prix",
+    "lang": "Langue"
   },
   "buttons": {
     "create": "Créer",
