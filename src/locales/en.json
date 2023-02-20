@@ -1,6 +1,23 @@
 {
   "message": {
-    "H1": "Hello",
-    "sitemaps" : "site maps"
+    "H1": "Hello"
+  },
+  "buttons": {
+    "create": "Create",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "confirm": "Confirm",
+    "validate": "Validate",
+    "cancel": "Cancel",
+    "open": "Open",
+    "close": "Close",
+    "back": "Back",
+    "search": "Search",
+    "login": "Login",
+    "logout": "Logout",
+    "get-started": "Get started",
+    "know-more": "Know more",
+    "reserve-now": "Reserve now"
   }
 }
