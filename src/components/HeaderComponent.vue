@@ -18,7 +18,6 @@
     <div class="container-fluid w-full flex flex-wrap items-center justify-between px-6">
       <button class="
       navbar-toggler
-      text-gray-500
       border-0
       hover:shadow-none hover:no-underline
       py-2
@@ -46,7 +45,7 @@
         left-0
         hidden
       " href="#">
-          <img src="@/assets/logo.png" style="height: 50px" alt=""
+          <img src="@/assets/logo.png" style="height: 50px" alt="Logo Artichaut Hotel"
                loading="lazy" />
         </a>
         <!-- Left links -->
