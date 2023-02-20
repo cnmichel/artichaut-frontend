@@ -1,8 +1,8 @@
-<script lang="ts">
+<script setup lang="ts">
+import Hero from "@/components/HeroComponent.vue";
 
 </script>
 
 <template>
-
-  <h1>{{ $t("message.H1") }}</h1>
+  <Hero/>
 </template>
