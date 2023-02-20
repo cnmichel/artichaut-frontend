@@ -1,5 +1,23 @@
 {
   "message": {
     "H1": "Bonjour"
+  },
+  "buttons": {
+    "create": "Créer",
+    "save": "Sauvegarder",
+    "edit": "Éditer",
+    "delete": "Supprimer",
+    "confirm": "Confirmer",
+    "validate": "Valider",
+    "cancel": "Annuler",
+    "open": "Ouvrir",
+    "close": "Fermer",
+    "back": "Retour",
+    "search": "Rechercher",
+    "login": "Se connecter",
+    "logout": "Se déconnecter",
+    "get-started": "Commencer",
+    "know-more": "En savoir plus",
+    "reserve-now": "Réserver maintenant"
   }
 }
