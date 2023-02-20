@@ -1,6 +1,7 @@
 {
   "message": {
-    "H1": "Bonjour"
+    "H1": "Bonjour",
+    "titleReview": "Vos avis comptent"
   },
   "buttons": {
     "create": "Créer",

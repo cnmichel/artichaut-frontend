@@ -1,6 +1,7 @@
 {
   "message": {
-    "H1": "Hello"
+    "H1": "Hello",
+    "titleReview": "Your opinion matter"
   },
   "buttons": {
     "create": "Create",

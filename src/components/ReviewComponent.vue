@@ -1,0 +1,83 @@
+<script setup lang="ts">
+import { ElCarousel, ElCarouselItem } from 'element-plus';
+import { getReviews } from '@/services/api.js'
+import { ref, reactive, computed, onMounted } from 'vue';
+
+interface Review {
+    title: string,
+    content: string,
+    rating: number,
+    customer_id: number,
+    customer: Customer
+}
+interface Customer{
+  firstname:string,
+  lastname : string
+}
+
+const value = ref();
+const reviews = reactive({ items: <Review[]>[] })
+ const selectedReviews = reactive({item: {}});
+
+const handleSelect = (review:any) => {
+    selectedReviews.item = review;
+}
+
+onMounted(async() => {
+        getReviews()
+        .then((data:any) => {
+            console.log(data);
+        reviews.items = data;
+    });
+    
+});
+
+</script>
+
+<template>
+
+<h1>{{ $t('message.titleReview') }}</h1>
+<el-carousel :interval="4000" type="card" height="200px">
+    <el-carousel-item v-for="(review, i) in reviews.items" :key="i">
+            <div class="">{{ review.title}}</div>
+            <el-rate
+            :max="10"
+            v-model="review.rating"
+            disabled
+        /> 
+       <div class="">{{ review.content}}</div><br/>
+       <div class="">{{ review.customer.firstname}} {{ review.customer.lastname}}</div>
+    </el-carousel-item>
+
+  </el-carousel>
+
+
+</template>
+
+<style>
+
+h1{
+    text-align: center;
+    background-color: #00B531;
+    font-weight: bold;
+    color: black;
+}
+
+
+.el-carousel__item h3 {
+  color: #ffffff;
+  opacity: 0.75;
+  line-height: 200px;
+  margin: 0;
+  text-align: center;
+}
+
+.el-carousel__item:nth-child(2n) {
+  background-color: #000000;
+}
+
+.el-carousel__item:nth-child(2n + 1) {
+  background-color: grey;
+}
+
+</style>
