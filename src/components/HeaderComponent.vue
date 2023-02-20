@@ -45,7 +45,7 @@
         left-0
         hidden
       " href="#">
-          <img src="@/assets/logo.png" style="height: 50px" alt=""
+          <img src="@/assets/logo.png" style="height: 50px" alt="Logo Artichaut Hotel"
                loading="lazy" />
         </a>
         <!-- Left links -->
