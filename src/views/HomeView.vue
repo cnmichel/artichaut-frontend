@@ -13,6 +13,9 @@ import Footer from '@/components/FooterComponent.vue';
   <main>
     <Hero/>
     <Features/>
+    <section class=" flex items-center justify-center h-80 mb-12 bg-fixed bg-center bg-cover background-parralax-one">
+    </section>
+    <Discover/>
   </main>
   <footer>
     <Footer/>
