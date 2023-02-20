@@ -25,7 +25,6 @@ const handleSelect = (siteMaps:any) => {
 </script>
 
 <template>
-<div class="footer">
     <footer class="text-center lg:text-left bg-gray-100 text-gray-600">
     <div class="mx-6 py-10 text-center md:text-left">
         <div class="flex flex-col md:justify-between md:flex-row gap-20">
@@ -124,23 +123,14 @@ const handleSelect = (siteMaps:any) => {
         </div>
         </div>
     </div>
-  <div class="text-center p-6 bg-gray-200">
-    <span>© 2023 Copyright:</span>
-    <a class="text-gray-600 font-semibold" href="https://tailwind-elements.com/">Hôtel artichaut</a>
-  </div>
+    <div class="text-center p-6 bg-gray-200">
+      <span>© 2023 Copyright:</span>
+      <a class="text-gray-600 font-semibold" href="https://tailwind-elements.com/">Hôtel artichaut</a>
+    </div>
 
-</footer>
-
-
-
-</div>
-
+  </footer>
 </template>
-<style scoped>
 
-.footer {
-    background-color: #D8D8D8;
-    width: 100%;
-}
+<style scoped>
 
 </style>
