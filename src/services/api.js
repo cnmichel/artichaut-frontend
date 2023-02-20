@@ -192,14 +192,10 @@ export async function createProduct(data) {
 
 export async function updateProduct(id, data) {
     return axios.put(`/products/${id}`, data, config)
-        .then((res) => res.data)
-        .catch((err) => errorHandler(err));
 }
 
 export async function deleteProduct(id) {
     return axios.delete(`/products/${id}`, config)
-        .then((res) => res.data)
-        .catch((err) => errorHandler(err));
 }
 
 
@@ -213,6 +209,19 @@ export async function getPromos() {
 
 export async function getPromo(id) {
     return axios.get(`/promos/${id}`, config)
+        .then((res) => res.data)
+        .catch((err) => errorHandler(err));
+}
+
+export async function getActivePromo() {
+    return axios.get(`/promos/`,
+        {
+            baseURL: import.meta.env.VITE_API_BASE_URL,
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            },
+            params: {active: "1"},
+        })
         .then((res) => res.data)
         .catch((err) => errorHandler(err));
 }

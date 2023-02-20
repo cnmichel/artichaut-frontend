@@ -18,15 +18,28 @@ body {
   display: flex;
 }
 
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
+h1 {
+  font-family: 'Cinzel Decorative', cursive;
 }
 
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
+h2 {
+  font-family: 'Cinzel Decorative', cursive;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+
+h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+p, span {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+}
+
+.background-parralax-one {
+  background-image: url("@/assets/backgrounds/background1.jpg");
 }

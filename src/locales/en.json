@@ -1,0 +1,34 @@
+{
+  "fields": {
+    "name": "Name",
+    "title": "Title",
+    "subtitle": "Subtitle",
+    "content": "Content",
+    "description": "Description",
+    "image": "Image",
+    "icon": "Icon",
+    "url": "Url",
+    "link": "Link",
+    "order": "Order",
+    "price": "Price",
+    "lang": "Lang"
+  },
+  "buttons": {
+    "create": "Create",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "confirm": "Confirm",
+    "validate": "Validate",
+    "cancel": "Cancel",
+    "open": "Open",
+    "close": "Close",
+    "back": "Back",
+    "search": "Search",
+    "login": "Login",
+    "logout": "Logout",
+    "get-started": "Get started",
+    "know-more": "Know more",
+    "reserve-now": "Reserve now"
+  }
+}

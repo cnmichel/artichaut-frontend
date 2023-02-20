@@ -1,0 +1,34 @@
+{
+  "fields": {
+    "name": "Nom",
+    "title": "Titre",
+    "subtitle": "Sous-titre",
+    "content": "Contenu",
+    "description": "Description",
+    "image": "Image",
+    "icon": "Icon",
+    "url": "Url",
+    "link": "Lien",
+    "order": "Ordre",
+    "price": "Prix",
+    "lang": "Langue"
+  },
+  "buttons": {
+    "create": "Créer",
+    "save": "Sauvegarder",
+    "edit": "Éditer",
+    "delete": "Supprimer",
+    "confirm": "Confirmer",
+    "validate": "Valider",
+    "cancel": "Annuler",
+    "open": "Ouvrir",
+    "close": "Fermer",
+    "back": "Retour",
+    "search": "Rechercher",
+    "login": "Se connecter",
+    "logout": "Se déconnecter",
+    "get-started": "Commencer",
+    "know-more": "En savoir plus",
+    "reserve-now": "Réserver maintenant"
+  }
+}
