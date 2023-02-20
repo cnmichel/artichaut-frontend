@@ -9,7 +9,7 @@ import { i18n } from './i18n'
 
 import './assets/main.css'
 import 'element-plus/dist/index.css'
-
+import 'tw-elements';
 
 createApp(App)
     .use(router)
