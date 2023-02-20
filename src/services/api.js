@@ -213,6 +213,19 @@ export async function getPromo(id) {
         .catch((err) => errorHandler(err));
 }
 
+export async function getActivePromo() {
+    return axios.get(`/promos/`,
+        {
+            baseURL: import.meta.env.VITE_API_BASE_URL,
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            },
+            params: {active: "1"},
+        })
+        .then((res) => res.data)
+        .catch((err) => errorHandler(err));
+}
+
 export async function createPromo(data) {
     return axios.post(`/promos`, data, config)
         .then((res) => res.data)
