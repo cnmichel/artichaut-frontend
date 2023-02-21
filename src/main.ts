@@ -1,7 +1,6 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import ElementPlus from 'element-plus'
-import 'tw-elements';
 // @ts-ignore
 import router from './router'
 // @ts-ignore
