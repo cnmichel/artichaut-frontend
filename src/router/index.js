@@ -1,5 +1,4 @@
 import { createWebHistory, createRouter } from "vue-router";
-import 'tw-elements';
 
 // Import Homepage
 import Home from "@/views/HomeView.vue";
