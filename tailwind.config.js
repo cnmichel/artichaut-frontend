@@ -3,8 +3,7 @@ module.exports = {
   content: [
     "./index.html",
     "./src/**/*.{vue,js,ts,jsx,tsx,html}",
-    './node_modules/tw-elements/dist/js/**/*.js',
-
+    "./node_modules/tw-elements/dist/js/**/*.js",
     ],
   theme: {
     extend: {
@@ -14,6 +13,6 @@ module.exports = {
     }
   },
   plugins: [
-    require('tw-elements/dist/plugin')
+    require("tw-elements/dist/plugin")
   ],
 }

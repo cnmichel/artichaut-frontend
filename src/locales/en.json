@@ -3,6 +3,20 @@
     "H1": "Hello",
     "titleReview": "Your opinion matter"
   },
+  "fields": {
+    "name": "Name",
+    "title": "Title",
+    "subtitle": "Subtitle",
+    "content": "Content",
+    "description": "Description",
+    "image": "Image",
+    "icon": "Icon",
+    "url": "Url",
+    "link": "Link",
+    "order": "Order",
+    "price": "Price",
+    "lang": "Lang"
+  },
   "buttons": {
     "create": "Create",
     "save": "Save",
