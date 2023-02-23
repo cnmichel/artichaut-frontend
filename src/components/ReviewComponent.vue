@@ -38,22 +38,22 @@ onMounted(async() => {
 <template>
 
 <h1>{{ $t('message.titleReview') }}</h1>
-<el-carousel :interval="4000" type="card" height="200px">
-    <el-carousel-item v-for="(review, i) in reviews.items" :key="i">
-            <div class="">{{ review.title}}</div>
-            <el-rate
-            :max="10"
-            v-model="review.rating"
-            disabled
-        /> 
-      <div class="">{{ review.content}}</div><br/>
-      <div class="demo-type">
-          <el-avatar :icon="UserFilled" />
-      </div>
-      <div class="">{{ review.customer.firstname}} {{ review.customer.lastname}}</div>
-    </el-carousel-item>
-
-  </el-carousel>
+<el-carousel trigger="click" :interval="4000" type="card" height="200px">
+      
+      <el-carousel-item v-for="(review, i) in reviews.items" :key="i">
+        <div class="demo-type">
+          <el-avatar :icon="UserFilled" class="ml-5" />
+          <div class="m-auto underline">{{ review.title}}</div> 
+        </div>
+        <div class="">{{ review.customer.firstname}} {{ review.customer.lastname}}</div>
+        <el-rate
+          :max="5"
+          v-model="review.rating"
+          disabled
+        />
+        <div class="">« {{ review.content}} »</div><br/>
+      </el-carousel-item>
+</el-carousel>
 
 
 </template>
