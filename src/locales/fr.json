@@ -11,7 +11,9 @@
     "link": "Lien",
     "order": "Ordre",
     "price": "Prix",
-    "lang": "Langue"
+    "lang": "Langue",
+    "newsTitle": "la première actu",
+    "newsContent": "Here we will have our future content, it's wonderfull but for now it's just a test with no meaning in all of this sentences"
   },
   "buttons": {
     "create": "Créer",
