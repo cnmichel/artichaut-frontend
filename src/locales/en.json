@@ -12,8 +12,7 @@
     "order": "Order",
     "price": "Price",
     "lang": "Lang",
-    "newsTitle": "The First News",
-    "newsContent": "Ici nous aurons notre futur contenu, c'est merveilleux mais pour le moment c'est juste un test avec des phrases sans trop de sens"
+    "newsTitle": "Our News",
   },
   "buttons": {
     "create": "Create",

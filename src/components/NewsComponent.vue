@@ -21,7 +21,8 @@ onMounted(async() => {
 </script>
 
 <template>
-  <el-carousel :interval="7000" height="80vh" style=" border-radius: 15px; padding-bottom: 50px; margin:0 24px" trigger="click" indicator-position="inside" >
+  <h1>{{ $t('fields.newsTitle') }}</h1>
+  <el-carousel :interval="7000" height="80vh" style=" border-radius: 15px; padding-bottom:50px; margin:0 24px" trigger="click" indicator-position="inside" >
     <el-carousel-item v-for="article in articles.items" :key="article.title">
       <div class="bg-no-repeat bg-cover h-full"
            :style="{ backgroundImage: `url(${article.image})`}">
@@ -36,7 +37,10 @@ onMounted(async() => {
 
 <style scoped>
 
-.background{
+h1{
+  font-size: xxx-large;
+  text-align: center;
+  font-weight: bolder;
 }
 
 </style>
