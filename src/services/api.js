@@ -310,6 +310,19 @@ export async function deleteVideo(id) {
         .catch((err) => errorHandler(err));
 }
 
+export async function getActiveVideo() {
+    return axios.get(`/videos/`,
+        {
+            baseURL: import.meta.env.VITE_API_BASE_URL,
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            },
+            params: {active: "1"},
+        })
+        .then((res) => res.data)
+        .catch((err) => errorHandler(err));
+}
+
 
 // SITEMAPS API
 
