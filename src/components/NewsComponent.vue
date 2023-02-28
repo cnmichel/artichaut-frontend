@@ -21,15 +21,22 @@ onMounted(async() => {
 </script>
 
 <template>
-  <el-carousel height="80vh" style=" border-radius: 15px; margin:0 24px" trigger="click" indicator-position="inside" >
+  <el-carousel :interval="7000" height="80vh" style=" border-radius: 15px; padding-bottom: 50px; margin:0 24px" trigger="click" indicator-position="inside" >
     <el-carousel-item v-for="article in articles.items" :key="article.title">
       <div class="bg-no-repeat bg-cover h-full"
            :style="{ backgroundImage: `url(${article.image})`}">
-        <div class="text-center text-white px-6 md:px-12 grid items-center h-full">
-            <div class="text-5xl font-bold mt-0 mb-6">{{ article.title}}</div>
-            <div class="text-3xl font-bold mb-8">{{ article.content }}</div>
+        <div class="text-center text-white px-6 md:px-12 grid items-center h-full backdrop-opacity-20 backdrop-invert bg-black/30">
+            <div class="background text-5xl font-bold mt-0 mb-6">{{ article.title}}</div>
+            <div class="background text-3xl font-bold mb-8">{{ article.content }}</div>
         </div>
       </div>
     </el-carousel-item>
   </el-carousel>
 </template>
+
+<style scoped>
+
+.background{
+}
+
+</style>
