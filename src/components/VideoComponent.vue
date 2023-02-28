@@ -29,7 +29,7 @@ onMounted(async() => {
         <iframe width="100%" height="100%" v-bind:src="video.item.url" title="Video Artichaut" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
         <div class="grid grid-cols-1 grid-rows-3 text-center text-black px-6 md:px-12">
-          <div class="text-5xl font-bold m-auto">{{ video.item.title}}</div>
+          <div class="text-5xl font-bold">{{ video.item.title}}</div>
           <div class="text-3xl font-bold">{{ video.item.content }}</div>
           <div class="m-auto">
             <el-button size="large" round color="#00B561" data-te-ripple-init data-te-ripple-color="light"
