@@ -5,10 +5,10 @@ import ElementPlus from 'element-plus'
 import router from './router'
 // @ts-ignore
 import { i18n } from './i18n'
-
+// @ts-ignore
+import * as te from 'tw-elements';
 import './assets/main.css'
 import 'element-plus/dist/index.css'
-import 'tw-elements';
 
 createApp(App)
     .use(router)
