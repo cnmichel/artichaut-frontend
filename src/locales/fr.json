@@ -15,7 +15,9 @@
     "link": "Lien",
     "order": "Ordre",
     "price": "Prix",
-    "lang": "Langue"
+    "lang": "Langue",
+    "newsTitle": "la première actu",
+    "newsContent": "Nos Actualités"
   },
   "buttons": {
     "create": "Créer",

@@ -46,7 +46,7 @@
         hidden
       " href="#">
           <img src="@/assets/logo.png" style="height: 50px" alt="Logo Artichaut Hotel"
-               loading="lazy" />
+               loading="lazy"/>
         </a>
         <!-- Left links -->
         <ul class="navbar-nav flex flex-col lg:flex-row space-x-2 justify-center items-center list-style-none">

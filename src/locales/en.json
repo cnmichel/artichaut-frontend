@@ -15,7 +15,8 @@
     "link": "Link",
     "order": "Order",
     "price": "Price",
-    "lang": "Lang"
+    "lang": "Lang",
+    "newsTitle": "Our News",
   },
   "buttons": {
     "create": "Create",
