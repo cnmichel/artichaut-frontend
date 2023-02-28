@@ -30,7 +30,7 @@ onBeforeMount(() => {
     <div class="flex justify-center items-center">
       <div class="mb-5 mb-lg-0 position-relative lg:top-8 z-10 w-fit">
         <div class="card bg-glass rounded-lg">
-          <div class="card-body lg:px-5 px-2 lg:py-5 py-2">
+          <div class="card-body lg:px-4 px-2 lg:py-4 py-2">
             <form>
               <div class="flex flex-row gap-4">
                 <div class="form-group w-36">
@@ -47,14 +47,14 @@ onBeforeMount(() => {
                   </el-select>
                 </div>
                 <div class="form-group">
-                  <el-date-picker v-model="selectDate" type="daterange" format="DD-MM-YYYY" size="large"
+                  <el-date-picker v-model="selectDate" type="daterange" format="DD/MM/YYYY" size="large"
                                   range-separator="au"
                                   start-placeholder="Arrivée"
                                   end-placeholder="Départ"
                   />
                 </div>
                 <div class="form-group">
-                  <el-button :icon="Search" size="large" color="#00B561" data-mdb-ripple="true" data-mdb-ripple-color="light">
+                  <el-button :icon="Search" size="large" color="#00B561" data-te-ripple-init data-te-ripple-color="light">
                     {{ $t('buttons.search') }}
                   </el-button>
                 </div>
@@ -71,12 +71,12 @@ onBeforeMount(() => {
           <h1 class="text-5xl font-bold tracking-tight mt-0 mb-6">{{ hero.item.title }}</h1>
           <h3 class="text-3xl font-bold mb-8">{{ hero.item.subtitle }}</h3>
           <div class="grid grid-cols-1 md:grid-cols-2 px-3">
-            <el-button size="large" round color="#00B561" data-mdb-ripple="true" data-mdb-ripple-color="light"
-                       class="mr-4 ml-4 px-6 py-2.5 md:mb-0 mb-4 uppercase transition duration-150 ease-in-out">
+            <el-button size="large" round color="#00B561" data-te-ripple-init data-te-ripple-color="light"
+                       class="mr-4 ml-4 px-6 py-2.5 md:mb-0 mb-4 uppercase leading-normal transition duration-150 ease-in-out">
               {{ $t('buttons.reserve-now') }}
             </el-button>
-            <el-button size="large" round plain color="#00B561" style="background: transparent" data-mdb-ripple="true" data-mdb-ripple-color="light"
-                       class="mr-4 ml-4 px-6 py-2.5 uppercase transition duration-150 ease-in-out">
+            <el-button size="large" round plain color="#00B561" style="background: transparent" data-te-ripple-init data-te-ripple-color="light"
+                       class="mr-4 ml-4 px-6 py-2.5 uppercase leading-normal transition duration-150 ease-in-out">
               {{ $t('buttons.know-more') }}
             </el-button>
           </div>
@@ -91,16 +91,19 @@ onBeforeMount(() => {
   background-color: hsla(0, 0%, 100%, 0.1) !important;
   backdrop-filter: saturate(200%) blur(25px);
 }
-.el-button.is-plain {
+:deep(.el-button.is-plain) {
   border-color: #00B561;
   border-width: 2px;
   color: white;
 }
-.el-input, .el-input__wrapper {
-  background: transparent !important;
-  --el-border-color: #00B561 !important;
-  --el-text-color-placeholder: white;
+:deep(.el-input), :deep(.el-input__wrapper) {
+  background-color: transparent !important;
+  --el-border-color: transparent;
+  --el-text-color-placeholder: white !important;
   --el-text-color-regular: white;
   --el-text-color-primary: white;
+}
+:deep(.el-range-editor--large .el-range-input) {
+  font-size: 15px !important;
 }
 </style>
