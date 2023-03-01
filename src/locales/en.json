@@ -13,6 +13,12 @@
     "price": "Price",
     "lang": "Lang"
   },
+  "menus": {
+    "home": "Home",
+    "news": "News",
+    "rooms": "Rooms",
+    "deals": "Deals"
+  },
   "buttons": {
     "create": "Create",
     "save": "Save",
@@ -27,6 +33,7 @@
     "search": "Search",
     "login": "Login",
     "logout": "Logout",
+    "my-account": "My account",
     "get-started": "Get started",
     "know-more": "Know more",
     "reserve-now": "Reserve now"

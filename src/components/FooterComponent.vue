@@ -37,7 +37,7 @@ const handleSelect = (siteMaps:any) => {
                 justify-center
                 md:justify-start
             ">
-            <img src="@/assets/logo.png" />
+            <img src="@/assets/artichaut-logo.png" />
             </h6>
         <div class="my-auto">
             <ul class="list-none mb-0">

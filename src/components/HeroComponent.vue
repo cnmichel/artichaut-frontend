@@ -97,11 +97,12 @@ onBeforeMount(() => {
   color: white;
 }
 :deep(.el-input), :deep(.el-input__wrapper) {
-  background-color: transparent !important;
+  background-color: transparent;
   --el-border-color: transparent;
-  --el-text-color-placeholder: white !important;
+  --el-text-color-placeholder: white;
   --el-text-color-regular: white;
   --el-text-color-primary: white;
+  font-weight: 500;
 }
 :deep(.el-range-editor--large .el-range-input) {
   font-size: 15px !important;
