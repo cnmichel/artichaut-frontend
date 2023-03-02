@@ -13,12 +13,12 @@ const availableLangs = inject('langs')
 const selectedLang = ref( localStorage.getItem('language'))
 
 const pages = computed(() => [
-  { path: "/", name: t('menus.home')},
-  { path: "/news", name: t('menus.news')},
-  { path: "/rooms", name: t('menus.rooms')},
-  { path: "/deals", name: t('menus.deals')},
+  { path: "/", name: t('menus.home'), anchor: "home"},
+  { path: "/services", name: t('menus.services'), anchor: "services"},
+  { path: "/news", name: t('menus.news'), anchor: "news"},
+  { path: "/ourhotel", name: t('menus.ourHotel'), anchor:"ourHotel"},
+  { path: "/reviews", name: t('menus.reviews'), anchor:"reviews"}
 ]);
-
 const toggleMenu = () => {
   showMenu.value = !showMenu.value;
 }
@@ -37,9 +37,9 @@ onBeforeMount(() => {
 </script>
 
 <template>
-  <div v-if="promo !== ''" class="container-fluid w-full flex justify-center bg-tonic">
+  <a id="home"><div v-if="promo !== ''" class="container-fluid w-full flex justify-center bg-tonic">
     <p class="p-2 text-white text-center" >{{ promo }}</p>
-  </div>
+  </div></a>
 
   <nav class="sticky top-0 z-20 bg-white/90 dark:bg-white-100/80 backdrop-blur navbar shadow-2xl shadow-gray-100/5 border-gray-100 dark:border-gray-800 peer-checked:navbar-active dark:shadow-none">
     <div class="flex flex-wrap items-center justify-between py-2.5 px-6 md:px-12 lg:py-0 lg:px-6">
@@ -68,9 +68,9 @@ onBeforeMount(() => {
 
         <div class="nav-horizontal items-center xs:max-lg:hidden">
           <el-menu mode="horizontal" :ellipsis="false" text-color="#253343" active-text-color="#00B561">
-            <el-menu-item v-for="({ path, name }, index) in pages" :key="index" :index="path"
+            <el-menu-item v-for="({ path, name, anchor }, index) in pages" :id="name" :key="index" :index=" path"
                           class="transition duration-300 ease-in-out">
-              <span>{{name}}</span>
+              <a :href="'#' + anchor">{{name}}</a>
             </el-menu-item>
           </el-menu>
         </div>
@@ -121,8 +121,8 @@ onBeforeMount(() => {
     </div>
     <div class="nav-vertical">
       <el-menu v-if="showMenu" text-color="white" active-text-color="#00B561">
-        <el-menu-item v-for="({ path, name }, index) in pages" :key="index" :index="path">
-          <span>{{name}}</span>
+        <el-menu-item v-for="({ path, name, anchor }, index) in pages" :id="name" :key="index" :index="path" @click="toggleMenu">
+          <a :href="'#' + anchor">{{name}}</a>
         </el-menu-item>
       </el-menu>
     </div>

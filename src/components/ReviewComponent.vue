@@ -36,8 +36,7 @@ onMounted(async() => {
 </script>
 
 <template>
-
-<h1>{{ $t('message.titleReview') }}</h1>
+<a id="reviews" class="mt-2"><h1>{{ $t('message.titleReview') }}</h1></a>
 <el-carousel trigger="click" :interval="4000" type="card" height="200px">
       
       <el-carousel-item v-for="(review, i) in reviews.items" :key="i">

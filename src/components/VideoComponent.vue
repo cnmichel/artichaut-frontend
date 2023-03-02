@@ -23,7 +23,7 @@ onMounted(async() => {
 </script>
 
 <template>
-  <div height="80vh" style=" border-radius: 15px; margin:0 24px">
+ <a id="ourHotel"></a> <div height="80vh" style=" border-radius: 15px; margin:0 24px">
       <div class="grid lg:grid-cols-2 grid-cols-1 gap-4">
         <div class="w-full h-full">
         <iframe width="100%" height="100%" v-bind:src="video.item.url" title="Video Artichaut" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>

@@ -22,7 +22,10 @@
     "home": "Home",
     "news": "News",
     "rooms": "Rooms",
-    "deals": "Deals"
+    "deals": "Deals",
+    "reviews": "Reviews",
+    "services" : "Services",
+    "ourHotel": "Our Hotel"
   },
   "buttons": {
     "create": "Create",
