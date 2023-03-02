@@ -4,11 +4,15 @@ import messages from "@intlify/unplugin-vue-i18n/messages";
 // List of all locales.
 export const allLocales = ["en", "fr"];
 
+// Get the locale from local storage if there is one or from navigator
+const locale = localStorage.getItem('language').split('-')[0];
+const navLocale = navigator.language.split('-')[0];
+
 // Create Vue I18n instance.
 export const i18n = createI18n({
     legacy: false,
     globalInjection: true,
-    locale: navigator.language.split('-')[0],
+    locale: locale ? locale : navLocale,
     fallbackLocale: "en",
     messages: messages,
 });

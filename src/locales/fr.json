@@ -19,6 +19,12 @@
     "newsTitle": "la première actu",
     "newsContent": "Nos Actualités"
   },
+  "menus": {
+    "home": "Accueil",
+    "news": "Actualités",
+    "rooms": "Chambres",
+    "deals": "Bons plans"
+  },
   "buttons": {
     "create": "Créer",
     "save": "Sauvegarder",
@@ -33,6 +39,7 @@
     "search": "Rechercher",
     "login": "Se connecter",
     "logout": "Se déconnecter",
+    "my-account": "Mon compte",
     "get-started": "Commencer",
     "know-more": "En savoir plus",
     "reserve-now": "Réserver maintenant"
