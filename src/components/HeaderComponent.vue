@@ -5,7 +5,7 @@ import { getActivePromo } from '@/services/api.js'
 import { Expand, Fold, UserFilled } from "@element-plus/icons-vue";
 import { isEmpty } from 'lodash';
 
-const { t, locale } = useI18n();
+const { t } = useI18n();
 
 const promo = ref('')
 const showMenu = ref(false)
@@ -23,10 +23,9 @@ const toggleMenu = () => {
   showMenu.value = !showMenu.value;
 }
 
-const handleLangSelect = (e: string) => {
-  selectedLang.value = e;
-  locale.value = e.split('-')[0];
-  localStorage.setItem('language', e);
+const handleLangSelect = (code: string) => {
+  localStorage.setItem('language', code);
+  location.reload();
 }
 
 onBeforeMount(() => {

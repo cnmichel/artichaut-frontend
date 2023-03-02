@@ -1,10 +1,21 @@
 import axios from 'axios';
+import LangCodesEnum from "@/enums/modules/LangCodesEnum";
+
+// Get the locale from local storage if there is one or from navigator
+const storageLocale = localStorage.getItem('language');
+const navLocale = navigator.language;
+const locale = storageLocale ? storageLocale : navLocale;
+
+console.log(LangCodesEnum[locale])
 
 // Axios request config
 const config = {
     baseURL: import.meta.env.VITE_API_BASE_URL,
     headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`
+    },
+    params: {
+        'lang_id': LangCodesEnum[locale]
     }
 }
 
