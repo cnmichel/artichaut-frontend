@@ -1,4 +1,8 @@
 {
+  "message": {
+    "H1": "Hello",
+    "titleReview": "Your opinion matter"
+  },
   "fields": {
     "name": "Name",
     "title": "Title",
@@ -11,7 +15,8 @@
     "link": "Link",
     "order": "Order",
     "price": "Price",
-    "lang": "Lang"
+    "lang": "Lang",
+    "newsTitle": "Our News",
   },
   "menus": {
     "home": "Home",

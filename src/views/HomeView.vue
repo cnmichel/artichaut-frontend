@@ -1,8 +1,11 @@
 <script setup lang="ts">
-import Header from "@/components/HeaderComponent.vue";
-import Footer from '@/components/FooterComponent.vue';
 import Hero from "@/components/HeroComponent.vue";
+import Header from '@/components/HeaderComponent.vue';
+import Footer from '@/components/FooterComponent.vue';
 import Features from "@/components/FeaturesComponent.vue";
+import News from '@/components/NewsComponent.vue';
+import Review from '@/components/ReviewComponent.vue';
+import Video from '@/components/VideoComponent.vue';
 </script>
 
 <template>
@@ -12,7 +15,12 @@ import Features from "@/components/FeaturesComponent.vue";
     <Features/>
     <section class=" flex items-center justify-center h-80 mb-12 bg-fixed bg-center bg-cover background-parralax-one">
     </section>
+    <News/>
+    <section class=" flex items-center justify-center h-80 mb-12 bg-fixed bg-center bg-cover background-parralax-one">
+    </section>
+    <Video/>
   </main>
+  <Review/>
   <footer>
     <Footer/>
   </footer>

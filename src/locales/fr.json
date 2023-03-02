@@ -1,4 +1,8 @@
 {
+  "message": {
+    "H1": "Bonjour",
+    "titleReview": "Vos avis comptent"
+  },
   "fields": {
     "name": "Nom",
     "title": "Titre",
@@ -11,7 +15,9 @@
     "link": "Lien",
     "order": "Ordre",
     "price": "Prix",
-    "lang": "Langue"
+    "lang": "Langue",
+    "newsTitle": "la première actu",
+    "newsContent": "Nos Actualités"
   },
   "menus": {
     "home": "Accueil",
