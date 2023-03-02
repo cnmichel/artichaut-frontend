@@ -1,16 +1,18 @@
 <script setup lang="ts">
-import {onBeforeMount, ref, shallowRef} from "vue";
+import { inject, onBeforeMount, ref, computed } from "vue";
 import { useI18n } from "vue-i18n";
 import { getActivePromo } from '@/services/api.js'
 import { Expand, Fold, UserFilled } from "@element-plus/icons-vue";
 import { isEmpty } from 'lodash';
 
-const { t } = useI18n();
+const { t, locale } = useI18n();
 
 const promo = ref('')
 const showMenu = ref(false)
+const availableLangs = inject('langs')
+const selectedLang = ref( localStorage.getItem('language'))
 
-const pages = shallowRef([
+const pages = computed(() => [
   { path: "/", name: t('menus.home')},
   { path: "/news", name: t('menus.news')},
   { path: "/rooms", name: t('menus.rooms')},
@@ -21,10 +23,16 @@ const toggleMenu = () => {
   showMenu.value = !showMenu.value;
 }
 
+const handleLangSelect = (e: string) => {
+  selectedLang.value = e;
+  locale.value = e.split('-')[0];
+  localStorage.setItem('language', e);
+}
+
 onBeforeMount(() => {
   getActivePromo().then((data: any) => {
     promo.value = isEmpty(data) ? '' : data[0].content;
-  })
+  });
 })
 </script>
 
@@ -60,33 +68,54 @@ onBeforeMount(() => {
 
         <div class="nav-horizontal items-center xs:max-lg:hidden">
           <el-menu mode="horizontal" :ellipsis="false" text-color="#253343" active-text-color="#00B561">
-            <el-menu-item v-for="({ path, name }, index) in pages" :key="index" :index="path">
+            <el-menu-item v-for="({ path, name }, index) in pages" :key="index" :index="path"
+                          class="transition duration-300 ease-in-out">
               <span>{{name}}</span>
             </el-menu-item>
           </el-menu>
         </div>
 
-        <router-link to="/login" class="xs:max-lg:hidden">
-          <el-button size="large" round color="#253343" data-te-ripple-init data-te-ripple-color="light"
-                     class="ml-4 leading-normal transition duration-150 ease-in-out">
-            <template v-slot:icon>
-              <el-icon :size="28" class="no-inherit">
-                <UserFilled style="width: 2em; height: 2em; margin-right: 4px"/>
-              </el-icon>
-            </template>
-            {{ $t('buttons.my-account') }}
-          </el-button>
-        </router-link>
-        <router-link to="/login" class="lg:hidden">
-          <el-button size="large" circle color="#253343" data-te-ripple-init data-te-ripple-color="light"
-                     class="ml-4 leading-normal transition duration-150 ease-in-out">
-            <template v-slot:icon>
-              <el-icon :size="24" class="no-inherit">
-                <UserFilled style="width: 2em; height: 2em"/>
-              </el-icon>
-            </template>
-          </el-button>
-        </router-link>
+        <div class="navbar-end flex flex-wrap items-center">
+          <div class="xs:max-lg:hidden">
+            <el-dropdown trigger="click" @command="handleLangSelect">
+              <el-button size="large" style="padding: 0" circle text>
+                <el-image style="width: 44px; height: 44px" :src="`src/assets/langs/${selectedLang}.png`" fit="cover"/>
+              </el-button>
+              <template #dropdown>
+                <el-dropdown-menu>
+                  <el-dropdown-item v-for="({ code, label }, index) in availableLangs"
+                                    :key="index"
+                                    :index="code"
+                                    :command="code"
+                  >
+                    {{ label }}
+                  </el-dropdown-item>
+                </el-dropdown-menu>
+              </template>
+            </el-dropdown>
+          </div>
+          <router-link to="/login" class="xs:max-lg:hidden">
+            <el-button size="large" round color="#253343" data-te-ripple-init data-te-ripple-color="light"
+                       class="ml-4 leading-normal transition duration-150 ease-in-out">
+              <template v-slot:icon>
+                <el-icon :size="28" class="no-inherit">
+                  <UserFilled style="width: 2em; height: 2em; margin-right: 4px"/>
+                </el-icon>
+              </template>
+              {{ $t('buttons.my-account') }}
+            </el-button>
+          </router-link>
+          <router-link to="/login" class="lg:hidden">
+            <el-button size="large" circle color="#253343" data-te-ripple-init data-te-ripple-color="light"
+                       class="ml-4 leading-normal transition duration-150 ease-in-out">
+              <template v-slot:icon>
+                <el-icon :size="24" class="no-inherit">
+                  <UserFilled style="width: 2em; height: 2em"/>
+                </el-icon>
+              </template>
+            </el-button>
+          </router-link>
+        </div>
 
       </div>
     </div>
@@ -109,16 +138,19 @@ onBeforeMount(() => {
   width: 100%;
   height: 70px;
   border: 0;
-  --el-menu-hover-bg-color: transparent;
+  --el-menu-hover-bg-color: rgba(37, 51, 67, .9);
+  --el-menu-hover-text-color: white !important;
 }
 .nav-horizontal .el-menu-item.is-active {
   border-bottom-width: 3px;
+  --el-menu-hover-bg-color: transparent;
+
 }
 .nav-vertical .el-menu {
+  position: absolute;
   background-color: rgba(37, 51, 67, .99);
   width: 100%;
   border: 0;
   --el-menu-hover-bg-color: transparent;
-  position: absolute;
 }
 </style>
