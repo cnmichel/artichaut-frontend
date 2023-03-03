@@ -376,6 +376,14 @@ export async function deleteSocial(id) {
         .catch((err) => errorHandler(err));
 }
 
+// List of available rooms
+
+export async function getAvailable(start, end) {
+    return axios.get(`/getAvailable`, { params: { start_date: start, end_date: end }, baseURL: import.meta.env.VITE_API_BASE_URL, })
+        .then((res) => res.data)
+        .catch((err) => errorHandler(err));
+}
+
 function errorHandler(error) {
     const { response } = error;
     const message = {

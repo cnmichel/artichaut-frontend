@@ -2,6 +2,9 @@
 import {onBeforeMount, reactive, ref, shallowRef} from "vue";
 import { getHero } from '@/services/api.js'
 import { Search, UserFilled } from '@element-plus/icons-vue';
+import {useRouter} from "vue-router";
+
+const router = useRouter();
 
 const hero = reactive({ item: {} })
 const selectDate = ref('')
@@ -17,6 +20,14 @@ const options = shallowRef([
 onBeforeMount(() => {
   getHero(1).then((data: any) => hero.item = data)
 })
+
+const handleSearch = () => {
+  router.push({name: 'Reservation', query: {
+      customers: selectOption.value,
+      date: selectDate.value
+    }})
+}
+
 </script>
 
 <template>
@@ -47,14 +58,14 @@ onBeforeMount(() => {
                   </el-select>
                 </div>
                 <div class="form-group">
-                  <el-date-picker v-model="selectDate" type="daterange" format="DD/MM/YYYY" size="large"
+                  <el-date-picker v-model="selectDate" type="daterange" format="DD/MM/YYYY" :default-time="new Date()" value-format="YYYY-MM-DD HH:mm:ss" size="large"
                                   range-separator="au"
                                   start-placeholder="Arrivée"
                                   end-placeholder="Départ"
                   />
                 </div>
                 <div class="form-group">
-                  <el-button :icon="Search" size="large" color="#00B561" data-te-ripple-init data-te-ripple-color="light">
+                  <el-button :icon="Search" size="large" color="#00B561" data-te-ripple-init data-te-ripple-color="light" @click="handleSearch">
                     {{ $t('buttons.search') }}
                   </el-button>
                 </div>
