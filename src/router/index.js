@@ -13,6 +13,8 @@ import AdminPromo from "@/views/admin/AdminPromoView.vue";
 import AdminVideo from "@/views/admin/AdminVideoView.vue";
 import AdminHero from "@/views/admin/AdminHeroView.vue";
 import { checkAdmin } from "@/services/auth";
+import Reservation from "@/views/reservation/ReservationView.vue";
+import Checkout from "@/views/reservation/CheckoutView.vue";
 
 
 const routes = [
@@ -20,6 +22,16 @@ const routes = [
         path: "/",
         name: "Home",
         component: Home,
+    },
+    {
+        path: "/reservation",
+        name: "Reservation",
+        component: Reservation
+    },
+    {
+        path: "/checkout",
+        name: "Checkout",
+        component: Checkout
     },
     {
         path: "/admin",
