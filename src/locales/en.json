@@ -1,4 +1,8 @@
 {
+  "titles": {
+    "reviews": "Your opinion matter",
+    "news": "Our news"
+  },
   "fields": {
     "name": "Name",
     "title": "Title",
@@ -12,6 +16,15 @@
     "order": "Order",
     "price": "Price",
     "lang": "Lang"
+  },
+  "menus": {
+    "home": "Home",
+    "news": "News",
+    "rooms": "Rooms",
+    "deals": "Deals",
+    "reviews": "Reviews",
+    "services" : "Services",
+    "ourHotel": "Our Hotel"
   },
   "buttons": {
     "create": "Create",
@@ -27,6 +40,7 @@
     "search": "Search",
     "login": "Login",
     "logout": "Logout",
+    "my-account": "My account",
     "get-started": "Get started",
     "know-more": "Know more",
     "reserve-now": "Reserve now"

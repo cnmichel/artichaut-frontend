@@ -35,6 +35,10 @@ p, span {
   font-weight: 500;
 }
 
+.el-button span {
+  font-weight: 600;
+}
+
 .background-parralax-one {
   background-image: url("@/assets/backgrounds/background1.jpg");
 }

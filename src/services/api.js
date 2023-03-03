@@ -1,10 +1,21 @@
 import axios from 'axios';
+import LangCodesEnum from "@/enums/modules/LangCodesEnum";
+
+// Get the locale from local storage if there is one or from navigator
+const storageLocale = localStorage.getItem('language');
+const navLocale = navigator.language;
+const locale = storageLocale ? storageLocale : navLocale;
+
+console.log(LangCodesEnum[locale])
 
 // Axios request config
 const config = {
     baseURL: import.meta.env.VITE_API_BASE_URL,
     headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`
+    },
+    params: {
+        'lang_id': LangCodesEnum[locale]
     }
 }
 
@@ -306,6 +317,19 @@ export async function updateVideo(id, data) {
 
 export async function deleteVideo(id) {
     return axios.delete(`/videos/${id}`, config)
+        .then((res) => res.data)
+        .catch((err) => errorHandler(err));
+}
+
+export async function getActiveVideo() {
+    return axios.get(`/videos/`,
+        {
+            baseURL: import.meta.env.VITE_API_BASE_URL,
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            },
+            params: {active: "1"},
+        })
         .then((res) => res.data)
         .catch((err) => errorHandler(err));
 }

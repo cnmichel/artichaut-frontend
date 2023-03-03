@@ -1,4 +1,8 @@
 {
+  "titles": {
+    "reviews": "Vos avis comptent",
+    "news": "Nos actualités"
+  },
   "fields": {
     "name": "Nom",
     "title": "Titre",
@@ -12,6 +16,15 @@
     "order": "Ordre",
     "price": "Prix",
     "lang": "Langue"
+  },
+  "menus": {
+    "home": "Accueil",
+    "news": "Actualités",
+    "rooms": "Chambres",
+    "deals": "Bons plans",
+    "reviews": "Avis",
+    "services": "Services",
+    "ourHotel": "Qui sommes-nous?"
   },
   "buttons": {
     "create": "Créer",
@@ -27,6 +40,7 @@
     "search": "Rechercher",
     "login": "Se connecter",
     "logout": "Se déconnecter",
+    "my-account": "Mon compte",
     "get-started": "Commencer",
     "know-more": "En savoir plus",
     "reserve-now": "Réserver maintenant"

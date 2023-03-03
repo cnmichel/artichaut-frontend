@@ -4,7 +4,7 @@ import ElementPlus from 'element-plus'
 // @ts-ignore
 import router from './router'
 // @ts-ignore
-import { i18n } from './i18n'
+import { i18n } from './services/i18n'
 // @ts-ignore
 import * as te from 'tw-elements';
 import './assets/main.css'
