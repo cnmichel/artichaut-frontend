@@ -2,6 +2,7 @@ import { createWebHistory, createRouter } from "vue-router";
 
 // Import Homepage
 import Home from "@/views/HomeView.vue";
+import Auth from "@/views/AuthView.vue";
 
 // Import Admin
 import AdminLogin from "@/views/admin/AdminLoginView.vue";
@@ -20,6 +21,26 @@ const routes = [
         path: "/",
         name: "Home",
         component: Home,
+    },
+    {
+        path: "/login",
+        name: "Login",
+        component: Auth,
+    },
+    {
+        path: "/signup",
+        name: "Signup",
+        component: Auth,
+    },
+    {
+        path: "/sendlink",
+        name: "SendLink",
+        component: Auth,
+    },
+    {
+        path: "/password",
+        name: "Password",
+        component: Auth,
     },
     {
         path: "/admin",

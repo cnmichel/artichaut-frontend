@@ -30,7 +30,14 @@ h3 {
   font-size: 1rem;
 }
 
-p, span {
+h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #253343;
+}
+
+a, p, span, label {
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
 }
