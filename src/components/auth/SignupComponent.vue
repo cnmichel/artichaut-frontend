@@ -13,6 +13,7 @@ const emit = defineEmits<{
 }>()
 
 const alertDisplay = ref(false)
+const isLoading = ref(false)
 const formRef = ref<FormInstance>()
 const form = reactive({
   email: '',
@@ -39,6 +40,8 @@ const rules = reactive<FormRules>({
 })
 
 const onSubmit = async (formRef: FormInstance) => {
+  // Init loading on submit button
+  isLoading.value = true;
   // Return if no form instance active
   if (!formRef) return
   // Form validation
@@ -54,6 +57,7 @@ const onSubmit = async (formRef: FormInstance) => {
         if (data.token) {
           // Emit register event and notification message
           emit('register', true);
+          isLoading.value = false;
           ElMessage({
             message: t('validations.register-success'),
             type: 'success',
@@ -62,6 +66,7 @@ const onSubmit = async (formRef: FormInstance) => {
         } else {
           // Display error alert on register fail
           alertDisplay.value = true;
+          isLoading.value = false;
         }
       })
     }
@@ -97,7 +102,12 @@ const onSubmit = async (formRef: FormInstance) => {
           </el-form-item>
           <el-alert v-if="alertDisplay" :description="t('validations.register-error')" type="error" :closable="false"/>
           <el-form-item>
-            <el-button class="w-full mt-6" color="#00B561" @click="onSubmit(formRef)">{{ $t('buttons.signup') }}</el-button>
+            <el-button class="w-full mt-6"
+                       color="#00B561"
+                       :loading="isLoading"
+                       @click="onSubmit(formRef)">
+              {{ $t('buttons.signup') }}
+            </el-button>
           </el-form-item>
         </el-form>
       </div>

@@ -12,6 +12,7 @@ const emit = defineEmits<{
 }>()
 
 const alertDisplay = ref(false)
+const isLoading = ref(false)
 const formRef = ref<FormInstance>()
 const form = reactive({
   email: '',
@@ -25,6 +26,8 @@ const rules = reactive<FormRules>({
 })
 
 const onSubmit = async (formRef: FormInstance) => {
+  // Init loading on submit button
+  isLoading.value = true;
   // Return if no form instance active
   if (!formRef) return
   // Form validation
@@ -41,9 +44,11 @@ const onSubmit = async (formRef: FormInstance) => {
           emit('login', true);
           localStorage.setItem('user_email', email);
           localStorage.setItem('user_token', token);
+          isLoading.value = false;
         } else {
           // Display error alert on login fail
           alertDisplay.value = true;
+          isLoading.value = false;
         }
       })
     }
@@ -76,7 +81,12 @@ const onSubmit = async (formRef: FormInstance) => {
           </el-form-item>
           <el-alert v-if="alertDisplay" :description="t('validations.login-error')" type="error" :closable="false"/>
           <el-form-item>
-            <el-button class="w-full mt-6" color="#00B561" @click="onSubmit(formRef)">{{ $t('buttons.login') }}</el-button>
+            <el-button class="w-full mt-6"
+                       color="#00B561"
+                       :loading="isLoading"
+                       @click="onSubmit(formRef)">
+              {{ $t('buttons.login') }}
+            </el-button>
           </el-form-item>
         </el-form>
         <el-button class="w-full mb-2" link>
@@ -86,7 +96,7 @@ const onSubmit = async (formRef: FormInstance) => {
       <!-- Other action section -->
       <div>
         <el-divider content-position="center">
-          <template v-slot:default >
+          <template v-slot:default>
             <p>{{ $t('messages.or') }}</p>
           </template>
         </el-divider>
