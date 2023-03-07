@@ -6,8 +6,6 @@ const storageLocale = localStorage.getItem('language');
 const navLocale = navigator.language;
 const locale = storageLocale ? storageLocale : navLocale;
 
-console.log(LangCodesEnum[locale])
-
 // Axios request config
 const config = {
     baseURL: import.meta.env.VITE_API_BASE_URL,
