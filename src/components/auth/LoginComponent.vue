@@ -26,10 +26,10 @@ const rules = reactive<FormRules>({
 })
 
 const onSubmit = async (formRef: FormInstance) => {
-  // Init loading on submit button
-  isLoading.value = true;
   // Return if no form instance active
   if (!formRef) return
+  // Init loading on submit button
+  isLoading.value = true;
   // Form validation
   await formRef.validate((valid) => {
     if (valid) {
@@ -52,6 +52,7 @@ const onSubmit = async (formRef: FormInstance) => {
         }
       })
     }
+    isLoading.value = false;
   })
 }
 </script>
