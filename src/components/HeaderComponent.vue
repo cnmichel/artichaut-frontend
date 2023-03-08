@@ -149,7 +149,7 @@ onBeforeMount(() => {
                 <p>{{ userName }}</p>
                 <el-divider />
                 <div class="panel-button pb-2">
-                  <router-link to="/myaccount">
+                  <router-link to="/account">
                     <el-button size="large" link>{{ $t('buttons.my-account') }}</el-button>
                   </router-link>
                 </div>

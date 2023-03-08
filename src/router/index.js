@@ -1,8 +1,11 @@
 import { createWebHistory, createRouter } from "vue-router";
 
 // Import Homepage
+import Main from "@/views/MainView.vue";
 import Home from "@/views/HomeView.vue";
 import Auth from "@/views/AuthView.vue";
+import Account from "@/views/AccountView.vue";
+
 
 // Import Admin
 import AdminLogin from "@/views/admin/AdminLoginView.vue";
@@ -15,12 +18,24 @@ import AdminVideo from "@/views/admin/AdminVideoView.vue";
 import AdminHero from "@/views/admin/AdminHeroView.vue";
 import { checkAdmin } from "@/services/auth";
 
-
 const routes = [
     {
         path: "/",
-        name: "Home",
-        component: Home,
+        redirect: "/home",
+        name: "Main",
+        component: Main,
+        children: [
+            {
+                path: "/home",
+                name: "Home",
+                component: Home,
+            },
+            {
+                path: "/account",
+                name: "Account",
+                component: Account,
+            }
+        ]
     },
     {
         path: "/login",
