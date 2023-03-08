@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, onBeforeMount } from "vue";
 import { useRouter } from 'vue-router';
 import Login from "@/components/auth/LoginComponent.vue";
 import Signup from "@/components/auth/SignupComponent.vue";
@@ -20,6 +20,13 @@ const isRegistered = (value: boolean) => {
     router.push('/login');
   }
 }
+
+onBeforeMount(() => {
+  // Redirect user to homepage if already logged in
+  if (localStorage.getItem('user_token')) {
+    router.push('/');
+  }
+})
 </script>
 
 <template>

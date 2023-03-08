@@ -67,6 +67,7 @@
     "reserve-now": "Réserver maintenant"
   },
   "messages": {
+    "welcome": "Bienvenue",
     "or": "ou"
   }
 }
