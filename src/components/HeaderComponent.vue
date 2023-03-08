@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import { inject, onBeforeMount, ref, computed } from "vue";
+import { useRouter } from "vue-router";
 import { useI18n } from "vue-i18n";
 import { revokeToken } from '@/services/auth.js';
 import { getActivePromo } from '@/services/api.js';
 import { Expand, Fold, UserFilled } from "@element-plus/icons-vue";
 import { isEmpty } from 'lodash';
 
-const { t } = useI18n();
+const router = useRouter()
+const { t } = useI18n()
 
 const isLogged = computed(() => !!localStorage.getItem('user_token'))
 const userName = computed(() => {
@@ -19,6 +21,7 @@ const promo = ref('')
 const showMenu = ref(false)
 const availableLangs = inject('langs')
 const selectedLang = ref(localStorage.getItem('language') || navigator.language)
+const accDropdown = ref()
 
 const pages = computed(() => [
   { path: "/", name: t('menus.home'), anchor: "home"},
@@ -26,27 +29,44 @@ const pages = computed(() => [
   { path: "/news", name: t('menus.news'), anchor: "news"},
   { path: "/ourhotel", name: t('menus.ourHotel'), anchor:"ourHotel"},
   { path: "/reviews", name: t('menus.reviews'), anchor:"reviews"}
-]);
+])
 
 const toggleMenu = () => {
+  // Show or hide menu
   showMenu.value = !showMenu.value;
 }
 
 const handleLangSelect = (code: string) => {
+  // Set the lang in the local storage
   localStorage.setItem('language', code);
+  // Reload the page
   location.reload();
 }
 
+const handleAccount = () => {
+  // Close the dropdown menu
+  accDropdown.value.handleClose();
+  // Redirect to account page
+  router.push('/account');
+}
+
 const handleLogout = () => {
+  // Fetch the user token from the local storage
   const token = localStorage.getItem('user_token');
+  // Revoking the user token via API
   revokeToken(token).then(() => {
+    // Delete user related entries from the local storage
     localStorage.removeItem('user_email');
     localStorage.removeItem('user_token');
-    location.reload();
+    // Close the dropdown menu
+    accDropdown.value.handleClose();
+    // Redirect to home page
+    router.push('/');
   })
 }
 
 onBeforeMount(() => {
+  // Fetch the active promotion to display if any
   getActivePromo().then((data: any) => {
     promo.value = isEmpty(data) ? '' : data[0].content;
   });
@@ -118,7 +138,7 @@ onBeforeMount(() => {
             </el-dropdown>
           </div>
           <!-- Account buttons -->
-          <el-dropdown trigger="click">
+          <el-dropdown ref="accDropdown" trigger="click">
             <div>
               <div class="xs:max-lg:hidden">
                 <el-button size="large" round color="#253343" data-te-ripple-init data-te-ripple-color="light"
@@ -149,9 +169,7 @@ onBeforeMount(() => {
                 <p>{{ userName }}</p>
                 <el-divider />
                 <div class="panel-button pb-2">
-                  <router-link to="/account">
-                    <el-button size="large" link>{{ $t('buttons.my-account') }}</el-button>
-                  </router-link>
+                  <el-button size="large" link @click="handleAccount">{{ $t('buttons.my-account') }}</el-button>
                 </div>
                 <div class="panel-button">
                   <el-button size="large" link @click="handleLogout">{{ $t('buttons.logout') }}</el-button>
