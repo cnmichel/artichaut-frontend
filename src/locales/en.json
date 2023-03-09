@@ -1,7 +1,19 @@
 {
   "titles": {
     "reviews": "Your opinion matter",
-    "news": "Our news"
+    "news": "Our news",
+    "login": "Login",
+    "signup": "Signup"
+  },
+  "auth": {
+    "login-text": "Please enter your email and password",
+    "signup-text": "Please enter a valid email address and password",
+    "email-login": "Enter your email address",
+    "password-login": "Enter your password",
+    "email-signup": "Enter your email address",
+    "password-signup": "Enter your password",
+    "password-confirm": "Confirm your password",
+    "forgot-password": "Forgot your password ?"
   },
   "fields": {
     "name": "Name",
@@ -16,6 +28,14 @@
     "order": "Order",
     "price": "Price",
     "lang": "Lang"
+  },
+  "validations": {
+    "email": "Please enter a valid email",
+    "password": "Please enter a valid password",
+    "password-confirm": "Password confirmation does not match",
+    "login-error" : "Not a valid identification, wrong email or password",
+    "register-error" : "Email address already in use, please use another email",
+    "register-success": "Your account has been created successfully"
   },
   "menus": {
     "home": "Home",
@@ -40,9 +60,13 @@
     "search": "Search",
     "login": "Login",
     "logout": "Logout",
+    "signup": "Register",
     "my-account": "My account",
     "get-started": "Get started",
     "know-more": "Know more",
     "reserve-now": "Reserve now"
+  },
+  "messages": {
+    "or": "or"
   }
 }

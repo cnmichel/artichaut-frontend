@@ -1,7 +1,19 @@
 {
   "titles": {
     "reviews": "Vos avis comptent",
-    "news": "Nos actualités"
+    "news": "Nos actualités",
+    "login": "Connexion",
+    "signup": "Inscription"
+  },
+  "auth": {
+    "login-text": "Veuillez entrer votre email et mot de passe",
+    "signup-text": "Veuillez saisir une adresse email valide et un mot de passe",
+    "email-login": "Entrer votre adresse email",
+    "password-login": "Entrer votre mot de passe",
+    "email-signup": "Saisir une adresse email",
+    "password-signup": "Saisir un mot de passe",
+    "password-confirm": "Confirmer le mot de passe",
+    "forgot-password": "Mot de passe oublié ?"
   },
   "fields": {
     "name": "Nom",
@@ -17,6 +29,14 @@
     "price": "Prix",
     "lang": "Langue"
   },
+  "validations": {
+    "email": "Veuillez entrer une adresse email valide",
+    "password": "Veuillez entrer un mot de passe valide",
+    "password-confirm": "Votre mot de passe de confirmation n'est pas identique",
+    "login-error" : "Identification invalide, email ou mot de passe incorrecte",
+    "register-error" : "Adresse email déjà utilisée, veuillez saisir un autre email",
+    "register-success": "Votre compte utilisateur à été crée avec succès"
+  },
   "menus": {
     "home": "Accueil",
     "news": "Actualités",
@@ -24,7 +44,7 @@
     "deals": "Bons plans",
     "reviews": "Avis",
     "services": "Services",
-    "ourHotel": "Qui sommes-nous?"
+    "ourHotel": "Qui sommes-nous ?"
   },
   "buttons": {
     "create": "Créer",
@@ -40,9 +60,13 @@
     "search": "Rechercher",
     "login": "Se connecter",
     "logout": "Se déconnecter",
+    "signup": "S'enregistrer",
     "my-account": "Mon compte",
     "get-started": "Commencer",
     "know-more": "En savoir plus",
     "reserve-now": "Réserver maintenant"
+  },
+  "messages": {
+    "or": "ou"
   }
 }

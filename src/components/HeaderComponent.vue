@@ -10,7 +10,7 @@ const { t } = useI18n();
 const promo = ref('')
 const showMenu = ref(false)
 const availableLangs = inject('langs')
-const selectedLang = ref( localStorage.getItem('language'))
+const selectedLang = ref(localStorage.getItem('language') || navigator.language)
 
 const pages = computed(() => [
   { path: "/", name: t('menus.home'), anchor: "home"},
@@ -36,9 +36,11 @@ onBeforeMount(() => {
 </script>
 
 <template>
-  <a id="home"><div v-if="promo !== ''" class="container-fluid w-full flex justify-center bg-tonic">
-    <p class="p-2 text-white text-center" >{{ promo }}</p>
-  </div></a>
+  <a id="home">
+    <div v-if="promo !== ''" class="container-fluid w-full flex justify-center bg-tonic">
+      <p class="p-2 text-white text-center" >{{ promo }}</p>
+    </div>
+  </a>
 
   <nav class="sticky top-0 z-20 bg-white/90 dark:bg-white-100/80 backdrop-blur navbar shadow-2xl shadow-gray-100/5 border-gray-100 dark:border-gray-800 peer-checked:navbar-active dark:shadow-none">
     <div class="flex flex-wrap items-center justify-between py-2.5 px-6 md:px-12 lg:py-0 lg:px-6">
