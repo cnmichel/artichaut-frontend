@@ -10,7 +10,7 @@ import { isEmpty } from 'lodash';
 const router = useRouter()
 const { t } = useI18n()
 
-const isLogged = computed(() => !!localStorage.getItem('user_token'))
+const isLogged = computed(() => !!localStorage.getItem('token'))
 const userName = computed(() => {
   const email = localStorage.getItem('user_email');
   const name = localStorage.getItem('user_name');
@@ -52,16 +52,16 @@ const handleAccount = () => {
 
 const handleLogout = () => {
   // Fetch the user token from the local storage
-  const token = localStorage.getItem('user_token');
+  const token = localStorage.getItem('token');
   // Revoking the user token via API
   revokeToken(token).then(() => {
     // Delete user related entries from the local storage
     localStorage.removeItem('user_email');
-    localStorage.removeItem('user_token');
+    localStorage.removeItem('token');
     // Close the dropdown menu
     accDropdown.value.handleClose();
     // Redirect to home page
-    router.push('/');
+    router.push('/').then(() => location.reload());
   })
 }
 
@@ -104,7 +104,7 @@ onBeforeMount(() => {
         </div>
         <!-- Main logo -->
         <a class="relative" href="#" aria-label="logo">
-          <img src="@/assets/artichaut-logo.png" class="h-12" alt="Logo Artichaut Hotel" loading="lazy" />
+          <img src="@/assets/logos/artichaut-logo-v2.png" class="h-14 lg:h-16" alt="Logo Artichaut Hotel" loading="lazy" />
         </a>
         <!-- Navbar horizontal web -->
         <div class="nav-horizontal items-center xs:max-lg:hidden">
@@ -118,7 +118,7 @@ onBeforeMount(() => {
           </el-menu>
         </div>
         <!-- Navbar extra -->
-        <div class="navbar-end flex flex-wrap items-center">
+        <div class="navbar-end flex items-center">
           <!-- Lang buttons -->
           <div class="xs:max-lg:hidden">
             <el-dropdown trigger="click" @command="handleLangSelect">
@@ -131,7 +131,7 @@ onBeforeMount(() => {
                                     :key="index"
                                     :index="code"
                                     :command="code">
-                    {{ label }}
+                    <h4>{{ label }}</h4>
                   </el-dropdown-item>
                 </el-dropdown-menu>
               </template>
@@ -177,7 +177,7 @@ onBeforeMount(() => {
               </div>
               <div v-if="!isLogged" class="p-4 w-60">
                 <router-link to="/login">
-                  <el-button class="w-full" color="#253343" size="large" round>{{ $t('buttons.login') }}</el-button>
+                  <el-button class="w-full" size="large" round plain>{{ $t('buttons.login') }}</el-button>
                 </router-link>
               </div>
             </template>
