@@ -23,7 +23,7 @@ const isRegistered = (value: boolean) => {
 
 onBeforeMount(() => {
   // Redirect user to homepage if already logged in
-  if (localStorage.getItem('user_token')) {
+  if (localStorage.getItem('token')) {
     router.push('/');
   }
 })
@@ -36,7 +36,7 @@ onBeforeMount(() => {
       <Signup v-if="current === '/signup'" @register="isRegistered"/>
       <div class="col-span-2 w-4/6 lg:w-6/12 justify-self-center xs:max-lg:order-first mb-4">
         <router-link to="/">
-          <img src="@/assets/artichaut-logoless-white.png" alt="Logo Artichaut Hotel blanc">
+          <img src="@/assets/logos/artichaut-logoless-white.png" alt="Logo Artichaut Hotel blanc">
         </router-link>
       </div>
     </div>

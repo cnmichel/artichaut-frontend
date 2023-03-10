@@ -114,7 +114,7 @@ const getPagination = (videos: Videos[], page: number) => {
 <el-card class="box-card">
     <div class="">
         <button title="Ajout d'une vidéo" @click="addVideo = true" class="transition ease-in-out delay-50 hover:translate-y-2 hover:scale-125 duration-300 choice" >
-            <img class="" src="/src/assets/add.png"/>
+            <img class="" src="/src/assets/icons/add.png"/>
         </button>
         <div id="divprincipale"  class="grid grid-cols-12 flex items-center" v-for="video in paginateVideos">
             <button @click="handleSelect(video)" ref="videos" class="col-span-11 shadow-lg rounder-lg p-8 grid grid-cols-3 grid-flow-col gap-4
@@ -129,10 +129,10 @@ const getPagination = (videos: Videos[], page: number) => {
             <div v-if="selectedVideo">
                 <div v-if="video === selectedVideo.item" class="col-span-1 flex flex-col buttons-container" style="display: flex;">
                     <button title="Mofidication de la video" @click="dialogueVisible=true" class="transition ease-in-out delay-50 hover:-translate-y-2 hover:scale-150 duration-300 choice">
-                        <img class="fill" src="/src/assets/edit.png"/>
+                        <img class="fill" src="/src/assets/icons/edit.png"/>
                     </button>
                     <button title="Suppression de la vidéo" @click="handleDelete" class="transition ease-in-out delay-50 hover:translate-y-2 hover:scale-150 duration-300 choice">
-                        <img class="fill" src="/src/assets/delete.png"/>
+                        <img class="fill" src="/src/assets/icons/delete.png"/>
                     </button>
                 </div>
             </div>
