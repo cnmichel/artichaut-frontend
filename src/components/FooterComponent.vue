@@ -27,34 +27,24 @@ const handleSelect = (siteMaps:any) => {
 <template>
     <footer class="text-center lg:text-left bg-gray-100 text-gray-600">
     <div class="mx-6 py-10 text-center md:text-left">
-        <div class="flex flex-col md:justify-between md:flex-row gap-20">
-            <h6 class="
-                uppercase
-                font-semibold
-                mb-4
-                flex
-                items-center
-                justify-center
-                md:justify-start
-            ">
-            <img src="@/assets/artichaut-logo.png" />
-            </h6>
-        <div class="my-auto">
-            <ul class="list-none mb-0">
-            <li>
-                <a class="text-gray-600">10, avenue de Mandeplula</a>
-            </li>
-            <li>
-                <a class="text-gray-600">26200 Saint Sofiane</a>
-            </li>
-            <li>
-                <a class="text-gray-600">Tel.+33(0)3 26 28 30 30</a>
-            </li>
-            <li>
-                <a class="text-gray-600">infos@hotelartichaut.fr</a>
-            </li>   
-            </ul>
-        </div>
+        <div class="flex flex-col items-center justify-items-center lg:grid lg:grid-cols-4 md:justify-between md:flex-row gap-20">
+          <img src="@/assets/logos/artichaut-logo-v2.png" />
+          <div class="my-auto">
+              <ul class="list-none mb-0">
+              <li>
+                  <a class="text-gray-600">10, avenue de Mandeplula</a>
+              </li>
+              <li>
+                  <a class="text-gray-600">26200 Saint Sofiane</a>
+              </li>
+              <li>
+                  <a class="text-gray-600">Tel.+33(0)3 26 28 30 30</a>
+              </li>
+              <li>
+                  <a class="text-gray-600">infos@hotelartichaut.fr</a>
+              </li>
+              </ul>
+          </div>
 
         <div class="my-auto">
             <ul class="list-none mb-0">
@@ -124,7 +114,7 @@ const handleSelect = (siteMaps:any) => {
         </div>
     </div>
     <div class="text-center p-6 bg-gray-200">
-      <span>© 2023 Copyright:</span>
+      <span>© 2023 Copyright: </span>
       <a class="text-gray-600 font-semibold" href="https://tailwind-elements.com/">Hôtel artichaut</a>
     </div>
 

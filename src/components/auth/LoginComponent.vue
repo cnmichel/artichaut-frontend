@@ -43,7 +43,7 @@ const onSubmit = async (formRef: FormInstance) => {
           // Emit login event
           emit('login', true);
           localStorage.setItem('user_email', email);
-          localStorage.setItem('user_token', token);
+          localStorage.setItem('token', token);
           isLoading.value = false;
         } else {
           // Display error alert on login fail
