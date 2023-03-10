@@ -34,6 +34,8 @@
       });
     }
 
+    console.log(data.items)
+
 
   });
 
@@ -123,13 +125,13 @@
 
               <div class="grid grid-cols-2 mt-8">
                 <div class="flex items-center">
-                  <el-radio-button :name="index + 'Room'" :label="'Choisir ' + index" />
+                  <el-radio-button :name="index + 'Room'" :label="item" >Réserver</el-radio-button>
                 </div>
 
                 <div class="flex justify-end items-center">
                   <p class="inline-block font-semibold text-tonic whitespace-nowrap leading-tight rounded-xl">
-                    {{ ((item?.price*data.customers)*data.userChoice.date.interval).toFixed(2) }}€/sejour </p>
-                  <p> ({{ (item?.price*data.userChoice.date.interval).toFixed(2) }}€/pers)</p>
+                    {{ ((item?.details.price*data.customers)*data.userChoice.date.interval).toFixed(2) }}€/sejour</p>
+                  <p> ({{ (item?.details.price*data.userChoice.date.interval).toFixed(2) }}€/pers)</p>
                 </div>
               </div>
             </div>

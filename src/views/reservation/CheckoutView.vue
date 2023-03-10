@@ -1,8 +1,8 @@
 <script setup>
 import {onBeforeMount, reactive, ref} from "vue";
 import { useRoute } from 'vue-router';
-import router from "@/router";
 import Header from '@/components/HeaderComponent.vue';
+import Recapitulatif from '@/components/checkout/RecapitulatifComponent.vue';
 
 const route = useRoute();
 const data = reactive({
@@ -32,17 +32,7 @@ const next = () => {
     <el-step title="Confirmation" />
   </el-steps>
   <section v-if="active === 0">
-    <h2 class="text-center mt-12 mb-12">Récapitulatif</h2>
-    <p></p>
-    <p></p>
-    <p></p>
-    <p></p>
-    <p></p>
-    <p></p>
-    <p></p>
-    <p></p>
-
-    {{ data.items }}
+    <Recapitulatif  :data="data" :active="active" @active="next"/>
   </section>
   <section v-if="active === 1">
     <h2 class="text-center mt-12 mb-12">Connexion</h2>
@@ -59,7 +49,6 @@ const next = () => {
 
     {{ data.items }}
   </section>
-  <el-button class="text-center" style="margin-top: 12px" @click="next">Next step</el-button>
 </template>
 
 

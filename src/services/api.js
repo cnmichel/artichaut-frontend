@@ -406,6 +406,12 @@ export async function getAvailable(start, end) {
         .catch((err) => errorHandler(err));
 }
 
+export async function getProductsByCategory(id) {
+    return axios.get(`/getProductsByCategory/${id}`, config)
+        .then((res) => res.data)
+        .catch((err) => errorHandler(err));
+}
+
 function errorHandler(error) {
     const { response } = error;
     const message = {
