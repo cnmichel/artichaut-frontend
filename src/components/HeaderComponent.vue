@@ -103,9 +103,9 @@ onBeforeMount(() => {
           </el-button>
         </div>
         <!-- Main logo -->
-        <a class="relative" href="#" aria-label="logo">
+        <router-link to="/" class="relative">
           <img src="@/assets/logos/artichaut-logo-v2.png" class="h-14 lg:h-16" alt="Logo Artichaut Hotel" loading="lazy" />
-        </a>
+        </router-link>
         <!-- Navbar horizontal web -->
         <div class="nav-horizontal items-center xs:max-lg:hidden">
           <el-menu mode="horizontal" :ellipsis="false" text-color="#253343" active-text-color="#00B561">
