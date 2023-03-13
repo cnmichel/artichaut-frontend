@@ -56,6 +56,7 @@ const handleLogout = () => {
   // Revoking the user token via API
   revokeToken(token).then(() => {
     // Delete user related entries from the local storage
+    localStorage.removeItem('user_name');
     localStorage.removeItem('user_email');
     localStorage.removeItem('token');
     // Close the dropdown menu
@@ -117,6 +118,7 @@ onBeforeMount(() => {
             </el-menu-item>
           </el-menu>
         </div>
+
         <!-- Navbar extra -->
         <div class="navbar-end flex items-center">
           <!-- Lang buttons -->
@@ -137,6 +139,7 @@ onBeforeMount(() => {
               </template>
             </el-dropdown>
           </div>
+
           <!-- Account buttons -->
           <el-dropdown ref="accDropdown" trigger="click">
             <div>
@@ -162,11 +165,12 @@ onBeforeMount(() => {
                 </el-button>
               </div>
             </div>
+
             <!-- Account panel -->
             <template v-slot:dropdown>
-              <div v-if="isLogged" class="flex flex-wrap account-panel p-4 w-60">
+              <div v-if="isLogged" class="flex flex-col account-panel p-4 w-60">
                 <h4>{{ $t('messages.welcome') }}</h4>
-                <p>{{ userName }}</p>
+                <p class="text-lg">{{ userName }}</p>
                 <el-divider />
                 <div class="panel-button pb-2">
                   <el-button size="large" link @click="handleAccount">{{ $t('buttons.my-account') }}</el-button>

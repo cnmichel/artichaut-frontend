@@ -28,7 +28,7 @@ const handleSelect = (siteMaps:any) => {
     <footer class="text-center lg:text-left bg-gray-100 text-gray-600">
     <div class="mx-6 py-10 text-center md:text-left">
         <div class="flex flex-col items-center justify-items-center lg:grid lg:grid-cols-4 md:justify-between md:flex-row gap-20">
-          <img src="@/assets/logos/artichaut-logo-v2.png" />
+          <img class="w-10/12 lg:w-full" src="@/assets/logos/artichaut-logo-v2.png" />
           <div class="my-auto">
               <ul class="list-none mb-0">
               <li>
