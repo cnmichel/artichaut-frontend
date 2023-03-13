@@ -34,6 +34,12 @@ export async function getUsers() {
         .catch((err) => errorHandler(err));
 }
 
+export async function getCurrentUser() {
+    return axios.get(`/users/current`, config)
+        .then((res) => res.data)
+        .catch((err) => errorHandler(err));
+}
+
 export async function getUser(id) {
     return axios.get(`/users/${id}`, config)
         .then((res) => res.data)
@@ -75,6 +81,15 @@ export async function createCustomer(data) {
 
 export async function updateCustomer(id, data) {
     return axios.put(`/users/${id}`, data, config)
+        .then((res) => res.data)
+        .catch((err) => errorHandler(err));
+}
+
+
+// RESERVATIONS API
+
+export async function getCustomerReservations() {
+    return axios.get('/reservations/customer', config)
         .then((res) => res.data)
         .catch((err) => errorHandler(err));
 }

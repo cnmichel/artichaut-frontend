@@ -27,7 +27,26 @@
     "link": "Link",
     "order": "Order",
     "price": "Price",
-    "lang": "Lang"
+    "lang": "Lang",
+    "avatar": "Avatar",
+    "email": "Email",
+    "firstname": "First name",
+    "lastname": "Last name",
+    "phone": "Telephone number",
+    "street": "Street",
+    "city": "City",
+    "country": "Country",
+    "zip-code": "Zip code",
+    "arrival": "Arrival",
+    "departure": "Departure",
+    "start-date": "Arrival date",
+    "end-date": "Departure date",
+    "status": "Status",
+    "payment-method": "Payment method",
+    "receipt": "Receipt",
+    "current-pwd": "Your current password",
+    "new-pwd": "Your new Password",
+    "confirm-pwd": "Confirm your new password"
   },
   "validations": {
     "email": "Please enter a valid email",
@@ -44,7 +63,12 @@
     "deals": "Deals",
     "reviews": "Reviews",
     "services" : "Services",
-    "ourHotel": "Our Hotel"
+    "ourHotel": "Our Hotel",
+    "my-reservations": "My reservations",
+    "my-infos": "My information",
+    "my-addresses": "My addresses",
+    "modify-email": "Modify my email address",
+    "modify-password": "Modify my password"
   },
   "buttons": {
     "create": "Create",
@@ -61,13 +85,21 @@
     "login": "Login",
     "logout": "Logout",
     "signup": "Register",
+    "default": "Default",
     "my-account": "My account",
     "get-started": "Get started",
     "know-more": "Know more",
     "reserve-now": "Reserve now"
   },
   "messages": {
+    "hello": "Hello",
     "welcome": "Welcome",
-    "or": "or"
+    "or": "or",
+    "resa-in-progress": "Ongoing booking",
+    "classic": "Classic Member",
+    "premium": "Premium Member",
+    "prestige": "Prestige Member",
+    "premium-adv": "Lifetime 10% discount",
+    "prestige-adv": "Lifetime 25% discount"
   }
 }
