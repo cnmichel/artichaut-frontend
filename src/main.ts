@@ -10,6 +10,11 @@ import * as te from 'tw-elements';
 import './assets/main.css'
 import 'element-plus/dist/index.css'
 
+import dayjs from "dayjs";
+import 'dayjs/locale/fr'
+
+dayjs.locale('fr')
+
 createApp(App)
     .use(router)
     .use(i18n)
