@@ -398,13 +398,23 @@ export async function deleteSocial(id) {
         .catch((err) => errorHandler(err));
 }
 
-// List of available rooms
+// RESERVATION API
+
+export async function createReservation(data) {
+    return axios.post(`/reservations`, data, config)
+        .then((res) => res.data)
+        .catch((err) => errorHandler(err));
+}
+
+// LIST OF AVAILABLE ROOMS
 
 export async function getAvailable(start, end) {
     return axios.get(`/getAvailable`, { params: { start_date: start, end_date: end }, baseURL: import.meta.env.VITE_API_BASE_URL, })
         .then((res) => res.data)
         .catch((err) => errorHandler(err));
 }
+
+// LIST OF AVAILABLE PRODUCTS
 
 export async function getProductsByCategory(id) {
     return axios.get(`/getProductsByCategory/${id}`, config)
