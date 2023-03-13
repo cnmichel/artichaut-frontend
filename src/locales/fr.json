@@ -27,7 +27,26 @@
     "link": "Lien",
     "order": "Ordre",
     "price": "Prix",
-    "lang": "Langue"
+    "lang": "Langue",
+    "avatar": "Avatar",
+    "email": "Email",
+    "firstname": "Prénom",
+    "lastname": "Nom",
+    "phone": "Téléphone",
+    "street": "Rue",
+    "city": "Ville",
+    "country": "Pays",
+    "zip-code": "Code postal",
+    "arrival": "Arrivée",
+    "departure": "Départ",
+    "start-date": "Date d'arrivée",
+    "end-date": "Date de départ",
+    "status": "Statut",
+    "payment-method": "Méthode de paiement",
+    "receipt": "Facture",
+    "current-pwd": "Votre mot de passe actuel",
+    "new-pwd": "Votre nouveau mot de passe",
+    "confirm-pwd": "Confirmer votre nouveau mot de passe"
   },
   "validations": {
     "email": "Veuillez entrer une adresse email valide",
@@ -44,12 +63,17 @@
     "deals": "Bons plans",
     "reviews": "Avis",
     "services": "Services",
-    "ourHotel": "Qui sommes-nous ?"
+    "ourHotel": "Qui sommes-nous ?",
+    "my-reservations": "Mes réservations",
+    "my-infos": "Mes informations",
+    "my-addresses": "Mes adresses",
+    "modify-email": "Modifier mon adresse email",
+    "modify-password": "Modifier mon mot de passe"
   },
   "buttons": {
     "create": "Créer",
     "save": "Sauvegarder",
-    "edit": "Éditer",
+    "edit": "Modifier",
     "delete": "Supprimer",
     "confirm": "Confirmer",
     "validate": "Valider",
@@ -61,13 +85,21 @@
     "login": "Se connecter",
     "logout": "Se déconnecter",
     "signup": "S'enregistrer",
+    "default": "Défaut",
     "my-account": "Mon compte",
     "get-started": "Commencer",
     "know-more": "En savoir plus",
     "reserve-now": "Réserver maintenant"
   },
   "messages": {
+    "hello": "Bonjour",
     "welcome": "Bienvenue",
-    "or": "ou"
+    "or": "ou",
+    "resa-in-progress": "Réservation en cours",
+    "classic": "Membre Classic",
+    "premium": "Membre Premium",
+    "prestige": "Membre Prestige",
+    "premium-adv": "10% de réduction à vie",
+    "prestige-adv": "25% de réduction à vie"
   }
 }
