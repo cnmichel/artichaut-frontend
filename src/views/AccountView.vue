@@ -199,6 +199,14 @@ onBeforeMount(() => {
   <div class="flex flex-col w-full px-6 lg:px-12">
     <el-collapse accordion class="lg:px-12" @change="handleCollapse">
 
+
+      <!-- Resend e-mail -->
+      <div class="grid px-6 lg:px-48">
+        <div class="flex flex-col w-full lg:grid lg:w-3/12 justify-self-center mt-6 mb-[22px]">
+          <el-button class="w-full" color="#253343" size="large" round @click="onSubmit(formRef)">{{ $t('buttons.resendEmail') }}</el-button>
+        </div>
+      </div>
+
       <!-- Reservation collapse -->
       <el-collapse-item name="my-resa">
         <template v-slot:title>

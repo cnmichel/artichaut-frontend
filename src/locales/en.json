@@ -89,7 +89,8 @@
     "my-account": "My account",
     "get-started": "Get started",
     "know-more": "Know more",
-    "reserve-now": "Reserve now"
+    "reserve-now": "Reserve now",
+    "resendEmail" : "Resend verification mail"
   },
   "messages": {
     "hello": "Hello",
