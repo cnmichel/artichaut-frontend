@@ -76,57 +76,55 @@ const onSubmit = async (formRef: FormInstance) => {
 </script>
 
 <template>
-  <el-card class="grid box-card w-full h-auto xs:max-lg:justify-center lg:h-full lg:py-12 lg:px-16 py-3 px-3">
-    <div class="grid content-between h-full">
-      <!-- Title and subtitle section -->
-      <div>
-        <h4 class="text-3xl mb-3">{{ $t('titles.signup') }}</h4>
-        <p class="text-slate-500 mb-8">{{ $t('auth.signup-text') }}</p>
-      </div>
-      <!-- Form section -->
-      <div>
-        <el-form ref="formRef"
-                 :model="form"
-                 :rules="rules"
-                 label-position="top"
-                 label-width="auto"
-                 hide-required-asterisk
-                 size="large">
-          <el-form-item :label="t('auth.email-signup')" prop="email">
-            <el-input v-model="form.email" type="email" />
-          </el-form-item>
-          <el-form-item :label="t('auth.password-signup')" prop="password">
-            <el-input v-model="form.password" type="password" show-password />
-          </el-form-item>
-          <el-form-item :label="t('auth.password-confirm')" prop="passwordConfirm">
-            <el-input v-model="form.passwordConfirm" type="password" show-password />
-          </el-form-item>
-          <el-alert v-if="alertDisplay" :description="t('validations.register-error')" type="error" :closable="false"/>
-          <el-form-item>
-            <el-button class="w-full mt-6"
-                       color="#00B561"
-                       :loading="isLoading"
-                       @click="onSubmit(formRef)">
-              {{ $t('buttons.signup') }}
-            </el-button>
-          </el-form-item>
-        </el-form>
-      </div>
-      <!-- Other action section -->
-      <div>
-        <el-divider content-position="center">
-          <template v-slot:default>
-            <p>{{ $t('messages.or') }}</p>
-          </template>
-        </el-divider>
-        <router-link to="/login">
-          <el-button class="w-full mt-2" size="large" plain>
-            {{ $t('buttons.login') }}
-          </el-button>
-        </router-link>
-      </div>
+  <div class="grid content-between h-full">
+    <!-- Title and subtitle section -->
+    <div>
+      <h4 class="text-3xl mb-3">{{ $t('titles.signup') }}</h4>
+      <p class="text-slate-500 mb-8">{{ $t('auth.signup-text') }}</p>
     </div>
-  </el-card>
+    <!-- Form section -->
+    <div>
+      <el-form ref="formRef"
+               :model="form"
+               :rules="rules"
+               label-position="top"
+               label-width="auto"
+               hide-required-asterisk
+               size="large">
+        <el-form-item :label="t('auth.email-signup')" prop="email">
+          <el-input v-model="form.email" type="email" />
+        </el-form-item>
+        <el-form-item :label="t('auth.password-signup')" prop="password">
+          <el-input v-model="form.password" type="password" show-password />
+        </el-form-item>
+        <el-form-item :label="t('auth.password-confirm')" prop="passwordConfirm">
+          <el-input v-model="form.passwordConfirm" type="password" show-password />
+        </el-form-item>
+        <el-alert v-if="alertDisplay" :description="t('validations.register-error')" type="error" :closable="false"/>
+        <el-form-item>
+          <el-button class="w-full mt-6"
+                     color="#00B561"
+                     :loading="isLoading"
+                     @click="onSubmit(formRef)">
+            {{ $t('buttons.signup') }}
+          </el-button>
+        </el-form-item>
+      </el-form>
+    </div>
+    <!-- Other action section -->
+    <div>
+      <el-divider content-position="center">
+        <template v-slot:default>
+          <p>{{ $t('messages.or') }}</p>
+        </template>
+      </el-divider>
+      <router-link to="/login">
+        <el-button class="w-full mt-2" size="large" plain>
+          {{ $t('buttons.login') }}
+        </el-button>
+      </router-link>
+    </div>
+  </div>
 </template>
 
 <style scoped>
