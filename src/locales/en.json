@@ -1,6 +1,28 @@
 {
+  "titles": {
+    "reviews": "Your opinion matter",
+    "news": "Our news",
+    "login": "Login",
+    "signup": "Signup",
+    "your-details": "Your details",
+    "billing-address": "Billing address",
+    "cart": "Cart",
+    "payment": "Payment",
+    "confirm": "Confirmation"
+  },
+  "auth": {
+    "login-text": "Please enter your email and password",
+    "signup-text": "Please enter a valid email address and password",
+    "email-login": "Enter your email address",
+    "password-login": "Enter your password",
+    "email-signup": "Enter your email address",
+    "password-signup": "Enter your password",
+    "password-confirm": "Confirm your password",
+    "forgot-password": "Forgot your password ?"
+  },
   "fields": {
     "name": "Name",
+    "label": "Label",
     "title": "Title",
     "subtitle": "Subtitle",
     "content": "Content",
@@ -11,7 +33,51 @@
     "link": "Link",
     "order": "Order",
     "price": "Price",
-    "lang": "Lang"
+    "lang": "Lang",
+    "avatar": "Avatar",
+    "email": "Email",
+    "firstname": "First name",
+    "lastname": "Last name",
+    "phone": "Telephone number",
+    "street": "Street",
+    "city": "City",
+    "country": "Country",
+    "zip-code": "Zip code",
+    "arrival": "Arrival",
+    "departure": "Departure",
+    "start-date": "Arrival date",
+    "end-date": "Departure date",
+    "status": "Status",
+    "payment-method": "Payment method",
+    "receipt": "Receipt",
+    "current-pwd": "Your current password",
+    "new-pwd": "Your new Password",
+    "confirm-pwd": "Confirm your new password",
+    "same-address": "Same address as above"
+  },
+  "validations": {
+    "required": "This field is required",
+    "format": "Not a valid format",
+    "email": "Please enter a valid email",
+    "password": "Please enter a valid password",
+    "password-confirm": "Password confirmation does not match",
+    "login-error" : "Not a valid identification, wrong email or password",
+    "register-error" : "Email address already in use, please use another email",
+    "register-success": "Your account has been created successfully"
+  },
+  "menus": {
+    "home": "Home",
+    "news": "News",
+    "rooms": "Rooms",
+    "deals": "Deals",
+    "reviews": "Reviews",
+    "services" : "Services",
+    "ourHotel": "Our Hotel",
+    "my-reservations": "My reservations",
+    "my-infos": "My information",
+    "my-addresses": "My addresses",
+    "modify-email": "Modify my email address",
+    "modify-password": "Modify my password"
   },
   "buttons": {
     "create": "Create",
@@ -27,8 +93,30 @@
     "search": "Search",
     "login": "Login",
     "logout": "Logout",
+    "signup": "Register",
+    "default": "Default",
+    "my-account": "My account",
     "get-started": "Get started",
     "know-more": "Know more",
-    "reserve-now": "Reserve now"
+    "reserve-now": "Reserve now",
+    "pay": "Pay now"
+  },
+  "messages": {
+    "hello": "Hello",
+    "welcome": "Welcome",
+    "or": "or",
+    "resa-in-progress": "Ongoing booking",
+    "classic": "Classic Member",
+    "premium": "Premium Member",
+    "prestige": "Prestige Member",
+    "premium-adv": "Lifetime 10% discount",
+    "prestige-adv": "Lifetime 25% discount",
+    "premium-dc": "Premium Member 10% discount",
+    "prestige-dc": "Prestige Member 25% discount",
+    "excl-tax": "Subtotal",
+    "incl-tax": "Total",
+    "tax-10": "Tax 10%",
+    "payment-confirm": "Payment successfully validated",
+    "reservation-confirm": "Your reservation has been confirmed"
   }
 }

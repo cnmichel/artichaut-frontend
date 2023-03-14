@@ -13,7 +13,7 @@
 
 <script setup lang="ts">
 import TableComponent from "@/components/admin/TableComponent.vue";
-import FormComponent from "@/components/FormComponent.vue";
+import FormComponent from "@/components/admin/FormComponent.vue";
 
 import {onMounted, reactive, ref, shallowRef} from "vue";
 import {createProduct, deleteProduct, getProducts, updateProduct} from "@/services/api.js";

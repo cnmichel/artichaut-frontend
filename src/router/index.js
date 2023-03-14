@@ -1,7 +1,11 @@
 import { createWebHistory, createRouter } from "vue-router";
 
 // Import Homepage
+import Main from "@/views/MainView.vue";
 import Home from "@/views/HomeView.vue";
+import Auth from "@/views/AuthView.vue";
+import Account from "@/views/AccountView.vue";
+
 
 // Import Admin
 import AdminLogin from "@/views/admin/AdminLoginView.vue";
@@ -13,13 +17,79 @@ import AdminPromo from "@/views/admin/AdminPromoView.vue";
 import AdminVideo from "@/views/admin/AdminVideoView.vue";
 import AdminHero from "@/views/admin/AdminHeroView.vue";
 import { checkAdmin } from "@/services/auth";
-
+import Reservation from "@/views/reservation/ReservationView.vue";
+import Checkout from "@/views/reservation/CheckoutView.vue";
 
 const routes = [
     {
         path: "/",
-        name: "Home",
-        component: Home,
+        redirect: "/home",
+        name: "Main",
+        component: Main,
+        children: [
+            {
+                path: "/home",
+                name: "Home",
+                component: Home,
+            },
+            {
+                path: "/account",
+                name: "Account",
+                component: Account,
+            },
+            {
+                path: "/reservation",
+                name: "Reservation",
+                component: Reservation
+            },
+            {
+                path: "/checkout",
+                name: "Checkout",
+                component: Checkout,
+                children: [
+                    {
+                        path: "/checkout/cart",
+                        name: "CheckoutCart",
+                        component: Checkout,
+                    },
+                    {
+                        path: "/checkout/login",
+                        name: "CheckoutLogin",
+                        component: Checkout,
+                    },
+                    {
+                        path: "/checkout/payment",
+                        name: "CheckoutPayment",
+                        component: Checkout
+                    },
+                    {
+                        path: "/checkout/confirm",
+                        name: "CheckoutConfirm",
+                        component: Checkout
+                    },
+                ]
+            },
+        ]
+    },
+    {
+        path: "/login",
+        name: "Login",
+        component: Auth,
+    },
+    {
+        path: "/signup",
+        name: "Signup",
+        component: Auth,
+    },
+    {
+        path: "/sendlink",
+        name: "SendLink",
+        component: Auth,
+    },
+    {
+        path: "/password",
+        name: "Password",
+        component: Auth,
     },
     {
         path: "/admin",

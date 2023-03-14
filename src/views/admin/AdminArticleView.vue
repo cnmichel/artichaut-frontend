@@ -4,7 +4,7 @@ import { slice } from 'lodash';
 import {getArticles, createArticle, deleteArticle, updateArticle} from '@/services/api.js'
 import { ElMessageBox } from 'element-plus';
 import { useI18n } from 'vue-i18n'
-import FormComponent from "@/components/FormComponent.vue";
+import FormComponent from "@/components/admin/FormComponent.vue";
 
 interface Articles {
     title: string,
@@ -133,7 +133,7 @@ const getPagination = (articles: Articles[], page: number) => {
 <el-card class="box-card">
     <div class="">
         <button title="Ajouter un article" @click="handleCreate" class="transition ease-in-out delay-50 hover:translate-y-2 hover:scale-125 duration-300 choice" >
-            <img class="" src="/src/assets/add.png"/>
+            <img class="" src="/src/assets/icons/add.png"/>
         </button>
             <div id="divprincipale"  class="grid grid-cols-12 flex items-center" v-for="article in paginateArticles">
             <button @click="handleSelect(article)" ref="articles" class="col-span-11 shadow-lg rounder-lg p-8 grid grid-cols-3 grid-flow-col gap-4
@@ -146,10 +146,10 @@ const getPagination = (articles: Articles[], page: number) => {
             <div v-if="selectedArticle">
                 <div v-if="article === selectedArticle.item" class="col-span-1 flex flex-col buttons-container" style="display: flex;">
                     <button title="Modifier l'article" @click="handleEdit" class="transition ease-in-out delay-50 hover:-translate-y-2 hover:scale-125 duration-300 choice">
-                        <img class="fill" src="/src/assets/edit.png"/>
+                        <img class="fill" src="/src/assets/icons/edit.png"/>
                     </button>
                     <button title="Supprimer l'article" @click="handleDelete" class="transition ease-in-out delay-50 hover:translate-y-2 hover:scale-125 duration-300 choice">
-                        <img class="fill" src="/src/assets/delete.png"/>
+                        <img class="fill" src="/src/assets/icons/delete.png"/>
                     </button>
                 </div>
             </div>

@@ -1,10 +1,19 @@
 import axios from 'axios';
+import LangCodesEnum from "@/enums/modules/LangCodesEnum";
+
+// Get the locale from local storage if there is one or from navigator
+const storageLocale = localStorage.getItem('language');
+const navLocale = navigator.language;
+const locale = storageLocale ? storageLocale : navLocale;
 
 // Axios request config
 const config = {
     baseURL: import.meta.env.VITE_API_BASE_URL,
     headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`
+    },
+    params: {
+        'lang_id': LangCodesEnum[locale]
     }
 }
 
@@ -21,6 +30,12 @@ export async function getLangs() {
 
 export async function getUsers() {
     return axios.get('/users', config)
+        .then((res) => res.data)
+        .catch((err) => errorHandler(err));
+}
+
+export async function getCurrentUser() {
+    return axios.get(`/users/current`, config)
         .then((res) => res.data)
         .catch((err) => errorHandler(err));
 }
@@ -66,6 +81,15 @@ export async function createCustomer(data) {
 
 export async function updateCustomer(id, data) {
     return axios.put(`/users/${id}`, data, config)
+        .then((res) => res.data)
+        .catch((err) => errorHandler(err));
+}
+
+
+// RESERVATIONS API
+
+export async function getCustomerReservations() {
+    return axios.get('/reservations/customer', config)
         .then((res) => res.data)
         .catch((err) => errorHandler(err));
 }
@@ -310,6 +334,19 @@ export async function deleteVideo(id) {
         .catch((err) => errorHandler(err));
 }
 
+export async function getActiveVideo() {
+    return axios.get(`/videos/`,
+        {
+            baseURL: import.meta.env.VITE_API_BASE_URL,
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            },
+            params: {active: "1"},
+        })
+        .then((res) => res.data)
+        .catch((err) => errorHandler(err));
+}
+
 
 // SITEMAPS API
 
@@ -372,6 +409,30 @@ export async function updateSocial(id, data) {
 
 export async function deleteSocial(id) {
     return axios.delete(`/socials/${id}`, config)
+        .then((res) => res.data)
+        .catch((err) => errorHandler(err));
+}
+
+// RESERVATION API
+
+export async function createReservation(data) {
+    return axios.post(`/reservations`, data, config)
+        .then((res) => res.data)
+        .catch((err) => errorHandler(err));
+}
+
+// LIST OF AVAILABLE ROOMS
+
+export async function getAvailable(start, end) {
+    return axios.get(`/getAvailable`, { params: { start_date: start, end_date: end }, baseURL: import.meta.env.VITE_API_BASE_URL, })
+        .then((res) => res.data)
+        .catch((err) => errorHandler(err));
+}
+
+// LIST OF AVAILABLE PRODUCTS
+
+export async function getProductsByCategory(id) {
+    return axios.get(`/getProductsByCategory/${id}`, config)
         .then((res) => res.data)
         .catch((err) => errorHandler(err));
 }

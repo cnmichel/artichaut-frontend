@@ -44,17 +44,17 @@
 </template>
 
 <script setup>
-import { login, checkAdmin} from "@/services/auth";
-import {onBeforeMount, ref} from "vue";
+import { login, checkAdmin } from "@/services/auth";
+import { onBeforeMount, ref } from "vue";
 import router from "@/router";
 
 onBeforeMount(() => {
   if(localStorage.getItem('token')){
     const token = localStorage.getItem('token');
     // Vérification du role de l'utilisateur
-    checkAdmin(token).then(({}) => {
+    checkAdmin(token).then(() => {
       router.push('/admin/home')
-    }).catch(({response}) => {
+    }).catch(() => {
       router.push('/admin')
     })
   }
@@ -73,12 +73,11 @@ async function submit() {
 
   // Appel de la fonction  login
   login(user.value)
-      .then(async ({data}) => {
+      .then(async (data) => {
         // Vérification du role de l'utilisateur
         if (await checkAdmin(data.token)) {
-          console.log('1')
-          localStorage.setItem("token", data.token);
-          router.push('/admin/home')
+          localStorage.setItem("admin_token", data.token);
+          await router.push('/admin/home')
         } else {
           alert("Mauvais ID")
         }

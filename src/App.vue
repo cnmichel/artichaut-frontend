@@ -1,9 +1,15 @@
 <script setup lang="ts">
-import { useRouter } from 'vue-router';
+import { onBeforeMount, provide, ref } from "vue";
+import { getLangs } from '@/services/api.js'
 
-const router = useRouter()
+const langs = ref([])
+provide('langs', langs)
+
+onBeforeMount(() => {
+  getLangs().then((data: any) => langs.value = data)
+})
 </script>
 
-<template class="light">
+<template>
   <router-view/>
 </template>
