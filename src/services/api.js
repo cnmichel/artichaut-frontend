@@ -416,7 +416,13 @@ export async function deleteSocial(id) {
 // RESERVATION API
 
 export async function createReservation(data) {
-    return axios.post(`/reservations`, data, config)
+    return axios.post(`/reservations`, data, {
+        baseURL: import.meta.env.VITE_API_BASE_URL,
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+            "Content-Type": "application/json"
+        },
+    })
         .then((res) => res.data)
         .catch((err) => errorHandler(err));
 }

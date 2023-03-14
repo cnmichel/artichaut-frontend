@@ -1,6 +1,7 @@
 <script setup>
 import { getProductsByCategory, createReservation } from "@/services/api";
 import { onBeforeMount, reactive } from "vue";
+import {getUserByToken} from "@/services/auth";
 
 const recapData = reactive([]);
 
@@ -58,6 +59,18 @@ const handleChange = (e) => {
 const handleValidate = () => {
   emit('cart', { HT: parseFloat(total.HT).toFixed(2), TTC: parseFloat(total.TTC).toFixed(2) })
   emit('next', '/checkout/payment')
+  const userToken = localStorage.getItem('token');
+  getUserByToken(userToken).then((res) => {
+    console.log(props.data.items.userChoice.date.start);
+    createReservation({
+      "start_date": props.data.items.userChoice.date.start,
+      "end_date": props.data.items.userChoice.date.end,
+      "total_reservation": parseFloat(total.TTC).toFixed(2),
+      "status_id": 1,
+      "payment_id": 1,
+      "user_id": parseInt(res.user.id)
+    })
+  })
 }
 </script>
 
