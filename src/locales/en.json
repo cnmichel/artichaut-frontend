@@ -3,7 +3,12 @@
     "reviews": "Your opinion matter",
     "news": "Our news",
     "login": "Login",
-    "signup": "Signup"
+    "signup": "Signup",
+    "your-details": "Your details",
+    "billing-address": "Billing address",
+    "cart": "Cart",
+    "payment": "Payment",
+    "confirm": "Confirmation"
   },
   "auth": {
     "login-text": "Please enter your email and password",
@@ -17,6 +22,7 @@
   },
   "fields": {
     "name": "Name",
+    "label": "Label",
     "title": "Title",
     "subtitle": "Subtitle",
     "content": "Content",
@@ -46,9 +52,12 @@
     "receipt": "Receipt",
     "current-pwd": "Your current password",
     "new-pwd": "Your new Password",
-    "confirm-pwd": "Confirm your new password"
+    "confirm-pwd": "Confirm your new password",
+    "same-address": "Same address as above"
   },
   "validations": {
+    "required": "This field is required",
+    "format": "Not a valid format",
     "email": "Please enter a valid email",
     "password": "Please enter a valid password",
     "password-confirm": "Password confirmation does not match",
@@ -89,7 +98,8 @@
     "my-account": "My account",
     "get-started": "Get started",
     "know-more": "Know more",
-    "reserve-now": "Reserve now"
+    "reserve-now": "Reserve now",
+    "pay": "Pay now"
   },
   "messages": {
     "hello": "Hello",
@@ -100,6 +110,11 @@
     "premium": "Premium Member",
     "prestige": "Prestige Member",
     "premium-adv": "Lifetime 10% discount",
-    "prestige-adv": "Lifetime 25% discount"
+    "prestige-adv": "Lifetime 25% discount",
+    "premium-dc": "Premium Member 10% discount",
+    "prestige-dc": "Prestige Member 25% discount",
+    "excl-tax": "Subtotal",
+    "incl-tax": "Total",
+    "tax-10": "Tax 10%"
   }
 }

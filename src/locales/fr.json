@@ -3,7 +3,12 @@
     "reviews": "Vos avis comptent",
     "news": "Nos actualités",
     "login": "Connexion",
-    "signup": "Inscription"
+    "signup": "Inscription",
+    "your-details": "Vos coordonnées",
+    "billing-address": "Adresse de facturation",
+    "cart": "Panier",
+    "payment": "Paiement",
+    "confirm": "Confirmation"
   },
   "auth": {
     "login-text": "Veuillez entrer votre email et mot de passe",
@@ -17,6 +22,7 @@
   },
   "fields": {
     "name": "Nom",
+    "label": "Label",
     "title": "Titre",
     "subtitle": "Sous-titre",
     "content": "Contenu",
@@ -46,9 +52,12 @@
     "receipt": "Facture",
     "current-pwd": "Votre mot de passe actuel",
     "new-pwd": "Votre nouveau mot de passe",
-    "confirm-pwd": "Confirmer votre nouveau mot de passe"
+    "confirm-pwd": "Confirmer votre nouveau mot de passe",
+    "same-address": "Identique à l'adresse indiquer plus haut"
   },
   "validations": {
+    "required": "Ce champ est requis",
+    "format": "Format non valide",
     "email": "Veuillez entrer une adresse email valide",
     "password": "Veuillez entrer un mot de passe valide",
     "password-confirm": "Votre mot de passe de confirmation n'est pas identique",
@@ -89,7 +98,8 @@
     "my-account": "Mon compte",
     "get-started": "Commencer",
     "know-more": "En savoir plus",
-    "reserve-now": "Réserver maintenant"
+    "reserve-now": "Réserver maintenant",
+    "pay": "Payer"
   },
   "messages": {
     "hello": "Bonjour",
@@ -100,6 +110,11 @@
     "premium": "Membre Premium",
     "prestige": "Membre Prestige",
     "premium-adv": "10% de réduction à vie",
-    "prestige-adv": "25% de réduction à vie"
+    "prestige-adv": "25% de réduction à vie",
+    "premium-dc": "Remise 10% Membre Premium",
+    "prestige-dc": "Remise 25% Membre Prestige",
+    "excl-tax": "Total HT",
+    "incl-tax": "Total TTC",
+    "tax-10": "TVA 10%"
   }
 }

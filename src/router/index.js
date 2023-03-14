@@ -36,18 +36,40 @@ const routes = [
                 path: "/account",
                 name: "Account",
                 component: Account,
-            }
+            },
+            {
+                path: "/reservation",
+                name: "Reservation",
+                component: Reservation
+            },
+            {
+                path: "/checkout",
+                name: "Checkout",
+                component: Checkout,
+                children: [
+                    {
+                        path: "/checkout/cart",
+                        name: "CheckoutCart",
+                        component: Checkout,
+                    },
+                    {
+                        path: "/checkout/login",
+                        name: "CheckoutLogin",
+                        component: Checkout,
+                    },
+                    {
+                        path: "/checkout/payment",
+                        name: "CheckoutPayment",
+                        component: Checkout
+                    },
+                    {
+                        path: "/checkout/confirm",
+                        name: "CheckoutConfirm",
+                        component: Checkout
+                    },
+                ]
+            },
         ]
-    },
-    {
-        path: "/reservation",
-        name: "Reservation",
-        component: Reservation
-    },
-    {
-        path: "/checkout",
-        name: "Checkout",
-        component: Checkout
     },
     {
         path: "/login",
