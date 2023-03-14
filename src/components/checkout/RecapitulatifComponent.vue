@@ -1,5 +1,5 @@
 <script setup>
-import { getProductsByCategory } from "@/services/api";
+import { getProductsByCategory, createReservation } from "@/services/api";
 import { onBeforeMount, reactive } from "vue";
 
 const recapData = reactive([]);
@@ -64,19 +64,51 @@ const handleValidate = () => {
 <template>
   <h2 class="text-center mt-12 mb-12">Récapitulatif</h2>
   <div class="flex justify-around">
-    <div>
+    <div class="flex flex-col gap-4">
       <h3 class="text-center">Options</h3>
-      <div v-for="(item, index) in recapData" :key="index">
-        <el-switch
-            v-model="item.checked"
-            @change="handleChange(item)"
-            style="--el-switch-on-color: #13ce66; --el-switch-off-color: #ff4949"
-        />
-        {{ item.name }}
+      <div class="flex flex-col">
+        <div class="flex flex-col">
+          <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+            <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+              <div class="overflow-hidden">
+                <table class="min-w-full text-center text-sm font-light">
+                  <thead class="font-medium">
+                  <tr>
+                    <th scope="col" class="px-6 py-4">#</th>
+                    <th scope="col" class="px-6 py-4">Nom</th>
+                    <th scope="col" class="px-6 py-4">Récurrence</th>
+                    <th scope="col" class="px-6 py-4">Prix</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr v-for="(item, index) in recapData" :key="index">
+                    <td class="whitespace-nowrap px-6 py-4 font-medium"><el-switch
+                        v-model="item.checked"
+                        @change="handleChange(item)"
+                        style="--el-switch-on-color: #13ce66; --el-switch-off-color: #ff4949"
+                    /></td>
+                    <td class="text-left whitespace-nowrap px-6 py-4">{{ item.name }}</td>
+                    <td class="text-left whitespace-nowrap px-6 py-4">{{ item.recurrence }}/{{ item.rate }}</td>
+                    <td class="whitespace-nowrap px-6 py-4">{{ item.price }} €</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <div>
       <h3 class="text-center">Total</h3>
+      <div v-for="(item, index) in recapData" :key="index">
+        <div v-if="item.checked">
+          {{ item.name }} : {{ item.finalPrice }} €
+        </div>
+      </div>
+      <div>
+        {{ props.data.items.userChoice.firstRoom.details.name }} pour {{ props.data.items.customers }} : {{ props.data.items.userChoice.firstRoom.details.price * props.data.items.customers * props.data.items.userChoice.date.interval }} €
+      </div>
       <p> HT = {{ total.HT }}</p>
       <p> TTC = {{ total.TTC }}</p>
     </div>
