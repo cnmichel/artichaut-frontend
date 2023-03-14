@@ -12,7 +12,7 @@ const navLocale = navigator.language;
 export const i18n = createI18n({
     legacy: false,
     globalInjection: true,
-    locale: locale ? locale.split('-')[0] : navLocale.split('-')[0],
+    locale: locale ? locale : navLocale.split('-')[0],
     fallbackLocale: "en",
     messages: messages,
 });
