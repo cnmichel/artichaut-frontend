@@ -38,7 +38,7 @@ const toggleMenu = () => {
 
 const handleLangSelect = (code: string) => {
   // Set the lang in the local storage
-  localStorage.setItem('language', code);
+  localStorage.setItem('language', code.split('-')[0]);
   // Reload the page
   location.reload();
 }
@@ -125,7 +125,8 @@ onBeforeMount(() => {
           <div class="xs:max-lg:hidden">
             <el-dropdown trigger="click" @command="handleLangSelect">
               <el-button size="large" style="padding: 0" circle text>
-                <el-image style="width: 44px; height: 44px" :src="`/src/assets/langs/${selectedLang}.png`" fit="cover"/>
+                <el-image v-if="selectedLang === 'fr'" style="width: 44px; height: 44px" src="/src/assets/langs/fr.png" fit="cover"/>
+                <el-image v-if="selectedLang === 'en'" style="width: 44px; height: 44px" src="/src/assets/langs/en.png" fit="cover"/>
               </el-button>
               <template #dropdown>
                 <el-dropdown-menu>
