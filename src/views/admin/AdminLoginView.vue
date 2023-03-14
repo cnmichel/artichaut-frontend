@@ -44,17 +44,17 @@
 </template>
 
 <script setup>
-import { login, checkAdmin} from "@/services/auth";
-import {onBeforeMount, ref} from "vue";
+import { login, checkAdmin } from "@/services/auth";
+import { onBeforeMount, ref } from "vue";
 import router from "@/router";
 
 onBeforeMount(() => {
   if(localStorage.getItem('token')){
     const token = localStorage.getItem('token');
     // Vérification du role de l'utilisateur
-    checkAdmin(token).then(({}) => {
+    checkAdmin(token).then(() => {
       router.push('/admin/home')
-    }).catch(({response}) => {
+    }).catch(() => {
       router.push('/admin')
     })
   }

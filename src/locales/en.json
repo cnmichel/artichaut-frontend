@@ -115,6 +115,8 @@
     "prestige-dc": "Prestige Member 25% discount",
     "excl-tax": "Subtotal",
     "incl-tax": "Total",
-    "tax-10": "Tax 10%"
+    "tax-10": "Tax 10%",
+    "payment-confirm": "Payment successfully validated",
+    "reservation-confirm": "Your reservation has been confirmed"
   }
 }

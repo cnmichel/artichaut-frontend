@@ -45,7 +45,7 @@ export async function getUserByToken(token)
 
 // Vérification du rôle de l'utilisateur
 export async function checkAdmin(token) {
-    return getUserByToken(token).then(({ data }) => {
+    return getUserByToken(token).then((data) => {
         return data.user.role_id === 1;
     })
 }
