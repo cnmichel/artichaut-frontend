@@ -10,8 +10,8 @@ const total = reactive({
   TTC: 0,
 });
 
-const props = defineProps(['data','active'])
-const emit = defineEmits(['HT', 'TTC', 'active'])
+const props = defineProps(['data','next'])
+const emit = defineEmits(['HT', 'TTC', 'next'])
 
 onBeforeMount(async () => {
   const response1 = await getProductsByCategory(2);
@@ -19,8 +19,8 @@ onBeforeMount(async () => {
 
   recapData.push(...response1, ...response2);
 
-  total.HT = parseInt((props.data.items.userChoice.firstRoom.details.price * props.data.items.customers) * props.data.items.userChoice.date.interval);
-  total.TTC = parseInt(total.HT * 1.2);
+  total.TTC = parseInt((props.data.items.userChoice.firstRoom.details.price * props.data.items.customers) * props.data.items.userChoice.date.interval);
+  total.HT = parseInt(total.TTC * 0.9);
 
 });
 
@@ -49,22 +49,19 @@ const handleChange = (e) => {
     }
   }
 
-  total.HT = total.options + parseInt((props.data.items.userChoice.firstRoom.details.price * props.data.items.customers) * props.data.items.userChoice.date.interval);;
-  total.TTC = parseFloat(total.HT * 1.2).toFixed(2);
+  total.TTC = total.options + parseInt((props.data.items.userChoice.firstRoom.details.price * props.data.items.customers) * props.data.items.userChoice.date.interval);
+  total.HT = parseFloat(total.TTC * 0.9).toFixed(2);
 
 
 };
 
 const handleValidate = () => {
-  emit('HT', total.HT)
-  emit('TTC', total.TTC)
-
-  emit('active', props.active + 1)
+  emit('cart', { HT: parseFloat(total.HT).toFixed(2), TTC: parseFloat(total.TTC).toFixed(2) })
+  emit('next', '/checkout/login')
 }
 </script>
 
 <template>
-  {{ data}}
   <h2 class="text-center mt-12 mb-12">Récapitulatif</h2>
   <div class="flex justify-around">
     <div>
@@ -82,7 +79,6 @@ const handleValidate = () => {
       <h3 class="text-center">Total</h3>
       <p> HT = {{ total.HT }}</p>
       <p> TTC = {{ total.TTC }}</p>
-
     </div>
   </div>
   <el-button @click="handleValidate" class="text-center" style="margin-top: 12px">Next step</el-button>
