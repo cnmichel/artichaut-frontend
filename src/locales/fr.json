@@ -115,6 +115,8 @@
     "prestige-dc": "Remise 25% Membre Prestige",
     "excl-tax": "Total HT",
     "incl-tax": "Total TTC",
-    "tax-10": "TVA 10%"
+    "tax-10": "TVA 10%",
+    "payment-confirm": "Paiement valider avec succès",
+    "reservation-confirm": "Votre réservation à été confirmer"
   }
 }
