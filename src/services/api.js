@@ -12,6 +12,9 @@ const config = {
     headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`
     },
+    params: {
+        'lang_id': LangCodesEnum[locale]
+    }
 }
 
 // LANGS API

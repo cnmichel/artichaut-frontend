@@ -13,7 +13,6 @@ const articles = reactive({ items: <Article[]>[] })
 
 onBeforeMount(() => {
   getArticles().then((data:any) => {
-    console.log(data);
     articles.items = data;
   });
 })

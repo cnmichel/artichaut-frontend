@@ -17,4 +17,5 @@ import Video from '@/components/VideoComponent.vue';
   <Video/>
   <section class=" flex items-center justify-center h-80 mb-12 bg-fixed bg-center bg-cover background-parralax-one">
   </section>
+  <Review/>
 </template>
