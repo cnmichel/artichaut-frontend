@@ -20,7 +20,7 @@ onBeforeMount(() => {
 
 <template>
   <a id="news"></a>
-  <div v-if="articles.items !== []">
+  <div v-if="articles.items.length !== 0">
     <h1 class="text-5xl font-bold text-center mt-0 mb-6">{{ $t('titles.news') }}</h1>
     <el-carousel :interval="7000" height="70vh" trigger="click">
       <el-carousel-item v-for="article in articles.items" :key="article.title">
