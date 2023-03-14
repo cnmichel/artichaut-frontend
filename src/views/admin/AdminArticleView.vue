@@ -4,7 +4,7 @@ import { slice } from 'lodash';
 import {getArticles, createArticle, deleteArticle, updateArticle} from '@/services/api.js'
 import { ElMessageBox } from 'element-plus';
 import { useI18n } from 'vue-i18n'
-import FormComponent from "@/components/FormComponent.vue";
+import FormComponent from "@/components/admin/FormComponent.vue";
 
 interface Articles {
     title: string,

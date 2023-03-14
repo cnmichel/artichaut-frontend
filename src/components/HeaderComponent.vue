@@ -125,7 +125,7 @@ onBeforeMount(() => {
           <div class="xs:max-lg:hidden">
             <el-dropdown trigger="click" @command="handleLangSelect">
               <el-button size="large" style="padding: 0" circle text>
-                <el-image style="width: 44px; height: 44px" :src="`src/assets/langs/${selectedLang}.png`" fit="cover"/>
+                <el-image style="width: 44px; height: 44px" :src="`/src/assets/langs/${selectedLang}.png`" fit="cover"/>
               </el-button>
               <template #dropdown>
                 <el-dropdown-menu>

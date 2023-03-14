@@ -40,8 +40,10 @@ interface Reservation {
 }
 
 const displayName = computed(() => {
+  // Fetch user email and name from local storage
   const email = localStorage.getItem('user_email');
   const name = localStorage.getItem('user_name');
+  // Display email if no name was set in local storate
   return name ? words(name)[0] : email
 })
 
@@ -82,23 +84,12 @@ const reservations = reactive({
   ]
 })
 
-const formEdit = ref(true)
 const formRef = ref<FormInstance>()
 // Form validation rules
 const rules = reactive<FormRules>({
   email: [{ type: "email", required: true, message: t('validations.email'), trigger: 'blur' }],
   password: [{ type: "string", required: true, message: t('validations.password'), trigger: 'blur' }],
 })
-
-const handleCollapse = () => {
-  // Close form edit on collapse change
-  formEdit.value = true;
-}
-
-const handleEdit = () => {
-  // Activate form for edit
-  formEdit.value = !formEdit.value;
-}
 
 const handleTableEdit = (index: number, row: Address) => {
   // TODO implémenter la fonction pour éditer une ligne du tableau
@@ -197,7 +188,7 @@ onBeforeMount(() => {
 
   <!-- Main -->
   <div class="flex flex-col w-full px-6 lg:px-12">
-    <el-collapse accordion class="lg:px-12" @change="handleCollapse">
+    <el-collapse accordion class="lg:px-12">
 
       <!-- Reservation collapse -->
       <el-collapse-item name="my-resa">
@@ -235,7 +226,7 @@ onBeforeMount(() => {
           <h4 class="text-xl">{{ $t('menus.my-infos') }}</h4>
         </template>
         <div class="grid px-6 lg:px-48">
-          <el-form :model="currentUser" :rules="rules" :disabled="formEdit" label-position="top" label-width="auto" size="large">
+          <el-form ref="formRef" :model="currentUser" :rules="rules" label-position="top" label-width="auto" size="large">
             <div class="flex flex-col justify-content-center lg:grid lg:grid-cols-2 lg:gap-16">
               <el-form-item :label="t(`fields.firstname`)">
                 <el-input v-model="currentUser.customer.firstname" />
@@ -265,15 +256,14 @@ onBeforeMount(() => {
                 <el-input v-model="currentUser.customer.addresses[0].country" />
               </el-form-item>
             </div>
-            <div v-if="!formEdit" class="flex flex-col lg:grid justify-items-center mt-6">
+            <div class="flex flex-col lg:grid justify-items-center mt-6">
               <el-form-item class="w-full lg:w-3/12">
-                <el-button class="w-full" color="#253343" round @click="onSubmit(formRef)">{{ $t('buttons.save') }}</el-button>
+                <el-button class="w-full" color="#253343" round @click="onSubmit(formRef)">
+                  {{ $t('buttons.save') }}
+                </el-button>
               </el-form-item>
             </div>
           </el-form>
-          <div v-if="formEdit" class="flex flex-col w-full lg:grid lg:w-3/12 justify-self-center mt-6 mb-[22px]">
-            <el-button size="large" @click="handleEdit" round plain>{{ $t('buttons.edit') }}</el-button>
-          </div>
         </div>
       </el-collapse-item>
 
@@ -322,9 +312,6 @@ onBeforeMount(() => {
               </el-form-item>
             </div>
           </el-form>
-          <div v-if="formEdit" class="flex lg:grid w-full lg:w-3/12 justify-self-center mt-6 mb-[22px]">
-            <el-button size="large" @click="handleEdit" round plain>{{ $t('buttons.edit') }}</el-button>
-          </div>
         </div>
       </el-collapse-item>
 

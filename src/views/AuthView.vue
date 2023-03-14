@@ -32,8 +32,10 @@ onBeforeMount(() => {
 <template>
   <div class="login-bg relative overflow-auto bg-scroll bg-cover bg-top">
     <div class="flex flex-wrap items-center justify-center lg:grid lg:grid-cols-3 h-max min-h-full bg-slate-700/50 p-6">
-      <Login v-if="current === '/login'" @login="isLogged"/>
-      <Signup v-if="current === '/signup'" @register="isRegistered"/>
+      <el-card class="grid box-card w-full h-auto xs:max-lg:justify-center lg:h-full lg:py-12 lg:px-16 py-3 px-3">
+        <Login v-if="current === '/login'" @login="isLogged"/>
+        <Signup v-if="current === '/signup'" @register="isRegistered"/>
+      </el-card>
       <div class="col-span-2 w-4/6 lg:w-6/12 justify-self-center xs:max-lg:order-first mb-4">
         <router-link to="/">
           <img src="@/assets/logos/artichaut-logoless-white.png" alt="Logo Artichaut Hotel blanc">
