@@ -57,7 +57,7 @@ const handleChange = (e) => {
 
 const handleValidate = () => {
   emit('cart', { HT: parseFloat(total.HT).toFixed(2), TTC: parseFloat(total.TTC).toFixed(2) })
-  emit('next', '/checkout/login')
+  emit('next', '/checkout/payment')
 }
 </script>
 

@@ -39,7 +39,7 @@ import { getAvailable } from '@/services/api';
     if (data.userChoice.firstRoom !== '') {
       const checkoutInfos = encodeURIComponent(JSON.stringify(data));
       router.push({
-        path: '/checkout/cart',
+        path: '/checkout/login',
         query: { checkoutInfos }
       });
     }

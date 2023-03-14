@@ -23,25 +23,22 @@ const cart = reactive({
   TVA: 0
 })
 
-watch(current, () => {
-  if (current.value === '/checkout/login' && localStorage.getItem('user_email')) {
-    current.value = '/checkout/payment';
-    router.push('/checkout/payment');
-  }
-})
-
 onBeforeMount(() => {
   if (route.query.checkoutInfos) {
     data.items = JSON.parse(decodeURIComponent(route.query.checkoutInfos));
     console.log(data.items);
   }
+  if (router.currentRoute.value.path === '/checkout/login' && localStorage.getItem('user_email')) {
+    current.value = '/checkout/cart';
+    router.push('/checkout/cart');
+  }
 });
 
 const active = computed(() => {
   switch (current.value) {
-    case "/checkout/cart":
-      return 0;
     case "/checkout/login":
+      return 0;
+    case "/checkout/cart":
       return 1;
     case "/checkout/payment":
       return 2;
@@ -68,8 +65,8 @@ const next = (value) => {
   <!-- Steps horizontal -->
   <div class="sticky top-0 z-10 w-full bg-slate-800 pt-12 pb-2 px-12 max-md:hidden">
     <el-steps :active="active" finish-status="success" align-center>
-      <el-step :title="t('titles.cart')" />
       <el-step :title="t('titles.login')" />
+      <el-step :title="t('titles.cart')" />
       <el-step :title="t('titles.payment')" />
       <el-step :title="t('titles.confirm')" />
     </el-steps>
@@ -77,25 +74,25 @@ const next = (value) => {
   <!-- Steps vertical -->
   <div class="w-full bg-slate-800 pt-4 pb-1 px-12 md:hidden lg:hidden">
     <el-steps :active="active" finish-status="success" :space="35" direction="vertical" align-center>
-      <el-step :title="t('titles.cart')" />
       <el-step :title="t('titles.login')" />
+      <el-step :title="t('titles.cart')" />
       <el-step :title="t('titles.payment')" />
       <el-step :title="t('titles.confirm')" />
     </el-steps>
   </div>
 
-  <!-- Cart section -->
-  <section v-if="current === '/checkout/cart'">
-    <Recapitulatif :data="data" :active="active" @cart="totalCart" @next="next" />
-  </section>
-
   <!-- Login section -->
   <section v-if="current === '/checkout/login'">
     <div class="flex lg:grid grid-cols-3 lg:py-12">
       <el-card class="flex lg:grid box-card w-full h-auto lg:col-start-2 xs:max-lg:justify-center lg:h-full lg:py-12 lg:px-16 py-3 px-3">
-        <Login @login="next('/checkout/payment')"/>
+        <Login @login="next('/checkout/cart')"/>
       </el-card>
     </div>
+  </section>
+
+  <!-- Cart section -->
+  <section v-if="current === '/checkout/cart'">
+    <Recapitulatif :data="data" :active="active" @cart="totalCart" @next="next" />
   </section>
 
   <!-- Payment section -->
